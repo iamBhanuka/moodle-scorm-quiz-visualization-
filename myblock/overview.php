@@ -53,7 +53,7 @@
         $types=array('SCS','IS');
         $years=array('1 st Year','2 nd Year','3 rd Year','4 th Year');
         $semesters=array('1 st Semester','2 nd Semester');
-        $ndayss=array('30','60','90','105');
+        $ndayss=array('Select no of days','30','60','90','105');
         $actions=array('viewed','All Actions');
 
         echo html_writer::start_tag('div');
