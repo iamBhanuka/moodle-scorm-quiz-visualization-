@@ -42,11 +42,11 @@
                 }
                
                 else{   if($ndays=='Select no of days'){
-                              echo 'please select number of days which you want';
+                           //   echo 'please select number of days which you want';
                        
                         } 
                         else{
-                                echo  ' In  '.$id. ' there is no values to display'.'<br>'.'<br>';
+                              //  echo  ' In  '.$id. ' there is no values to display'.'<br>'.'<br>';
                         }
                          
                 }                  
