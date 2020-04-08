@@ -107,21 +107,21 @@
                                         
                                         $yname='number of all actions';
                                 }
-                                                        
+                                                            
                         } 
                         foreach ($cours as $o=>$valu){
                                 if($valu->id==$a){
                                         $name=$valu->fullname.' ( '.$valu->idnumber.' )' ;
                                 }
                         }
-                $series = new \core\chart_series($name, $data);
-                if($max<=max($data)){
-                        $max=max($data);
-                }
+                       $series = new \core\chart_series($name, $data);
+                       if($max<=max($data)){
+                               $max=max($data);
+                       }
 
-                $chart->add_series($series);                      
+                       $chart->add_series($series);                      
                 } 
-
+ 
                 $chart->set_labels($labe2);
                 $yaxis = $chart->get_yaxis(0, true);
                 $yaxis->set_label($yname);
@@ -130,5 +130,6 @@
                 echo $OUTPUT->render($chart);                  
         }
 
+        
 
-
+       
