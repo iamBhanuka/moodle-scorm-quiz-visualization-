@@ -53,7 +53,84 @@
         };
         
         
+//draw graph according to views of subject 
+function get_login_data($s,$ndays,$action){
+        global $DB,$countuser,$X, $OUTPUT,$name,$max,$yname;
+        $max=1;
+        $countuser=0;
+        $name='';  
+        $dan=$ndays-1;
+        $data=array();//for data
+        $labe2=array();//for dates label
+        $days='-'.$dan.'days';
+        $date=date("Y-m-d");
+        $d = new DateTime($date);
+        $d->modify($days);
+        for($i=0;$i<=$dan;$i++){                                  
+                $date=$d->format('d-m-Y');    
+                $newDate = date("d M Y", strtotime($date));
+                $new_date = date('jS F Y', strtotime($newDate));
+                $labe2[$i]=$new_date;
+                $d->modify('+1 days');                                
+        }                               
+                
+        $chart = new \core\chart_line();  
+        
+        //$chart->set_smooth(true); 
+        $cours=$DB->get_records_sql('SELECT id,fullname,idnumber FROM {course}');
 
+        foreach($s as $a){
+                $X=0;
+                foreach($labe2 as $date){
+
+                        if($action=='viewed'){
+                                $sql6= "SELECT COUNT(userid) AS 'countusers'
+                                        FROM {logstore_standard_log} 
+                                        WHERE action='viewed' AND courseid=$a 
+                                        AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$date';";
+                                $login6=$DB->get_records_sql($sql6); 
+                                foreach($login6 as $f=>$va){                                        
+                                        $data[$X]=$va->countusers;                                                                                                        
+                                } 
+                                $X++; 
+                                $yname='number of views';
+                        }else{
+                                $sql6= "SELECT COUNT(userid) AS 'countusers'
+                                        FROM {logstore_standard_log} 
+                                        WHERE courseid=$a 
+                                        AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$date';";
+                                $login6=$DB->get_records_sql($sql6); 
+                        
+                                foreach($login6 as $f=>$va){                                        
+                                        $data[$X]=$va->countusers;                                                                                                        
+                                } 
+                                $X++; 
+                                
+                                $yname='number of all actions';
+                        }
+                                                    
+                } 
+                foreach ($cours as $o=>$valu){
+                        if($valu->id==$a){
+                                $name=$valu->fullname.' ( '.$valu->idnumber.' )' ;
+                        }
+                }
+                                    
+        } 
+        $series = new \core\chart_series($name, $data);
+               if($max<=max($data)){
+                       $max=max($data);
+               }
+
+               $chart->add_series($series); 
+
+        $chart->set_labels($labe2);
+        $yaxis = $chart->get_yaxis(0, true);
+        $yaxis->set_label($yname);
+        $yaxis->set_stepsize(max(1,round($max  / 10)));
+        
+        echo $OUTPUT->render($chart);                  
+}
         
 
        
