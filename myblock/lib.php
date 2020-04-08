@@ -52,9 +52,8 @@
                 }                  
         };
         
-        
-//draw graph according to views of subject 
-function get_login_data($s,$ndays,$action){
+ //draw graph according to views of subject 
+ function get_login_data($s,$ndays,$action){
         global $DB,$countuser,$X, $OUTPUT,$name,$max,$yname;
         $max=1;
         $countuser=0;
@@ -115,14 +114,13 @@ function get_login_data($s,$ndays,$action){
                                 $name=$valu->fullname.' ( '.$valu->idnumber.' )' ;
                         }
                 }
-                                    
-        } 
-        $series = new \core\chart_series($name, $data);
+               $series = new \core\chart_series($name, $data);
                if($max<=max($data)){
                        $max=max($data);
                }
 
-               $chart->add_series($series); 
+               $chart->add_series($series);                      
+        } 
 
         $chart->set_labels($labe2);
         $yaxis = $chart->get_yaxis(0, true);
@@ -131,6 +129,6 @@ function get_login_data($s,$ndays,$action){
         
         echo $OUTPUT->render($chart);                  
 }
-        
 
-       
+
+
