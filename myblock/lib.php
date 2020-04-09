@@ -2,7 +2,7 @@
 
         require_once(dirname(__FILE__) . '/../../config.php');
 
-        // get page context according to id
+       
         function block_myblock_course_context($courseid) { 
                 if (class_exists('context_course')) {
                         return context_course::instance($courseid);
@@ -10,8 +10,8 @@
                         return get_context_instance(CONTEXT_COURSE, $courseid);
                 }
         }
-
-        // selcect category id
+       
+       
         function get_course_data( $id,$type,$uyear,$semester,$ndays,$action){            
                 global $DB,$sid,$sc;
 
@@ -75,7 +75,7 @@
                         
                 $chart = new \core\chart_line();  
                 
-                //$chart->set_smooth(true); 
+               
                 $cours=$DB->get_records_sql('SELECT id,fullname,idnumber FROM {course}');
 
                 foreach($s as $a){
