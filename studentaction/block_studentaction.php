@@ -5,9 +5,9 @@ require_once(dirname(__FILE__) . '/../../config.php');
 
  class block_myblock extends block_base {
 
-    // public function init(){
-    //     $this->title='course login data';
-    // }
+    public function init(){
+        $this->title='course login data';
+    }
 
 //     public function get_content(){
 //         global $USER, $COURSE, $CFG, $OUTPUT, $DB;
@@ -52,5 +52,5 @@ require_once(dirname(__FILE__) . '/../../config.php');
 //         );
 //     }
       
-// }
+ }
  
