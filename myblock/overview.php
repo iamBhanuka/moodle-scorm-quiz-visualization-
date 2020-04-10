@@ -68,7 +68,7 @@
                 echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'courseid', 'value' => $courseid));
                 echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'userid', 'value' => $userid));
 
-                echo html_writer::empty_tag('input', array('type' => 'submit', 'class' => 'btn-primary', 'value' => 'courses summary',));
+                echo html_writer::empty_tag('input', array('type' => 'submit', 'class' => 'btn-primary', 'value' => 'courses summary','style'=>'height:35px ; border:1px solid black'));
             echo html_writer::end_tag('form').'<br>';       
         echo html_writer::end_tag('div');
 

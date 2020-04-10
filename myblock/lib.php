@@ -2,7 +2,7 @@
 
         require_once(dirname(__FILE__) . '/../../config.php');
 
-       
+       //get course data
         function block_myblock_course_context($courseid) { 
                 if (class_exists('context_course')) {
                         return context_course::instance($courseid);
@@ -125,7 +125,7 @@
                 $chart->set_labels($labe2);
                 $yaxis = $chart->get_yaxis(0, true);
                 $yaxis->set_label($yname);
-                $yaxis->set_stepsize(max(1,round($max  / 10)));
+                $yaxis->set_stepsize(max(1,round($max/10)));
                 
                 echo $OUTPUT->render($chart);                  
         }
