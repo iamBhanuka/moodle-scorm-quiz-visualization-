@@ -9,16 +9,16 @@ require_once(dirname(__FILE__) . '/../../config.php');
         $this->title='course login data';
     }
 
-//     public function get_content(){
-//         global $USER, $COURSE, $CFG, $OUTPUT, $DB;
+    public function get_content(){
+        global $USER, $COURSE, $CFG, $OUTPUT, $DB;
 
-//          if($this->content!==null){
-//              return $this->content;
-//          }
+         if($this->content!==null){
+             return $this->content;
+         }
 
-//          $this->content=new stdClass;
-//          $this->content->text='';
-//          $this->content->footer='';
+         $this->content=new stdClass;
+         $this->content->text='';
+         $this->content->footer='';
          
        
 //          $parameters=array( 'logingraphid' => $this->instance->id,'courseid' => $COURSE->id,'userid'=>$USER->id);
