@@ -2,7 +2,7 @@
 
         require_once(dirname(__FILE__) . '/../../config.php');
 
-       //get course data
+       // get page content
         function block_myblock_course_context($courseid) { 
                 if (class_exists('context_course')) {
                         return context_course::instance($courseid);
@@ -11,7 +11,7 @@
                 }
         }
        
-       
+       //get course data
         function get_course_data( $id,$type,$uyear,$semester,$ndays,$action){            
                 global $DB,$sid,$sc;
 
