@@ -21,10 +21,10 @@ require_once(dirname(__FILE__) . '/../../config.php');
          $this->content->footer='';
          
        
-//          $parameters=array( 'logingraphid' => $this->instance->id,'courseid' => $COURSE->id,'userid'=>$USER->id);
-//          $options = array('class' => 'overviewButton');
-//          $url = new moodle_url('/blocks/myblock/overview.php',$parameters);
-//          $this->content->text .= $OUTPUT->single_button($url, 'overview of students', 'post',$options);
+         $parameters=array( 'logingraphid' => $this->instance->id,'courseid' => $COURSE->id,'userid'=>$USER->id);
+         $options = array('class' => 'overviewButton');
+         $url = new moodle_url('/blocks/myblock/overview.php',$parameters);
+         $this->content->text .= $OUTPUT->single_button($url, 'overview of students', 'post',$options);
          
 //          return $this->content;
 //     }
