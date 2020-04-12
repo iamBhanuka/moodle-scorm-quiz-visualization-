@@ -29,11 +29,11 @@ require_once(dirname(__FILE__) . '/../../config.php');
          return $this->content;
     }
 
-//     public function specialization(){
-//          if(isset($this->config)){
+    public function specialization(){
+         if(isset($this->config)){
             
-//          }
-//     }
+         }
+    }
 
 //     public function instance_allow_multiple(){
 //          return true;
