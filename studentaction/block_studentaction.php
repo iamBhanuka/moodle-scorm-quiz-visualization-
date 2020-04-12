@@ -26,8 +26,8 @@ require_once(dirname(__FILE__) . '/../../config.php');
          $url = new moodle_url('/blocks/myblock/overview.php',$parameters);
          $this->content->text .= $OUTPUT->single_button($url, 'overview of students', 'post',$options);
          
-//          return $this->content;
-//     }
+         return $this->content;
+    }
 
 //     public function specialization(){
 //          if(isset($this->config)){
