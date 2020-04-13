@@ -35,22 +35,22 @@ require_once(dirname(__FILE__) . '/../../config.php');
          }
     }
 
-//     public function instance_allow_multiple(){
-//          return true;
-//     }
+    public function instance_allow_multiple(){
+         return true;
+    }
 
-//     function has_config(){
-//           return true;
-//     }
+    function has_config(){
+          return true;
+    }
 
-//     public function applicable_formats(){
-//         return array(
-//             'course-view'    => true,  
-//             'site'           => true,
-//             'mod'            => false,
-//             'my'             => true        
-//         );
-//     }
+    public function applicable_formats(){
+        return array(
+            'course-view'    => true,  
+            'site'           => true,
+            'mod'            => false,
+            'my'             => true        
+        );
+    }
       
  }
  
