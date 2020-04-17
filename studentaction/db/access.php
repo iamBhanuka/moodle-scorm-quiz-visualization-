@@ -1,7 +1,7 @@
 <?php
     $capabilities = array(
 
-        'block/myblock:myaddinstance' => array(
+        'block/studentaction:myaddinstance' => array(
             'captype' => 'write',
             'contextlevel' => CONTEXT_SYSTEM,
             'archetypes' => array(
