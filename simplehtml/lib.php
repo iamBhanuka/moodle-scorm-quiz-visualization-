@@ -117,3 +117,31 @@
             }
                                                  
         }
+        
+        function  get_coursees($userid){
+            global $DB,$contextids,$instanceids,$i;
+            $label=array();
+            $i=0;
+            // $sql="SELECT id,shortname FROM {role};";
+            // $dat=$DB->get_records_sql($sql);
+            // foreach($dat as $a=>$val){
+            //         echo $val->id.'--'.$val->shortname.'<br>';
+            // }
+            $sql1 = "SELECT * FROM {role_assignments} WHERE  userid='$userid';";
+            $res = $DB->get_records_sql($sql1);
+            foreach ($res as $s=>$val){
+                    $contextids=$val->contextid;       
+                    $sql2 = "SELECT instanceid from {context} WHERE id='$contextids' AND contextlevel=50;";
+                    $res1 = $DB->get_records_sql($sql2);
+                    foreach($res1 as $d=>$val){
+                            $instanceids=$val->instanceid;
+                            $sql3 = "SELECT id,shortname,fullname FROM {course} WHERE id='$instanceids';";
+                            $res2=$DB->get_records_sql($sql3);
+                            foreach($res2 as $f=>$val){
+                                    $label[$i]=$val->id;
+                                    $i++;
+                            }
+                    }
+            }
+            return $label;
+    }
