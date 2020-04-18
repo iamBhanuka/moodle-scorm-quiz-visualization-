@@ -11,7 +11,7 @@
             'clonepermissionsfrom'=>'moodle/my:manageblocks'
         ),
 
-        'block/myblock:addinstance'=>array(
+        'block/studentaction:addinstance'=>array(
             'riskbitmask'=> RISK_SPAM | RISK_XSS,
 
             'captype'=>'write',
