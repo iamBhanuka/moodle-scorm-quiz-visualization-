@@ -1,7 +1,7 @@
 <?php
 
-// require_once(dirname(__FILE__) . '/../../config.php');
-// require_once($CFG->dirroot.'/blocks/myblock/lib.php');
+require_once(dirname(__FILE__) . '/../../config.php');
+require_once($CFG->dirroot.'/blocks/studentaction/lib.php');
 
 // define('USER_SMALL_CLASS', 20);   
 // define('USER_LARGE_CLASS', 200);  
