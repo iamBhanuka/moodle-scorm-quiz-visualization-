@@ -3,10 +3,10 @@
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once($CFG->dirroot.'/blocks/studentaction/lib.php');
 
-// define('USER_SMALL_CLASS', 20);   
-// define('USER_LARGE_CLASS', 200);  
-// define('DEFAULT_PAGE_SIZE', 20);
-// define('SHOW_ALL_PAGE_SIZE', 5000);
+define('USER_SMALL_CLASS', 20);   
+define('USER_LARGE_CLASS', 200);  
+define('DEFAULT_PAGE_SIZE', 20);
+define('SHOW_ALL_PAGE_SIZE', 5000);
 
 // $id       = required_param('logingraphid', PARAM_INT);
 // $courseid = optional_param('courseid','0', PARAM_INT);
