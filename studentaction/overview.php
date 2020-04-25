@@ -21,18 +21,18 @@ $context = block_studentaction_course_context($courseid);
 // $loginblock = $DB->get_record('block_instances', array('id' => $id), '*', MUST_EXIST);
 // $loginsconfig = unserialize(base64_decode($loginblock->configdata));
 
-// $PAGE->set_course($course);
+$PAGE->set_course($course);
 
-// $PAGE->set_url(
-//     '/blocks/myblock/overview.php',
-//     array(
-//         'logingraphid' => $id,
-//         'courseid' => $courseid,
-//         'page' => $page,
-//         'perpage' => $perpage,
-//         'group' => $group,
-//     )
-// );
+$PAGE->set_url(
+    '/blocks/myblock/overview.php',
+    array(
+        'logingraphid' => $id,
+        'courseid' => $courseid,
+        'page' => $page,
+        'perpage' => $perpage,
+        'group' => $group,
+    )
+);
 
 // $PAGE->set_context($context);
 // $title = 'Overview of students';
