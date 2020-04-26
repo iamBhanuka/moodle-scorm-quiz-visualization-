@@ -34,13 +34,13 @@ $PAGE->set_url(
     )
 );
 
-// $PAGE->set_context($context);
-// $title = 'Overview of students';
-// $PAGE->set_title($title);
-// $PAGE->set_heading($title);
-// $PAGE->navbar->add($title);
+$PAGE->set_context($context);
+$title = 'Overview of students action details';
+$PAGE->set_title($title);
+$PAGE->set_heading($title);
+$PAGE->navbar->add($title);
 
-// require_login($course, false);
+require_login($course, false);
 
 // echo $OUTPUT->header();
 // echo $OUTPUT->heading($title, 2);
