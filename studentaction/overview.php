@@ -45,7 +45,7 @@ require_login($course, false);
 echo $OUTPUT->header();
 echo $OUTPUT->heading($title, 2);
 
-echo $OUTPUT->container_start('block_myblock');
+echo $OUTPUT->container_start('block_studentaction');
 
 // echo '<div class="logingraph">';
 // dropdown_selector_form($id,$courseid,$userid);
