@@ -4,13 +4,13 @@
 // require_once($CFG->dirroot.'/blocks/myblock/dropdown.php');
 
 
-// function block_myblock_course_context($courseid) { //get login page data
-//     if (class_exists('context_course')) {
-//         return context_course::instance($courseid);
-//     } else {
-//         return get_context_instance(CONTEXT_COURSE, $courseid);
-//     }
-// }
+function block_studentaction_course_context($courseid) { //get login page data
+    if (class_exists('context_course')) {
+        return context_course::instance($courseid);
+    } else {
+        return get_context_instance(CONTEXT_COURSE, $courseid);
+    }
+}
 
 
 //  function dropdown_selector_form($id,$courseid,$userid) {
