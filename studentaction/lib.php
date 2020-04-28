@@ -13,7 +13,7 @@ function block_studentaction_course_context($courseid) { //get login page data
 }
 
 
-//  function dropdown_selector_form($id,$courseid,$userid) {
+  function dropdown_selector_form($id,$courseid,$userid) {
  
  
 //     global $selectedcourse,$selectedacademic_year,$selectedyear;
