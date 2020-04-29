@@ -52,10 +52,10 @@ function block_studentaction_course_context($courseid) { //get login page data
                         '4'=>'105',
                     );
 
-//         $option6=array(
-//                         '1'=>'viewed',
-//                         '2'=>'All'
-//                     );
+        $option6=array(
+                        '1'=>'viewed',
+                        '2'=>'All'
+                    );
 
 //    // echo html_writer::label("year", 'year', false, array('class' => 'accesshide'));
 //     echo html_writer::select($option1, "year1", $selectedyear,false);
@@ -69,6 +69,7 @@ function block_studentaction_course_context($courseid) { //get login page data
 //     echo html_writer::select($option6, 'action', $selectedaction,false);
 //     echo html_writer::start_div();
 //         $selectedyear=  $option1[$_POST['year1']];
+
 //         $selectedcourse=  $option2[$_POST['course1']];
 //         $selectedacademic_year=  $option3[$_POST['academic_year1']];
 //         $selectedsemester=  $option4[$_POST['semester1']];
