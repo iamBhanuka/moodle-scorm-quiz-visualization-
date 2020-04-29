@@ -24,33 +24,33 @@ function block_studentaction_course_context($courseid) { //get login page data
 //     echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'courseid', 'value' => $courseid ));
 //     echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'userid','value' => $userid ));
    
-//         $option1=array(
-//                         '2020'=>'2020',
-//                         '2019'=>'2019'
-//                     );
+        $option1=array(
+                        '2020'=>'2020',
+                        '2019'=>'2019'
+                    );
                     
-//         $option2=array(
-//                         'CS'=>'CS',
-//                         'IS'=>'IS'
-//                     );
+        $option2=array(
+                        'CS'=>'CS',
+                        'IS'=>'IS'
+                    );
                     
-//         $option3=array(
-//                         '1'=>'1 YEAR',
-//                         '2'=>'2 YEAR',
-//                         '3'=>'3 YEAR'
-//                     );
+        $option3=array(
+                        '1'=>'1 YEAR',
+                        '2'=>'2 YEAR',
+                        '3'=>'3 YEAR'
+                    );
                 
-//         $option4=array(
-//                         '1'=>'1 SEM',
-//                         '2'=>'2 SEM'
-//                     );
+        $option4=array(
+                        '1'=>'1 SEM',
+                        '2'=>'2 SEM'
+                    );
 
-//         $option5=array(
-//                         '1'=>'30',
-//                         '2'=>'60',
-//                         '3'=>'90',
-//                         '4'=>'105',
-//                     );
+        $option5=array(
+                        '1'=>'30',
+                        '2'=>'60',
+                        '3'=>'90',
+                        '4'=>'105',
+                    );
 
 //         $option6=array(
 //                         '1'=>'viewed',
