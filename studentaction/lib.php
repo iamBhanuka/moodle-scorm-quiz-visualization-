@@ -16,13 +16,13 @@ function block_studentaction_course_context($courseid) { //get login page data
   function dropdown_selector_form($id,$courseid,$userid) {
  
  
-//     global $selectedcourse,$selectedacademic_year,$selectedyear;
-//     $max=0;
-//     echo html_writer::start_tag('form', array('class' => 'selectform', 'method' => 'POST','action'=>"./overview.php"));
-//     echo html_writer::start_div();
-//     echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'logingraphid', 'value' => $id ));
-//     echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'courseid', 'value' => $courseid ));
-//     echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'userid','value' => $userid ));
+    global $selectedcourse,$selectedacademic_year,$selectedyear;
+    $max=0;
+    echo html_writer::start_tag('form', array('class' => 'selectform', 'method' => 'POST','action'=>"./overview.php"));
+    echo html_writer::start_div();
+    echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'logingraphid', 'value' => $id ));
+    echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'courseid', 'value' => $courseid ));
+    echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'userid','value' => $userid ));
    
         $option1=array(
                         '2020'=>'2020',
@@ -69,7 +69,6 @@ function block_studentaction_course_context($courseid) { //get login page data
 //     echo html_writer::select($option6, 'action', $selectedaction,false);
 //     echo html_writer::start_div();
 //         $selectedyear=  $option1[$_POST['year1']];
-
 //         $selectedcourse=  $option2[$_POST['course1']];
 //         $selectedacademic_year=  $option3[$_POST['academic_year1']];
 //         $selectedsemester=  $option4[$_POST['semester1']];
