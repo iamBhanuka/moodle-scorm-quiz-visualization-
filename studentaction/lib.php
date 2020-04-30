@@ -76,12 +76,12 @@ function dropdown_selector_form($id,$courseid,$userid) {
     $selectedperiod=  $option5[$_POST['period']];
     $selectedaction=  $option6[$_POST['action']];
       
-//     echo html_writer::end_div();
-//     echo html_writer::empty_tag('input',array('type'=>'submit','value'=>'Graph','class' => 'btn btn-primary'));
-//     //,'onclick'=>'report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_year,$selectedsemester)'
+    echo html_writer::end_div();
+    echo html_writer::empty_tag('input',array('type'=>'submit','value'=>'Graph','class' => 'btn btn-primary'));
+    //,'onclick'=>'report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_year,$selectedsemester)'
  
-//     echo html_writer::end_div();
-//     echo html_writer::end_tag('form');
+    echo html_writer::end_div();
+    echo html_writer::end_tag('form');
 
 //     report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_year,$selectedsemester,$selectedperiod,$selectedaction);
     
