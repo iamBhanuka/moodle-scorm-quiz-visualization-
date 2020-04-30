@@ -57,13 +57,13 @@ function block_studentaction_course_context($courseid) { //get login page data
                         '2'=>'All'
                     );
 
-   // echo html_writer::label("year", 'year', false, array('class' => 'accesshide'));
+    echo html_writer::label("year", 'year', false, array('class' => 'accesshide'));
     echo html_writer::select($option1, "year1", $selectedyear,false);
-    //echo html_writer::label("course", 'course', false, array('class' => 'accesshide'));
+    echo html_writer::label("course", 'course', false, array('class' => 'accesshide'));
     echo html_writer::select($option2, "course1", $selectedcourse,false);
-    //echo html_writer::label("a_year", 'a_year', false, array('class' => 'accesshide'));
+    echo html_writer::label("a_year", 'a_year', false, array('class' => 'accesshide'));
     echo html_writer::select($option3, 'academic_year1', $selectedacademic_year ,false);
-    //echo html_writer::label("sem", 'sem', false, array('class' => 'accesshide'));
+    echo html_writer::label("sem", 'sem', false, array('class' => 'accesshide'));
     echo html_writer::select($option4, 'semester1', $selectedsemester,false);
     echo html_writer::select($option5, 'period', $selectedperiod,false);
     echo html_writer::select($option6, 'action', $selectedaction,false);
