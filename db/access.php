@@ -10,3 +10,6 @@
  
         'clonepermissionsfrom' => 'moodle/my:manageblocks'
     ),
+
+    'block/myscorm:addinstance' => array(
+        'riskbitmask' => RISK_SPAM | RISK_XSS,
