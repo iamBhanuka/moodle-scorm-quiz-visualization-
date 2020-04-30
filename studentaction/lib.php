@@ -93,12 +93,12 @@ function report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_
     $k=0;
     echo '<br>';
     echo '<br>';
-    echo $selectedyear;
-    echo $selectedcourse;
-    echo $selectedacademic_year;
-    echo $selectedsemester;
-    echo $selectedperiod;
-    echo $selectedaction;
+    echo $selectedyear."    ";
+    echo $selectedcourse."    ";
+    echo $selectedacademic_year."    ";
+    echo $selectedsemester."    ";
+    echo $selectedperiod."    ";
+    echo $selectedaction."    ";
 
    //select_course_path();
     $year_id=block_graph_get_year_id($selectedyear);
