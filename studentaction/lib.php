@@ -88,26 +88,26 @@ function dropdown_selector_form($id,$courseid,$userid) {
     
 // }
 
-// function report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_year,$selectedsemester,$selectedperiod,$selectedaction) { //draw line chart
-//     global  $USER, $COURSE, $CFG, $OUTPUT, $DB,$count;
-//     $k=0;
-//     echo '<br>';
-//     echo '<br>';
-//     echo $selectedyear;
-//     echo $selectedcourse;
-//     echo $selectedacademic_year;
-//     echo $selectedsemester;
-//     echo $selectedperiod;
-//     echo $selectedaction;
+function report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_year,$selectedsemester,$selectedperiod,$selectedaction) { //draw line chart
+    global  $USER, $COURSE, $CFG, $OUTPUT, $DB,$count;
+    $k=0;
+    echo '<br>';
+    echo '<br>';
+    echo $selectedyear;
+    echo $selectedcourse;
+    echo $selectedacademic_year;
+    echo $selectedsemester;
+    echo $selectedperiod;
+    echo $selectedaction;
 
-//    //select_course_path();
-//     $year_id=block_graph_get_year_id($selectedyear);
-//     $course_id=block_graph_get_course_id($selectedcourse, $year_id);
-//     $academic_year_id=block_graph_get_academic_year_id($selectedacademic_year,$course_id);
-//     $semester_id=block_graph_get_semester_id($selectedsemester,$academic_year_id);
-//     $selected_courses=block_graph_get_selected_course($semester_id);
-//     $chart = new \core\chart_line();
-//     $names=get_course_names($semester_id);
+   //select_course_path();
+    $year_id=block_graph_get_year_id($selectedyear);
+    $course_id=block_graph_get_course_id($selectedcourse, $year_id);
+    $academic_year_id=block_graph_get_academic_year_id($selectedacademic_year,$course_id);
+    $semester_id=block_graph_get_semester_id($selectedsemester,$academic_year_id);
+    $selected_courses=block_graph_get_selected_course($semester_id);
+    //$chart = new \core\chart_line();
+    //$names=get_course_names($semester_id);
     
 //     $log['labels']=get_date_options($selectedperiod);
 //         global $DB,$countuser;
