@@ -13,7 +13,7 @@ function block_studentaction_course_context($courseid) { //get login page data
 }
 
 
-  function dropdown_selector_form($id,$courseid,$userid) {
+function dropdown_selector_form($id,$courseid,$userid) {
  
  
     global $selectedcourse,$selectedacademic_year,$selectedyear;
@@ -68,12 +68,13 @@ function block_studentaction_course_context($courseid) { //get login page data
     echo html_writer::select($option5, 'period', $selectedperiod,false);
     echo html_writer::select($option6, 'action', $selectedaction,false);
     echo html_writer::start_div();
-        $selectedyear=  $option1[$_POST['year1']];
-        $selectedcourse=  $option2[$_POST['course1']];
-        $selectedacademic_year=  $option3[$_POST['academic_year1']];
-        $selectedsemester=  $option4[$_POST['semester1']];
-        $selectedperiod=  $option5[$_POST['period']];
-        $selectedaction=  $option6[$_POST['action']];
+
+    $selectedyear=  $option1[$_POST['year1']];
+    $selectedcourse=  $option2[$_POST['course1']];
+    $selectedacademic_year=  $option3[$_POST['academic_year1']];
+    $selectedsemester=  $option4[$_POST['semester1']];
+    $selectedperiod=  $option5[$_POST['period']];
+    $selectedaction=  $option6[$_POST['action']];
       
 //     echo html_writer::end_div();
 //     echo html_writer::empty_tag('input',array('type'=>'submit','value'=>'Graph','class' => 'btn btn-primary'));
