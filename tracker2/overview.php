@@ -58,12 +58,7 @@
     $sco_lessons = "SELECT id, name FROM {scorm} WHERE course = $courseid";
     $info_sco_lessons = $DB->get_records_sql($sco_lessons);
 
-    //initialize name list for scorm lessons
-    $name = array();
-    foreach($info_sco_lessons as $sco_name){
-        //entering lesson names into array by id
-        array_push($name, $sco_name->name);
-    }
+
 
     //get name of course
     $fullname = "SELECT fullname FROM {course} WHERE id=$courseid";
