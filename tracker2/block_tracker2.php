@@ -42,5 +42,9 @@ class block_tracker2 extends block_base {
         return false;
     }
 
-
+    public function applicable_formats() {
+        return array(
+            'course-view' => true
+        );
+    }
 }
