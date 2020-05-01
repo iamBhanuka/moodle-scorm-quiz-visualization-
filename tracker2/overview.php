@@ -79,7 +79,14 @@
     $chart->get_yaxis(0, true)->set_label("Time spent per lesson(hrs)");
     //$chart->set_smooth(true); // Calling set_smooth() passing true as parameter, will display smooth lines.
 
-
+    //get ids, names of students enrolled in course
+    $contextid = get_context_instance(CONTEXT_COURSE, $courseid);
+    $users = "SELECT u.id, u.username
+                FROM {user} u, {role_assignments} r
+                WHERE u.id=r.userid
+                    AND r.contextid = {$contextid->id}
+                ORDER BY u.username";
+    $info_students = $DB->get_records_sql($users);
 
     $sc=0;
     $sc1=0;
