@@ -24,16 +24,7 @@
 
    $PAGE->set_course($course); 
 
-   $PAGE->set_url(
-       '/blocks/tracker2/overview.php',
-       array(
-           'tracker2id'    => $id,
-           'courseid'   => $courseid,
-           'page'       => $page,
-           'perpage'    => $perpage,
-           'group'      => $group,
-       )
-   );
+
 
    $PAGE    ->  set_context($context);
    $title = 'Time Spent per Lesson';
