@@ -23,7 +23,7 @@ class block_tracker2 extends block_base {
         $options        = array('class' => 'overviewButton');
         $url            = new moodle_url('/blocks/tracker2/overview.php', $parameters);        
         $this->content->text .= $OUTPUT->single_button($url, 'view graph', 'post', $options);
-        $this->content->text .= html_writer::link($url, 'access details', array('class' => 'btn btn-secondary'));
+        //$this->content->text .= html_writer::link($url, 'access details', array('class' => 'btn btn-secondary'));
 
 
         return $this->content;
