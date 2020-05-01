@@ -1,4 +1,6 @@
-
+<?php
+   require_once(dirname(__FILE__) . '/../../config.php');
+   require_once($CFG->dirroot.'/blocks/tracker2/lib.php');
    
 
    define('USER_SMALL_CLASS', 20);   
