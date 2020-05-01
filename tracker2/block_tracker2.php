@@ -28,7 +28,9 @@ class block_tracker2 extends block_base {
 
         return $this->content;
     }
-
+    public function instance_allow_multiple() {
+        return true;
+      }
     
       public function specialization(){ 
         if(isset($this->config)){ } 
