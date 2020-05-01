@@ -38,7 +38,9 @@ class block_tracker2 extends block_base {
 
     function has_config() {return true;}
 
-
+    public function hide_header() {
+        return false;
+    }
 
     public function applicable_formats() {
         return array(
