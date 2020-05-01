@@ -9,4 +9,3 @@
             } else {
                     return get_context_instance(CONTEXT_COURSE, $courseid);
             }
-    }
