@@ -54,9 +54,7 @@
     $join_scorm_and_scoes = "SELECT id, scorm FROM {scorm_scoes};";
     $joined = $DB->get_records_sql($join_scorm_and_scoes);
 
-    //getting lesson names from db
-    $sco_lessons = "SELECT id, name FROM {scorm} WHERE course = $courseid";
-    $info_sco_lessons = $DB->get_records_sql($sco_lessons);
+
 
     //initialize name list for scorm lessons
     $name = array();
