@@ -22,7 +22,7 @@
    $loginblock      = $DB->get_record('block_instances', array('id' => $id), '*', MUST_EXIST);
    $loginsconfig    = unserialize(base64_decode($loginblock->configdata));
 
- 
+   $PAGE->set_course($course); 
 
    $PAGE->set_url(
        '/blocks/tracker2/overview.php',
