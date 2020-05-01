@@ -138,14 +138,6 @@
         $chart->add_series($time_per_student);
     }
 
-    $chart->set_labels($name);
-    echo $OUTPUT->render($chart);
 
-    echo '</div>';
-
-   echo $OUTPUT->container_end();
-
-   echo $OUTPUT->footer();
-//complete the tracker2 plugin 
 
    
