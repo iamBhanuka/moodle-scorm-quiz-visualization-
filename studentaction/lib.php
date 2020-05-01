@@ -106,8 +106,8 @@ function report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_
     $academic_year_id=block_graph_get_academic_year_id($selectedacademic_year,$course_id);
     $semester_id=block_graph_get_semester_id($selectedsemester,$academic_year_id);
     $selected_courses=block_graph_get_selected_course($semester_id);
-    //$chart = new \core\chart_line();
-    //$names=get_course_names($semester_id);
+    $chart = new \core\chart_line();
+    $names=get_course_names($semester_id);
     
 //     $log['labels']=get_date_options($selectedperiod);
 //         global $DB,$countuser;
