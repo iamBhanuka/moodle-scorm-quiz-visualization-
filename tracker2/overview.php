@@ -88,7 +88,10 @@
                 ORDER BY u.username";
     $info_students = $DB->get_records_sql($users);
 
+    $sc=0;
+    $sc1=0;
 
+    $stu_name = array();
 
     foreach($info_students as $user_info){
 
