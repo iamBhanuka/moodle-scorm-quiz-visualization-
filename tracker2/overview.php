@@ -41,7 +41,14 @@
    $PAGE    ->  set_heading($title);    //sets title in header
    $PAGE    ->  navbar->add($title);    //adds title to navbar
   
+   require_login($course, true);
 
+   echo $OUTPUT->header();
+
+   echo $OUTPUT->container_start('block_tracker2');
+   echo '<div>';
+
+    global $DB;
 
     //connect scormid and scoid
     $join_scorm_and_scoes = "SELECT id, scorm FROM {scorm_scoes};";
