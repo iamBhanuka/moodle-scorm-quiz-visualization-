@@ -65,7 +65,12 @@
         array_push($name, $sco_name->name);
     }
 
-
+    //get name of course
+    $fullname = "SELECT fullname FROM {course} WHERE id=$courseid";
+    $coursename = $DB->get_records_sql($fullname);
+    foreach($coursename as $info_coursename){
+        $course_name=$info_coursename->fullname;
+    }
 
     //create the new chart
     $chart = new \core\chart_line();
