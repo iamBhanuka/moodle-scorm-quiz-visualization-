@@ -109,70 +109,70 @@ function report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_
     $chart = new \core\chart_line();
     $names=get_course_names($semester_id);
     
-//     $log['labels']=get_date_options($selectedperiod);
-//         global $DB,$countuser;
+    $log['labels']=get_date_options($selectedperiod);
+        global $DB,$countuser;
         
         
-//         foreach($selected_courses as $list)
-//             {
-//                 echo '<br>';
-//                 $x=0;
+        foreach($selected_courses as $list)
+            {
+                echo '<br>';
+                $x=0;
                 
-//                 foreach( $log['labels'] as $da){
+                foreach( $log['labels'] as $da){
                     
-//                     if($selectedaction=='viewed'){
+                    if($selectedaction=='viewed'){
                     
-//                         $sql5= "SELECT  COUNT(userid) AS 'countusers',courseid
-//                                 FROM {logstore_standard_log} 
-//                                 WHERE action='viewed' AND courseid =$list AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y') ='$da'
-//                               "; 
-//                         $login5=$DB->get_records_sql($sql5);
-//                         foreach($login5 as $record_r=>$new_n)
-//                             {
-//                                  $c_id[$x]=$new_n->countusers;
+                        $sql5= "SELECT  COUNT(userid) AS 'countusers',courseid
+                                FROM {logstore_standard_log} 
+                                WHERE action='viewed' AND courseid =$list AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y') ='$da'
+                              "; 
+                        $login5=$DB->get_records_sql($sql5);
+                        foreach($login5 as $record_r=>$new_n)
+                            {
+                                 $c_id[$x]=$new_n->countusers;
                                 
                                
-//                             } 
-//                             $x++;
+                            } 
+                            $x++;
                             
-//                     }
+                    }
                     
                     
-//                     else{
-//                         $sql6= "SELECT  COUNT(userid) AS 'countusers'
-//                                 FROM {logstore_standard_log} 
-//                                 WHERE  courseid =$list AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$da'
-//                               ;"; 
-//                         $login6=$DB->get_records_sql($sql6);
-//                         foreach($login6 as $record_r=>$new_n)
-//                         {
-//                             $c_id[$x]=$new_n->countusers;
+                    else{
+                        $sql6= "SELECT  COUNT(userid) AS 'countusers'
+                                FROM {logstore_standard_log} 
+                                WHERE  courseid =$list AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$da'
+                              ;"; 
+                        $login6=$DB->get_records_sql($sql6);
+                        foreach($login6 as $record_r=>$new_n)
+                        {
+                            $c_id[$x]=$new_n->countusers;
                          
-//                         } $x++;
+                        } $x++;
                          
-//                     }
-//                 }
+                    }
+                }
                 
               
-//                 $series = new \core\chart_series($names[$k], $c_id);
-//                 $chart->add_series($series);
-//                 $k++;
-//                 if($max<=max($c_id)){
-//                     $max= max($c_id);
-//                 }
+                $series = new \core\chart_series($names[$k], $c_id);
+                $chart->add_series($series);
+                $k++;
+                if($max<=max($c_id)){
+                    $max= max($c_id);
+                }
                 
-//             }
+            }
 
-//     $chart->set_labels($log['labels']);
-//     $yaxis = $chart->get_yaxis(0, true);
-//     $yaxis->set_label('number of logins');
-//     $yaxis->set_stepsize(max(1, round($max / 10)));
+    $chart->set_labels($log['labels']);
+    $yaxis = $chart->get_yaxis(0, true);
+    $yaxis->set_label('number of logins');
+    $yaxis->set_stepsize(max(1, round($max / 10)));
    
-//     echo $OUTPUT->render($chart);
+    echo $OUTPUT->render($chart);
      
     
 
-// }
+}
 
 
 
