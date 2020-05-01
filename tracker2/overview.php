@@ -35,11 +35,7 @@
     )
 );
 
-   $PAGE    ->  set_context($context);
-   $title = 'Time Spent per Lesson';
-   $PAGE    ->  set_title($title);      //sets title in title-bar
-   $PAGE    ->  set_heading($title);    //sets title in header
-   $PAGE    ->  navbar->add($title);    //adds title to navbar
+
   
    require_login($course, true);
 
