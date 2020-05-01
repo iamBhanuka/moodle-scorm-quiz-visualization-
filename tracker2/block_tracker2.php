@@ -32,7 +32,9 @@ class block_tracker2 extends block_base {
         return true;
       }
     
-
+    public function specialization(){ 
+        if(isset($this->config)){ } 
+    }
 
     function has_config() {return true;}
 
