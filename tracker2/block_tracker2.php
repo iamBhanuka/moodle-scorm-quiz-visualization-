@@ -36,7 +36,7 @@ class block_tracker2 extends block_base {
         if(isset($this->config)){ } 
     }
 
-
+    function has_config() {return true;}
 
     public function hide_header() {
         return false;
