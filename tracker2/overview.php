@@ -72,7 +72,12 @@
         $course_name=$info_coursename->fullname;
     }
 
-
+    //create the new chart
+    $chart = new \core\chart_line();
+    //name its axis
+    $chart->get_xaxis(0, true)->set_label("Lessons in ". $course_name); 
+    $chart->get_yaxis(0, true)->set_label("Time spent per lesson(hrs)");
+    //$chart->set_smooth(true); // Calling set_smooth() passing true as parameter, will display smooth lines.
 
     //get ids, names of students enrolled in course
     $contextid = get_context_instance(CONTEXT_COURSE, $courseid);
