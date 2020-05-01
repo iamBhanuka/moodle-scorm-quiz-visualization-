@@ -93,50 +93,7 @@
 
     $stu_name = array();
 
-    foreach($info_students as $user_info){
 
-        //entering user names into array by id
-        $stu_name[$user_info->id]=$user_info->username;
-
-        $access_array=array();
-
-        //find which scorm packages each student has accessed
-        $sql = "SELECT sst.scormid, sst.scoid, sst.value 
-        FROM {scorm_scoes_track} sst, {scorm} s 
-        WHERE sst.scormid=s.id 
-            AND element='cmi.core.total_time' 
-            AND sst.userid=$user_info->id 
-            AND s.course=$courseid;";
-        $result = $DB->get_records_sql($sql);
-
-        //fill array if student hasn't accessed a scorm pkg
-        foreach($info_sco_lessons as $value){
-            if (!isset($result[$value->id])){
-                $result[$value->id]->value=0;
-            }
-        }
-        ksort($result); //sort array by key
-
-        $sc=0;
-
-        //expand [value] in $result to convert 00:00:00.00 into hours
-        foreach($result as $value){
-            $split_time_value = explode (":", $value->value);
-            $split_time_value[3]=($split_time_value[0])+($split_time_value[1]/60)+($split_time_value[2]/(60*60));
-            if ($split_time_value[3]>0){
-                $access_array[$sc]=$split_time_value[3];
-            }
-            else{
-                $access_array[$sc]=0;
-            }
-            $sc++;
-        }
-        // echo '<pre>'; print_r($access_array); echo '</pre>';
-
-        //sets line-chart lines to each student
-        $time_per_student = new core\chart_series($user_info->username, $access_array);
-        $chart->add_series($time_per_student);
-    }
 
     $chart->set_labels($name);
     echo $OUTPUT->render($chart);
