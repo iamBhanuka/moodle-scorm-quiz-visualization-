@@ -2,7 +2,6 @@
 
         require_once(dirname(__FILE__) . '/../../config.php');
 
-        // get page context according to id
         function block_studentblock_course_context($courseid) { 
                 if (class_exists('context_course')) {
                         return context_course::instance($courseid);
@@ -11,7 +10,6 @@
                 }
         }
 
-       // getassignments
         function assginment($courseid, $userid ){
                 global $DB,$i,$e,$r,$c1,$c2,$c3,$c4,$OUTPUT;
                 $date=array();
