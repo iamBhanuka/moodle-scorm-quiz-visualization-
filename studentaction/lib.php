@@ -1,7 +1,7 @@
 <?php
 
- require_once(dirname(__FILE__) . '/../../config.php');
-// require_once($CFG->dirroot.'/blocks/myblock/dropdown.php');
+require_once(dirname(__FILE__) . '/../../config.php');
+require_once($CFG->dirroot.'/blocks/studentaction/dropdown.php');
 
 
 function block_studentaction_course_context($courseid) { //get login page data
