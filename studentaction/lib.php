@@ -86,7 +86,7 @@ function dropdown_selector_form($id,$courseid,$userid) {
     report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_year,$selectedsemester,$selectedperiod,$selectedaction);
     
     
-// }
+}
 
 function report_log_print_graph($selectedyear,$selectedcourse,$selectedacademic_year,$selectedsemester,$selectedperiod,$selectedaction) { //draw line chart
     global  $USER, $COURSE, $CFG, $OUTPUT, $DB,$count;
