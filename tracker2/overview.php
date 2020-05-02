@@ -72,7 +72,7 @@
         $course_name=$info_coursename->fullname;
     }
 
-    //create a new chart
+    //create the new chart
     $chart = new \core\chart_line();
     //name its axis
     $chart->get_xaxis(0, true)->set_label("Lessons in ". $course_name); 
@@ -146,5 +146,6 @@
    echo $OUTPUT->container_end();
 
    echo $OUTPUT->footer();
+//complete the tracker2 plugin 
 
    
