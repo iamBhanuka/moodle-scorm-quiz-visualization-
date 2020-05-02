@@ -24,7 +24,7 @@ $loginsconfig = unserialize(base64_decode($loginblock->configdata));
 $PAGE->set_course($course);
 
 $PAGE->set_url(
-    '/blocks/myblock/overview.php',
+    '/blocks/studentaction/overview.php',
     array(
         'logingraphid' => $id,
         'courseid' => $courseid,
