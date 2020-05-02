@@ -146,6 +146,5 @@
    echo $OUTPUT->container_end();
 
    echo $OUTPUT->footer();
-//complete the tracker2 plugin 
 
    
