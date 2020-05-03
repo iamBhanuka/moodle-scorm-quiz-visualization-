@@ -5,7 +5,7 @@ require_once(dirname(__FILE__) . '/../../config.php');
 function block_graph_get_year_id($year){
     global $DB;
     
-    $course_y = $DB->get_records_sql("SELECT id FROM {course_categories} WHERE name='$year' AND parent ='4'");
+    $course_y = $DB->get_records_sql("SELECT id FROM {course_categories} WHERE name='$year' AND parent ='0'");
     foreach($course_y as $record_r=>$new_n)
     {
         $year_id=$new_n->id;
