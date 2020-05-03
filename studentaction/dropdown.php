@@ -9,7 +9,7 @@ function block_graph_get_year_id($year){
     foreach($course_y as $record_r=>$new_n)
     {
         $year_id=$new_n->id;
-        echo "dhjh";
+       
     }
     return $year_id;
 }
