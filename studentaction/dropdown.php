@@ -8,7 +8,7 @@ function block_graph_get_year_id($year){
     $course_y = $DB->get_records_sql("SELECT id FROM {course_categories} WHERE name='$year' AND  parent ='0'");
     foreach($course_y as $record_r=>$new_n)
     {
-        //$year_id=$new_n->id;
+        $year_id=$new_n->id;
        
     }
     return $year_id;
