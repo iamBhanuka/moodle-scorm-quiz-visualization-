@@ -14,15 +14,15 @@ function block_graph_get_year_id($year){
     return $year_id;
 }
 
-// function block_graph_get_course_id($course, $year_id){
-//     global $DB;
-//     $course_c = $DB->get_records_sql("SELECT id FROM {course_categories} WHERE name='$course' AND parent ='$year_id'");
-//     foreach($course_c as $record_r=>$new_n)
-//     {
-//         $course_id=$new_n->id;  
-//     }
-//     return $course_id;
-// }
+function block_graph_get_course_id($course, $year_id){
+    global $DB;
+    $course_c = $DB->get_records_sql("SELECT id FROM {course_categories} ");
+    foreach($course_c as $record_r=>$new_n)
+    {
+        $course_id=$new_n->id;  
+    }
+    return $course_id;
+}
 
 // function block_graph_get_academic_year_id($academic_year,$course_id){
 //     global $DB;
