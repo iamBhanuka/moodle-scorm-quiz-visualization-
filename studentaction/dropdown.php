@@ -16,7 +16,7 @@ function block_graph_get_year_id($year){
 
 function block_graph_get_course_id($course, $year_id){
     global $DB;
-    $course_c = $DB->get_records_sql("SELECT id FROM {course_categories} ");
+    $course_c = $DB->get_records_sql("SELECT id FROM {course_categories} WHERE name='$course' AND parent ='$year_id'");
     foreach($course_c as $record_r=>$new_n)
     {
         $course_id=$new_n->id;  
