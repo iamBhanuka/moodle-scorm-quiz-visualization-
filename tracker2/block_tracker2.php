@@ -19,7 +19,7 @@ class block_tracker2 extends block_base {
      
         $this->content         =  new stdClass;
 
-        $parameters     = array('logingraphid' => $this->instance->id, 'userid' => $USER->id, 'courseid' => $COURSE->id);
+        $parameters     = array('tracker2id' => $this->instance->id, 'userid' => $USER->id, 'courseid' => $COURSE->id);
         $options        = array('class' => 'overviewButton');
         $url            = new moodle_url('/blocks/tracker2/overview.php', $parameters);        
         $this->content->text .= $OUTPUT->single_button($url, 'view graph', 'post', $options);
