@@ -32,3 +32,6 @@ class block_myscorm extends block_base {
     public function instance_allow_multiple() {
         return true;
     }
+    function has_config(){
+        return true;
+    }  
