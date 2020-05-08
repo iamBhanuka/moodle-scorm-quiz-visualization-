@@ -27,10 +27,10 @@ function block_graph_get_course_id($course, $year_id){
  function block_graph_get_academic_year_id($academic_year,$course_id){
     global $DB;
     $course_c = $DB->get_records_sql("SELECT id FROM {course_categories} '");
-    // foreach($course_c as $record_r=>$new_n)
-    // {
-    //     $academi_year_id=$new_n->id;
-    // }
+    foreach($course_c as $record_r=>$new_n)
+    {
+        //$academi_year_id=$new_n->id;
+    }
     return $academi_year_id;
  }
 
