@@ -20,6 +20,7 @@ function block_graph_get_course_id($course, $year_id){
     foreach($course_c as $record_r=>$new_n)
     {
         $course_id=$new_n->id;  
+        echo "$course_id";
     }
     return $course_id;
 }
