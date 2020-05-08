@@ -35,3 +35,13 @@ class block_myscorm extends block_base {
     function has_config(){
         return true;
     }  
+    public function applicable_formats(){
+        return array(
+            'course-view'    => true,  
+            'site'           => true,
+            'mod'            => false,
+            'my'             => true        
+        );
+    }
+
+}
