@@ -49,7 +49,90 @@
                                         }
 
                                 };
-                               
+                                if($value->name=='folder'){
+                                        $sql4="SELECT id,name FROM {folder} WHERE id='$names' AND course='$courseid';";
+                                        $data4=$DB->get_records_sql($sql4);
+                                        foreach($data4 as $e=>$value){
+                                                $label1[$i]=$value->name;
+                                        }
+                                        $sqll="SELECT count(id) AS 'counts' FROM {logstore_standard_log} WHERE action='viewed'  AND  userid='$userid' AND courseid='$courseid' AND contextid='$ids2' AND contextlevel=70;";
+                                        $da=$DB->get_records_sql($sqll);
+                                        foreach($da as $a=>$value){
+                                                $label2[$i]=$value->counts;
+                                        }
+                                };
+                                if($value->name=='forum'){
+                                        $sql4="SELECT id,name FROM {forum} WHERE id='$names' AND course='$courseid';";
+                                        $data4=$DB->get_records_sql($sql4);
+                                        foreach($data4 as $e=>$value){
+                                                $label1[$i]=$value->name;
+                                        }
+                                        $sqll="SELECT count(id) AS 'counts' FROM {logstore_standard_log} WHERE action='viewed'  AND  userid='$userid' AND courseid='$courseid' AND contextid='$ids2' AND contextlevel=70;";
+                                        $da=$DB->get_records_sql($sqll);
+                                        foreach($da as $a=>$value){
+                                                $label2[$i]=$value->counts;
+                                        }
+                                };
+                                if($value->name=='scorm'){
+                                        $sql4="SELECT id,name FROM {scorm} WHERE id='$names' AND course='$courseid';";
+                                        $data4=$DB->get_records_sql($sql4);
+                                        foreach($data4 as $e=>$value){
+                                                $label1[$i]=$value->name;
+                                        }
+                                        $sqll="SELECT count(id) AS 'counts' FROM {logstore_standard_log} WHERE action='viewed'  AND  userid='$userid' AND courseid='$courseid' AND contextid='$ids2' AND contextlevel=70;";
+                                        $da=$DB->get_records_sql($sqll);
+                                        foreach($da as $a=>$value){
+                                                $label2[$i]=$value->counts;
+                                        }
+                                };
+                                if($value->name=='resource'){
+                                        $sql4="SELECT id,name FROM {resource} WHERE id='$names' AND course='$courseid';";
+                                        $data4=$DB->get_records_sql($sql4);
+                                        foreach($data4 as $e=>$value){
+                                                $label1[$i]=$value->name;
+                                        }
+                                        $sqll="SELECT count(id) AS 'counts' FROM {logstore_standard_log} WHERE action='viewed'  AND  userid='$userid' AND courseid='$courseid' AND contextid='$ids2' AND contextlevel=70;";
+                                        $da=$DB->get_records_sql($sqll);
+                                        foreach($da as $a=>$value){
+                                                $label2[$i]=$value->counts;
+                                        }
+                                };
+                                if($value->name=='quiz'){
+                                        $sql4="SELECT id,name FROM {quiz} WHERE id='$names' AND course='$courseid';";
+                                        $data4=$DB->get_records_sql($sql4);
+                                        foreach($data4 as $e=>$value){
+                                                $label1[$i]=$value->name;
+                                        }                                               
+                                        $sqll="SELECT count(id) AS 'counts' FROM {logstore_standard_log} WHERE action='viewed'  AND  userid='$userid' AND courseid='$courseid' AND contextid='$ids2' AND contextlevel=70;";
+                                        $da=$DB->get_records_sql($sqll);
+                                        foreach($da as $a=>$value){
+                                                $label2[$i]=$value->counts;                                                   
+                                        }
+                                };  
+                                if($value->name=='url'){
+                                        $sql4="SELECT id,name FROM {url} WHERE id='$names' AND course='$courseid';";
+                                        $data4=$DB->get_records_sql($sql4);
+                                        foreach($data4 as $e=>$value){
+                                                $label1[$i]=$value->name;
+                                        }                                               
+                                        $sqll="SELECT count(id) AS 'counts' FROM {logstore_standard_log} WHERE action='viewed'  AND  userid='$userid' AND courseid='$courseid' AND contextid='$ids2' AND contextlevel=70;";
+                                        $da=$DB->get_records_sql($sqll);
+                                        foreach($da as $a=>$value){
+                                                $label2[$i]=$value->counts;                                                   
+                                        }
+                                };
+                                if($value->name=='lesson'){
+                                        $sql4="SELECT id,name FROM {lesson} WHERE id='$names' AND course='$courseid';";
+                                        $data4=$DB->get_records_sql($sql4);
+                                        foreach($data4 as $e=>$value){
+                                                $label1[$i]=$value->name;
+                                        }                                               
+                                        $sqll="SELECT count(id) AS 'counts' FROM {logstore_standard_log} WHERE action='viewed'  AND  userid='$userid' AND courseid='$courseid' AND contextid='$ids2' AND contextlevel=70;";
+                                        $da=$DB->get_records_sql($sqll);
+                                        foreach($da as $a=>$value){
+                                                $label2[$i]=$value->counts;                                                   
+                                        }
+                                };
                                 if($value->name=='label'){
                                         $sql4="SELECT id,name FROM {label} WHERE id='$names' AND course='$courseid';";
                                         $data4=$DB->get_records_sql($sql4);
