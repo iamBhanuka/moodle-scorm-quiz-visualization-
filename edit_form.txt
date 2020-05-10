@@ -13,3 +13,6 @@ $mform->setDefault('config_title', 'default value');
 
 $mform->setType('config_title', PARAM_TEXT);        
         //change the default title.
+
+// A sample string variable with a default value.
+        $mform->addElement('text', 'config_text', get_string('blockstring', 'block_myscorm'));
