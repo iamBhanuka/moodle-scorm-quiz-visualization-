@@ -26,6 +26,26 @@
             return $this->content;
         }
 
-       
+        public function specialization(){ 
+            if(isset($this->config)){ } 
+        }
+
+        public function instance_allow_multiple(){
+            return true;
+        }
+
+        function has_config(){
+            return true;
+        }
+
+        public function applicable_formats(){
+            return array(
+                'course-view'    => true,  
+                'site'           => true,
+                'mod'            => false,
+                'my'             => true        
+            );
+        }
+        
     }
     
