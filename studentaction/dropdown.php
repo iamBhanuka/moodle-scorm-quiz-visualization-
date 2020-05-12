@@ -30,7 +30,7 @@ function block_graph_get_course_id($course, $year_id){
     foreach($course_c as $record_r=>$new_n)
     {
         $academi_year_id=$new_n->id;
-        block_graph_get_academic_year_id
+        
     }
     return $academi_year_id;
  }
