@@ -46,19 +46,19 @@ function block_graph_get_course_id($course, $year_id){
 //     return $semester_id;
 // }
 
-// function block_graph_get_selected_course($semester_id){
-//     global $DB,$course_list;
-//     $course_list=array();
-//     $i=0;
-//     $course = $DB->get_records_sql("SELECT id FROM {course} WHERE category ='$semester_id'");
+function block_graph_get_selected_course($semester_id){
+    global $DB,$course_list;
+    $course_list=array();
+    $i=0;
+    $course = $DB->get_records_sql("SELECT id FROM {course} WHERE category ='$semester_id'");
     
 //     foreach ($course as $c=>$fullname) {
 //         $course_list[$i] =$fullname->id;
 //         $i++;   
                    
 // }
-//     return $course_list;
-// }
+    return $course_list;
+}
 
 // //get courses names from course table
 // function get_course_names($semester_id ){  
