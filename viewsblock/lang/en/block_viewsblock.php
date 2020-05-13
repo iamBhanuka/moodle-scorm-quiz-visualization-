@@ -1,5 +1,4 @@
 <?php
-
     $string['pluginname']='Views of resources';
     $string['viewsblock']='All Views';
     $string['overview']='overview of students';
