@@ -53,8 +53,9 @@ function block_graph_get_selected_course($semester_id){
     $course = $DB->get_records_sql("SELECT id FROM {course} WHERE category ='$semester_id'");
     
     foreach ($course as $c=>$fullname) {
+
         $course_list[$i] =$fullname->id;
-        $i++;   
+        $i;   
                    
 }
     return $course_list;
