@@ -50,7 +50,7 @@ function block_graph_get_selected_course($semester_id){
     global $DB,$course_list;
     $course_list=array();
     $i=0;
-    $course = $DB->get_records_sql("SELECT id FROM {course} WHERE category ='$semester_id'");
+    $course = $DB->get_records_sql("SELECT id .name FROM {course} WHERE category ='$semester_id'");
     
     foreach ($course as $c=>$fullname) {
 
