@@ -61,7 +61,7 @@ function block_graph_get_selected_course($semester_id){
     return $course_list;
 }
 
-// //get courses names from course table
+ //get courses names from course table
 // function get_course_names($semester_id ){  
 
 //     global $CFG,$DB,$i;
