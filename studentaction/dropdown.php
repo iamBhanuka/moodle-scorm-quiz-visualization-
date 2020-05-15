@@ -35,16 +35,16 @@ function block_graph_get_course_id($course, $year_id){
     return $academi_year_id;
  }
 
-// function block_graph_get_semester_id($semester,$academic_year_id){
-//     global $DB;
-//     $course_sem = $DB->get_records_sql("SELECT id FROM {course_categories} WHERE name='$semester' AND parent ='$academic_year_id'");
-//     foreach($course_sem as $record_r=>$new_n)
-//     {
-//      $semester_id=$new_n->id;
+function block_graph_get_semester_id($semester,$academic_year_id){
+    global $DB;
+    // $course_sem = $DB->get_records_sql("SELECT id FROM {course_categories} WHERE name='$semester' AND parent ='$academic_year_id'");
+    // foreach($course_sem as $record_r=>$new_n)
+    // {
+    //  $semester_id=$new_n->id;
     
-//     }
-//     return $semester_id;
-// }
+    // }
+    return $semester_id;
+}
 
 function block_graph_get_selected_course($semester_id){
     global $DB,$course_list;
