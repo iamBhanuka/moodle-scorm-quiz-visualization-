@@ -62,21 +62,21 @@ function block_graph_get_selected_course($semester_id){
 }
 
  //get courses names from course table
-// function get_course_names($semester_id ){  
+function get_course_names($semester_id ){  
 
-//     global $CFG,$DB,$i;
-//     $label=array();
-//     $i=0;
+    global $CFG,$DB,$i;
+    $label=array();
+    $i=0;
    
-//     $course=$DB->get_records_sql("SELECT fullname,startdate,shortname FROM {course} WHERE category ='$semester_id'"); 
+    $course=$DB->get_records_sql("SELECT fullname,startdate,shortname FROM {course} WHERE category ='$semester_id'"); 
    
-//     foreach ($course as $c=>$fullname) {
-//             $label[$i] =$fullname->fullname;
-//             $i++;              
-//     }
+    foreach ($course as $c=>$fullname) {
+            $label[$i] =$fullname->fullname;
+            $i++;              
+    }
   
-//     return $label;
-// };
+    return $label;
+};
 
 // function get_date_options($day) {
 //     global $SITE,$month,$DB,$datesr;
