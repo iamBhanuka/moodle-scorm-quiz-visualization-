@@ -68,7 +68,7 @@ function get_course_names($semester_id ){
     $label=array();
     $i=0;
    
-    // $course=$DB->get_records_sql("SELECT fullname,startdate,shortname FROM {course} WHERE category ='$semester_id'"); 
+    $course=$DB->get_records_sql("SELECT fullname,startdate,shortname FROM {course} WHERE category ='$semester_id'"); 
    
     // foreach ($course as $c=>$fullname) {
     //         $label[$i] =$fullname->fullname;
