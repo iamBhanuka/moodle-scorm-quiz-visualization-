@@ -11,7 +11,7 @@ function block_graph_get_year_id($year){
         $year_id=$new_n->id;
        
     }
-    return $year_id;
+    //return $year_id;
 }
 
 function block_graph_get_course_id($course, $year_id){
@@ -21,7 +21,7 @@ function block_graph_get_course_id($course, $year_id){
     {
         $course_id=$new_n->id;  
     }
-    return $course_id;
+    //return $course_id;
 }
 
  function block_graph_get_academic_year_id($academic_year,$course_id){
@@ -58,7 +58,7 @@ function block_graph_get_selected_course($semester_id){
         $i++;   
                    
 }
-    return $course_list;
+    //return $course_list;
 }
 
  //get courses names from course table
@@ -76,33 +76,33 @@ function get_course_names($semester_id ){
         $i++;              
     }
   
-    //return $label;
+    return $label;
 };
 
-// function get_date_options($day) {
-//     global $SITE,$month,$DB,$datesr;
-//     $days =$day;
+function get_date_options($day) {
+    global $SITE,$month,$DB,$datesr;
+    $days =$day;
     
-//     $date =date('jS M Y');
-//     $d= new DateTime($date);
-//     $dates=array();
-//     for($i=0;$i<$days;$i++)
-//     {
-//         //$a=strtotime(yesterday);
-//         //echo date('d-M-Y',mktime(date("d")-1));
-//         $dates[$i] =$d->format('jS F Y');
-//         $d->modify('-1 day');
+    // $date =date('jS M Y');
+    // $d= new DateTime($date);
+    // $dates=array();
+    // for($i=0;$i<$days;$i++)
+    // {
+    //     //$a=strtotime(yesterday);
+    //     //echo date('d-M-Y',mktime(date("d")-1));
+    //     $dates[$i] =$d->format('jS F Y');
+    //     $d->modify('-1 day');
 
-//     }
-//     echo'<br>';
-//     for($i=0;$i<$days;$i++){
-//         $datesr=array_reverse($dates);
-//         $log['labels'][$i]=$datesr[$i];
-//     }
+    // }
+    // echo'<br>';
+    // for($i=0;$i<$days;$i++){
+    //     $datesr=array_reverse($dates);
+    //     $log['labels'][$i]=$datesr[$i];
+    // }
     
     
-//     return $log['labels'];
-// }
+    return $log['labels'];
+}
 
 
 
