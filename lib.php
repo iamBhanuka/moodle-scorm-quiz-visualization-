@@ -8,3 +8,7 @@ function block_myscorm_course_context($courseid) { //get login page data
         return get_context_instance(CONTEXT_COURSE, $courseid);
     }
 }
+
+function get_login_datas($courseid,$userid ){
+
+    global $DB;
