@@ -86,14 +86,14 @@ function get_date_options($day) {
     $date =date('jS M Y');
     $d= new DateTime($date);
     $dates=array();
-    // for($i=0;$i<$days;$i++)
-    // {
-    //     //$a=strtotime(yesterday);
-    //     //echo date('d-M-Y',mktime(date("d")-1));
-    //     $dates[$i] =$d->format('jS F Y');
-    //     $d->modify('-1 day');
+    for($i=0;$i<$days;$i++)
+    {
+        //$a=strtotime(yesterday);
+        //echo date('d-M-Y',mktime(date("d")-1));
+        // $dates[$i] =$d->format('jS F Y');
+        // $d->modify('-1 day');
 
-    // }
+    }
     // echo'<br>';
     // for($i=0;$i<$days;$i++){
     //     $datesr=array_reverse($dates);
