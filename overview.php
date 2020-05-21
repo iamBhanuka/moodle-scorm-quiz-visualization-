@@ -14,3 +14,6 @@ $userid   = required_param('userid',PARAM_INT);
 $page     = optional_param('page', 0, PARAM_INT); 
 $perpage  = optional_param('perpage', DEFAULT_PAGE_SIZE, PARAM_INT); 
 $group    = optional_param('group', 0, PARAM_INT);
+
+$course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+$context = block_myscorm_course_context($courseid);
