@@ -90,7 +90,7 @@ function get_date_options($day) {
     {
         //$a=strtotime(yesterday);
         //echo date('d-M-Y',mktime(date("d")-1));
-         $dates[$i] =$d->format('jS f Y');
+         $dates[$i] =$d->format('jS F Y');
         // $d->modify('-1 day');
 
     }
