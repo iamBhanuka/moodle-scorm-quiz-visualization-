@@ -17,3 +17,8 @@ $group    = optional_param('group', 0, PARAM_INT);
 
 $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
 $context = block_myscorm_course_context($courseid);
+
+$loginblock = $DB->get_record('block_instances', array('id' => $id), '*', MUST_EXIST);
+$loginsconfig = unserialize(base64_decode($loginblock->configdata));
+
+$PAGE->set_course($course);
