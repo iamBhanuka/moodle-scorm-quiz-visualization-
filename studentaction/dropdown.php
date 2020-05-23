@@ -95,10 +95,10 @@ function get_date_options($day) {
 
     }
     // echo'<br>';
-    // for($i=0;$i<$days;$i++){
-    //     $datesr=array_reverse($dates);
-    //     $log['labels'][$i]=$datesr[$i];
-    // }
+    for($i=0;$i<$days;$i++){
+        $datesr=array_reverse($dates);
+        $log['labels'][$i]=$datesr[$i];
+    }
     
     
     //return $log['labels'];
