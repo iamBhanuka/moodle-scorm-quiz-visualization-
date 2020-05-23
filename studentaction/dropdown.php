@@ -94,7 +94,7 @@ function get_date_options($day) {
          $d->modify('-1 day');
 
     }
-    // echo'<br>';
+     echo'<br>';
     for($i=0;$i<$days;$i++){
         $datesr=array_reverse($dates);
         $log['labels'][$i]=$datesr[$i];
