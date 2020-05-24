@@ -58,7 +58,7 @@ function block_graph_get_selected_course($semester_id){
         $i++;   
                    
 }
-    //return $course_list;
+    return $course_list;
 }
 
  //get courses names from course table
