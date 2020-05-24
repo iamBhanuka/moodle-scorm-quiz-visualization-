@@ -22,3 +22,8 @@ function get_login_datas($courseid,$userid ){
             $has_course = $courseid == $course->id;
         }
     }
+    if($has_course){
+
+
+        $sql_scorm= "SELECT id,name FROM {scorm} WHERE course=$courseid;";        
+        $sql_scorm_res = $DB->get_records_sql($sql_scorm);
