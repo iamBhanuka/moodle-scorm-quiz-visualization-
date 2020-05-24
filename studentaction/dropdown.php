@@ -101,7 +101,7 @@ function get_date_options($day) {
     }
     
     
-    //return $log['labels'];
+    return $log['labels'];
 }
 
 
