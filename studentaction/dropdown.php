@@ -32,7 +32,7 @@ function block_graph_get_course_id($course, $year_id){
         $academi_year_id=$new_n->id;
         
     }
-    //return $academi_year_id;
+    return $academi_year_id;
  }
 
 function block_graph_get_semester_id($semester,$academic_year_id){
