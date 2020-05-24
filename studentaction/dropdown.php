@@ -21,7 +21,7 @@ function block_graph_get_course_id($course, $year_id){
     {
         $course_id=$new_n->id;  
     }
-    //return $course_id;
+    return $course_id;
 }
 
  function block_graph_get_academic_year_id($academic_year,$course_id){
@@ -32,7 +32,7 @@ function block_graph_get_course_id($course, $year_id){
         $academi_year_id=$new_n->id;
         
     }
-    return $academi_year_id;
+    //return $academi_year_id;
  }
 
 function block_graph_get_semester_id($semester,$academic_year_id){
@@ -43,7 +43,7 @@ function block_graph_get_semester_id($semester,$academic_year_id){
         $semester_id=$new_n->id;
     
     }
-    return $semester_id;
+    //return $semester_id;
 }
 
 function block_graph_get_selected_course($semester_id){
