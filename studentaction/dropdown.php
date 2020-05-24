@@ -76,7 +76,7 @@ function get_course_names($semester_id ){
         $i++;              
     }
   
-    //return $label;
+    return $label;
 };
 
 function get_date_options($day) {
