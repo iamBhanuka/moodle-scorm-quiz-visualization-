@@ -22,3 +22,14 @@ $loginblock = $DB->get_record('block_instances', array('id' => $id), '*', MUST_E
 $loginsconfig = unserialize(base64_decode($loginblock->configdata));
 
 $PAGE->set_course($course);
+
+$PAGE->set_url(
+    '/blocks/myscorm/overview.php',
+    array(
+        'myscormid' => $id,
+        'courseid' => $courseid,
+        'page' => $page,
+        'perpage' => $perpage,
+        'group' => $group,
+    )
+);
