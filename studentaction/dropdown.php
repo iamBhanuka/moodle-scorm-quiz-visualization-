@@ -11,7 +11,7 @@ function block_graph_get_year_id($year){
         $year_id=$new_n->id;
        
     }
-    //return $year_id;
+    return $year_id;
 }
 
 function block_graph_get_course_id($course, $year_id){
