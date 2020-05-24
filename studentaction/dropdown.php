@@ -43,7 +43,7 @@ function block_graph_get_semester_id($semester,$academic_year_id){
         $semester_id=$new_n->id;
     
     }
-    //return $semester_id;
+    return $semester_id;
 }
 
 function block_graph_get_selected_course($semester_id){
