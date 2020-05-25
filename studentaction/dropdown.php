@@ -2,6 +2,7 @@
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
+//get year id
 function block_graph_get_year_id($year){
     global $DB;
     
