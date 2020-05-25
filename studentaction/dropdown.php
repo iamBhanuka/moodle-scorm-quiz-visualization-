@@ -84,6 +84,7 @@ function get_course_names($semester_id ){
     return $label;
 };
 
+// get dates
 function get_date_options($day) {
     global $SITE,$month,$DB,$datesr;
     $days =$day;
