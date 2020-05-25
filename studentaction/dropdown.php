@@ -50,6 +50,7 @@ function block_graph_get_semester_id($semester,$academic_year_id){
     return $semester_id;
 }
 
+//get course list
 function block_graph_get_selected_course($semester_id){
     global $DB,$course_list;
     $course_list=array();
