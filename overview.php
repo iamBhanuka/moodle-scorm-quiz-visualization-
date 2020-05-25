@@ -33,3 +33,6 @@ $PAGE->set_url(
         'group' => $group,
     )
 );
+
+ $PAGE->set_context($context);
+ $title = 'Your Scorm Quiz Marks overview';
