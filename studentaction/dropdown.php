@@ -38,6 +38,7 @@ function block_graph_get_course_id($course, $year_id){
     return $academi_year_id;
  }
 
+ //get semester id
 function block_graph_get_semester_id($semester,$academic_year_id){
     global $DB;
     $course_sem = $DB->get_records_sql("SELECT id FROM {course_categories} WHERE name='$semester' AND parent ='$academic_year_id'");
