@@ -27,3 +27,7 @@ function get_login_datas($courseid,$userid ){
 
         $sql_scorm= "SELECT id,name FROM {scorm} WHERE course=$courseid;";        
         $sql_scorm_res = $DB->get_records_sql($sql_scorm);
+
+        
+        echo '<select name="scorm" id="dd_scorm" onchange="scormSelect();">';
+        echo "<option selected>Select Quiz</option>";
