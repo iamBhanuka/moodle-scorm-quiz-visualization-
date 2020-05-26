@@ -36,3 +36,6 @@ $PAGE->set_url(
 
  $PAGE->set_context($context);
  $title = 'Your Scorm Quiz Marks overview';
+ $PAGE->set_title($title);
+ $PAGE->set_heading($title);
+ $PAGE->navbar->add($title);
