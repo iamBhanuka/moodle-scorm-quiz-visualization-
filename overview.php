@@ -39,3 +39,8 @@ $PAGE->set_url(
  $PAGE->set_title($title);
  $PAGE->set_heading($title);
  $PAGE->navbar->add($title);
+
+require_login($course, false);
+
+echo $OUTPUT->header();
+// echo $OUTPUT->heading($title, 2);
