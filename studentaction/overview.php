@@ -48,7 +48,9 @@ echo $OUTPUT->heading($title, 2);
 echo $OUTPUT->container_start('block_studentaction');
 
 echo '<div class="logingraph">';
-dropdown_selector_form($id,$courseid,$userid);
+
+    dropdown_selector_form($id,$courseid,$userid);
+    
 echo '</div>';
 
 
