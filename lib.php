@@ -37,3 +37,13 @@ function get_login_datas($courseid,$userid ){
         foreach($sql_scorm_res as $scorm_res){
             $dropdown_scorm .= "<option value=\"" . $scorm_res->id . "\">" .$scorm_res->name . "</option>";
         }
+
+        
+        echo $dropdown_scorm;
+        echo "</select>";
+
+        echo "</br>";
+
+        echo "<div id='scorm_data'></div>";
+
+        // return;
