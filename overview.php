@@ -44,3 +44,11 @@ require_login($course, false);
 
 echo $OUTPUT->header();
 // echo $OUTPUT->heading($title, 2);
+
+
+echo $OUTPUT->container_start('block_myscorm');
+get_login_datas($courseid,$userid );
+
+echo $OUTPUT->container_end();
+
+echo $OUTPUT->footer();
