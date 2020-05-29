@@ -47,3 +47,6 @@ function get_login_datas($courseid,$userid ){
         echo "<div id='scorm_data'></div>";
 
         // return;
+
+        
+        $data_for_dd_scorm = array();
