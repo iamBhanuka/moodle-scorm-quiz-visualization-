@@ -44,12 +44,13 @@ class block_coursegraph extends block_base {
          $this->content->footer='';
          
        
-//          $parameters=array( 'coursegraphid' => $this->instance->id,'courseid' => $COURSE->id,'userid'=>$USER->id);
-//          $options1 = array('class' => 'overviewButton');
+         $parameters=array( 'coursegraphid' => $this->instance->id,'courseid' => $COURSE->id,'userid'=>$USER->id);
+         $options1 = array('class' => 'overviewButton');
 //          $options2 = array('class' => 'overviewButton');
-//          $url1 = new moodle_url('/blocks/coursegraph/overview.php',$parameters);
+          $url1 = new moodle_url('/blocks/coursegraph/overview.php',$parameters);
 //          $url2 = new moodle_url('/blocks/coursegraph/grades.php',$parameters);
-//          $this->content->text .= $OUTPUT->single_button($url1, 'My Activities', 'post',$options1);
+
+        $this->content->text .= $OUTPUT->single_button($url1, 'My Activities', 'post',$options1);
 //          $this->content->text .= $OUTPUT->single_button($url2, 'My Marks', 'post',$options2);
          
 //          return $this->content;
