@@ -49,7 +49,7 @@ echo $OUTPUT->container_start('block_coursegraph');
 
 echo '<div class="graph">';
 // block_graph_get_selected_semester($courseid);
-//get_activity_details($userid,$courseid);
+get_activity_details($userid,$courseid);
 //block_graph_get_enrol_course($userid);
 
 echo '</div>';
