@@ -1,16 +1,16 @@
 <?php
 
-// require_once(dirname(__FILE__) . '/../../config.php');
-// require_once($CFG->dirroot.'/blocks/coursegraph/showaccess.php');
-// require_once($CFG->dirroot.'/blocks/coursegraph/showgrades.php');
+require_once(dirname(__FILE__) . '/../../config.php');
+require_once($CFG->dirroot.'/blocks/coursegraph/showaccess.php');
+//require_once($CFG->dirroot.'/blocks/coursegraph/showgrades.php');
 
-// function block_coursegraph_course_context($courseid) { //get login page data
-//     if (class_exists('context_course')) {
-//         return context_course::instance($courseid);
-//     } else {
-//         return get_context_instance(CONTEXT_COURSE, $courseid);
-//     }
-// }
+function block_coursegraph_course_context($courseid) { //get login page data
+    if (class_exists('context_course')) {
+        return context_course::instance($courseid);
+    } else {
+        return get_context_instance(CONTEXT_COURSE, $courseid);
+    }
+}
 
 
 // function quiz($userid,$courseid){
