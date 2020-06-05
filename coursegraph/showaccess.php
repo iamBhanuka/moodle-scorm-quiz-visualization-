@@ -35,13 +35,13 @@ function block_graph_get_enrol_course($userid,$courseid){
     $course_elist=array();
     $x=0;
     $i=0;
-    //echo "sfgg";
-    // $course_sem = $DB->get_records_sql("SELECT id,shortname FROM {role} ");
-    // foreach($course_sem as $record_r=>$new_n)
-    // {
-    //     echo $semester_id=$new_n->id."........".$new_n->shortname;
+    echo "sfgg";
+    $course_sem = $DB->get_records_sql("SELECT id,shortname FROM {role} ");
+    foreach($course_sem as $record_r=>$new_n)
+    {
+        echo $semester_id=$new_n->id."........".$new_n->shortname;
     
-    // }
+    }
 
     $sql1="SELECT * FROM {role_assignments} WHERE  roleid='5' AND userid='$userid';";
     $role = $DB->get_records_sql($sql1);
