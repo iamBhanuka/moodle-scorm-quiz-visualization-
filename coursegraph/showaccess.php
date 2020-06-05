@@ -72,11 +72,11 @@ function block_graph_get_enrol_course($userid,$courseid){
         $course_loga=$DB->get_records_sql("SELECT id,fullname,startdate,shortname FROM {course} WHERE category='$semester_id'  AND 
         id =$list");
 
-    // /*$course_loga=$DB->get_records_sql("SELECT id,fullname,startdate,shortname FROM {course} WHERE category='$semester_id' AND 
-    // id IN 
-    // (SELECT id,fullname,startdate,shortname FROM {course} WHERE contextlevel='50' AND id IN
-    // (SELECT instanceid FROM {context} WHERE id IN 
-    // (SELECT * FROM {role_assignments} WHERE  roleid='5' AND userid='$userid')  )) "); */
+    /*$course_loga=$DB->get_records_sql("SELECT id,fullname,startdate,shortname FROM {course} WHERE category='$semester_id' AND 
+    id IN 
+    (SELECT id,fullname,startdate,shortname FROM {course} WHERE contextlevel='50' AND id IN
+    (SELECT instanceid FROM {context} WHERE id IN 
+    (SELECT * FROM {role_assignments} WHERE  roleid='5' AND userid='$userid')  )) "); */
    
         foreach ($course_loga as $c=>$fullname) {
                     //$label[$i] =$fullname->fullname;
