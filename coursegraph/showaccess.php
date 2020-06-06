@@ -88,21 +88,21 @@ function block_graph_get_enrol_course($userid,$courseid){
     return $label;
 }
 
-// function get_course_names($subjects){  
+function get_course_names($subjects){  
 
-//     global $CFG,$DB,$i;
-//     $label=array();
-//     $i=0;
+    global $CFG,$DB,$i;
+    $label=array();
+    $i=0;
    
-//     foreach ($subjects as $s) {
+    foreach ($subjects as $s) {
      
-//         $course=$DB->get_records_sql("SELECT fullname,startdate,shortname FROM {course} WHERE id =$s "); 
+        $course=$DB->get_records_sql("SELECT fullname,startdate,shortname FROM {course} WHERE id =$s "); 
     
-//         foreach ($course as $c=>$fullname) {
-//                 $label[$i] =$fullname->fullname;
-//                 $i++;              
-//         }
-//     }   
+        foreach ($course as $c=>$fullname) {
+                $label[$i] =$fullname->fullname;
+                $i++;              
+        }
+    }   
   
-//     return $label;
-// }
+    return $label;
+}
