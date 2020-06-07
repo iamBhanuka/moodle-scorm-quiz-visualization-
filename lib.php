@@ -152,3 +152,8 @@ function get_login_datas($courseid,$userid ){
 //         $contextid = $va->contextid;
 //         $sql_instance_id = "select instanceid from {context} where id=".$contextid." and contextlevel=50;";
 //         $sql_instance_id_res = $DB->get_records_sql($sql_instance_id);
+//         foreach($sql_instance_id_res as $record=>$new){
+//             $instanceid = $new->instanceid;
+//             $sql_courses = "select id,shortname,fullname from {course} where id='$instanceid';";
+//             $sql_courses_res = $DB->get_records_sql($sql_courses);
+//             $has_course = false;
