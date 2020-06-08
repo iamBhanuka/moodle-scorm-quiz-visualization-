@@ -70,3 +70,10 @@ function get_login_datas($courseid,$userid ){
                 array_push($data_for_dd_scorm,$data);
             }
         }
+        echo "<script>";
+        echo "var scormData=" .json_encode($data_for_dd_scorm);
+        echo "</script>";
+        echo "<script src='js/lib.js'></script>";
+
+        return;
+    }
