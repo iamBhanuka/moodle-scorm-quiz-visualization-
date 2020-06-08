@@ -149,11 +149,11 @@ function get_login_datas($courseid,$userid ){
     $sql_teacher = "SELECT * FROM {role_assignments} WHERE roleid='3' AND userid='$userid';";
     $sql_teacher_res = $DB->get_records_sql($sql_teacher);
     foreach($sql_teacher_res as $d=>$va){
-//         $contextid = $va->contextid;
-//         $sql_instance_id = "select instanceid from {context} where id=".$contextid." and contextlevel=50;";
-//         $sql_instance_id_res = $DB->get_records_sql($sql_instance_id);
-//         foreach($sql_instance_id_res as $record=>$new){
-//             $instanceid = $new->instanceid;
-//             $sql_courses = "select id,shortname,fullname from {course} where id='$instanceid';";
-//             $sql_courses_res = $DB->get_records_sql($sql_courses);
-//             $has_course = false;
+         $contextid = $va->contextid;
+         $sql_instance_id = "select instanceid from {context} where id=".$contextid." and contextlevel=50;";
+         $sql_instance_id_res = $DB->get_records_sql($sql_instance_id);
+         foreach($sql_instance_id_res as $record=>$new){
+             $instanceid = $new->instanceid;
+             $sql_courses = "select id,shortname,fullname from {course} where id='$instanceid';";
+             $sql_courses_res = $DB->get_records_sql($sql_courses);
+             $has_course = false;
