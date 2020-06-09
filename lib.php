@@ -77,3 +77,8 @@ function get_login_datas($courseid,$userid ){
 
         return;
     }
+    $sqladmin= "SELECT *FROM {user} WHERE id=$userid;" ;
+    $loginadmin=$DB->get_records_sql($sqladmin);
+    foreach($loginadmin as $d0=>$vaa){        
+       $vaa->id.'--'.$vaa->username.'--'.'<br>';
+       $name = $vaa->username;
