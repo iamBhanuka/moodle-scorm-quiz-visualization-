@@ -82,3 +82,7 @@ function get_login_datas($courseid,$userid ){
     foreach($loginadmin as $d0=>$vaa){        
        $vaa->id.'--'.$vaa->username.'--'.'<br>';
        $name = $vaa->username;
+
+                       //    echo "---------------------------------------------------------------";
+                //    echo "$userid";
+                //    echo"----------------------------------------------------------------------";
