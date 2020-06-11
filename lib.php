@@ -86,3 +86,9 @@ function get_login_datas($courseid,$userid ){
                        //    echo "---------------------------------------------------------------";
                 //    echo "$userid";
                 //    echo"----------------------------------------------------------------------";
+
+                if($userid== 2){
+              
+                    $sql_scorm= "SELECT id,name FROM {scorm} WHERE course=$courseid;";        
+                    $sql_scorm_res = $DB->get_records_sql($sql_scorm);
+
