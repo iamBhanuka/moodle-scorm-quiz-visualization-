@@ -158,8 +158,8 @@ function get_login_datas($courseid,$userid ){
              $sql_courses_res = $DB->get_records_sql($sql_courses);
              $has_course = false;
 
-//             foreach($sql_courses_res as $record=>$course){
-//                 if($has_course == false){
-//                     $has_course = $courseid == $course->id;
-//                 }
-//             }
+             foreach($sql_courses_res as $record=>$course){
+                 if($has_course == false){
+                     $has_course = $courseid == $course->id;
+                 }
+             }
