@@ -163,3 +163,8 @@ function get_login_datas($courseid,$userid ){
                      $has_course = $courseid == $course->id;
                  }
              }
+//             if($has_course){
+//                 $sql5= "SELECT id,course,name FROM {scorm} WHERE course=$courseid;";
+//                 $login5=$DB->get_records_sql($sql5);
+//                 foreach($login5 as $d=>$va){
+//                 $c=$va->id;
