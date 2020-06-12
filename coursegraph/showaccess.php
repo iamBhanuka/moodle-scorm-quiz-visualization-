@@ -6,7 +6,7 @@ function get_date_options() {
     global $SITE,$month,$DB,$datesr;
     $days =30;
     
-    $date =date('jS M Y');
+    $date = date('jS M Y');
     $d= new DateTime($date);
     $dates=array();
     // for($i=0;$i<$days;$i++)
