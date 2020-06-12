@@ -2,29 +2,29 @@
  //require_once(dirname(__FILE__) . '/../../config.php');
 
 
-// function get_date_options() {
-//     global $SITE,$month,$DB,$datesr;
-//     $days =30;
+function get_date_options() {
+    global $SITE,$month,$DB,$datesr;
+    $days =30;
     
-//     $date =date('jS M Y');
-//     $d= new DateTime($date);
-//     $dates=array();
-//     for($i=0;$i<$days;$i++)
-//     {
-//         //$a=strtotime(yesterday);
-//         //echo date('d-M-Y',mktime(date("d")-1));
-//         $dates[$i] =$d->format('jS F Y');
-//         $d->modify('-1 day');
+    $date =date('jS M Y');
+    $d= new DateTime($date);
+    $dates=array();
+    // for($i=0;$i<$days;$i++)
+    // {
+    //     //$a=strtotime(yesterday);
+    //     //echo date('d-M-Y',mktime(date("d")-1));
+    //     $dates[$i] =$d->format('jS F Y');
+    //     $d->modify('-1 day');
 
-//     }
-//     echo'<br>';
-//     for($i=0;$i<$days;$i++){
-//         $datesr=array_reverse($dates);
-//         $log['labels'][$i]=$datesr[$i];
-//     }
-//     echo'<br>';
-//     return $log['labels'];
-// }
+    // }
+    // echo'<br>';
+    // for($i=0;$i<$days;$i++){
+    //     $datesr=array_reverse($dates);
+    //     $log['labels'][$i]=$datesr[$i];
+    // }
+    echo'<br>';
+    return $log['labels'];
+}
 
 
 function block_graph_get_enrol_course($userid,$courseid){
