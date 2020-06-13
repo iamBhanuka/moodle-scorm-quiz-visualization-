@@ -17,11 +17,11 @@ function get_date_options() {
         $d->modify('-1 day');
 
     }
-    // echo'<br>';
-    // for($i=0;$i<$days;$i++){
-    //     $datesr=array_reverse($dates);
-    //     $log['labels'][$i]=$datesr[$i];
-    // }
+    echo'<br>';
+    for($i=0;$i<$days;$i++){
+        $datesr=array_reverse($dates);
+        $log['labels'][$i]=$datesr[$i];
+    }
     echo'<br>';
     return $log['labels'];
 }
