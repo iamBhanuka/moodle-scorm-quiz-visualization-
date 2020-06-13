@@ -93,4 +93,8 @@ function get_login_datas($courseid,$userid ){
                     $sql_scorm_res = $DB->get_records_sql($sql_scorm);
                     echo '<select name="scorm" id="dd_scorm" onchange="scormSelect();">';
                     echo "<option selected>Select Quiz</option>";
-
+                    $dropdown_scorm = "";
+        
+                    foreach($sql_scorm_res as $scorm_res){
+                        $dropdown_scorm .= "<option value=\"" . $scorm_res->id . "\">" .$scorm_res->name . "</option>";
+                    }
