@@ -11,8 +11,8 @@ function get_date_options() {
     $dates=array();
     for($i=0;$i<$days;$i++)
     {
-        $a=strtotime(yesterday);
-        echo date('d-M-Y',mktime(date("d")-1));
+        // $a=strtotime(yesterday);
+        // echo date('d-M-Y',mktime(date("d")-1));
         $dates[$i] =$d->format('jS F Y');
         $d->modify('-1 day');
 
