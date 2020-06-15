@@ -168,3 +168,13 @@ function get_login_datas($courseid,$userid ){
 //                 $login5=$DB->get_records_sql($sql5);
 //                 foreach($login5 as $d=>$va){
 //                 $c=$va->id;
+//                     $sql_marks= "SELECT * FROM {scorm_scoes_track} WHERE element='cmi.core.score.raw' AND scormid='$c' AND value<60;";
+//                     $sql_marks_res = $DB->get_records_sql($sql_marks);
+//                     foreach($sql_marks_res as $record=>$mark){
+//                         $userid = $mark->userid;
+//                         $sql_user= "SELECT * FROM {user} WHERE id=$userid;";
+//                         $sql_user_res=$DB->get_records_sql($sql_user);
+//                         foreach($sql_user_res as $record=>$user){
+//                             echo $user->firstname." ".$user->lastname." ".$mark->value;
+//                             echo "</br>";
+//                         }
