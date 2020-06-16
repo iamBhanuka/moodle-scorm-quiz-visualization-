@@ -178,3 +178,10 @@ function get_login_datas($courseid,$userid ){
 //                             echo $user->firstname." ".$user->lastname." ".$mark->value;
 //                             echo "</br>";
 //                         }
+//                     }
+//                 }
+//                 return;
+//             }
+//         }
+
+//    }
