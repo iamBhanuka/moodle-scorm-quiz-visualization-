@@ -108,3 +108,20 @@ function get_login_datas($courseid,$userid ){
                     // return;
             
                     $data_for_dd_scorm = array();
+
+ $sql_marks= "SELECT B.*,A.id as scorm_id FROM {scorm} as A INNER JOIN {scorm_scoes_track} as B on A.id=B.scormid AND A.course='$courseid' AND B.element='cmi.core.score.raw' AND B.value<50;";
+                $sql_marks_res = $DB->get_records_sql($sql_marks);
+                foreach($sql_marks_res as $record=>$mark){
+                    $userid = $mark->userid;
+                    $sql_user= "SELECT * FROM {user} WHERE id=$userid;";
+                    $sql_user_res=$DB->get_records_sql($sql_user);
+                    foreach($sql_user_res as $record=>$user){
+                        $data["userid"] = $user->id;
+                        $data["firstname"] = $user->firstname;
+                        $data["lastname"] = $user->lastname;
+                        $data["mark"] = $mark->value;
+                        $data["scorm_id"] = $mark->scorm_id;
+                        $data["attempt"] = $mark->attempt;
+                        array_push($data_for_dd_scorm,$data);
+                    }
+                }
