@@ -28,4 +28,23 @@ class block_tracker extends block_base {
 
         return $this->content;
     }
+    public function instance_allow_multiple() {
+        return true;
+      }
+    
+      public function specialization(){ 
+        if(isset($this->config)){ } 
+    }
+
+    function has_config() {return true;}
+
+    public function hide_header() {
+        return false;
+    }
+
+    public function applicable_formats() {
+        return array(
+            'course-view' => true
+        );
+    }
 }
