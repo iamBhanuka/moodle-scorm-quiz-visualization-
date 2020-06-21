@@ -51,12 +51,13 @@
 
     global $DB;
 
-    //AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$date';";
-
+    //OBJECTID IS TAKEN FROM SCORM_SCOES TABLE. IT NEEDS TO BE CONNECTED WITH SCORM TABLE.
     $join_scorm_and_scoes = "SELECT id, scorm FROM {scorm_scoes};";
     $joined = $DB->get_records_sql($join_scorm_and_scoes);
+    //echo '<pre>'; print_r($joined); echo '</pre>';
     //echo '<pre>'; print_r($joined[1]->scorm); echo '</pre>';    //outputs scorm belonging to id(1)
-    //OBJECTID IS TAKEN FROM SCORM_SCOES TABLE. IT NEEDS TO BE CONNECTED WITH SCORM TABLE.
+
+    $count = array();
 
     echo '<head>
         <style>
@@ -87,9 +88,13 @@
             $info_sco_lessons = $DB->get_records_sql($sco_lessons);
 
             foreach($info_sco_lessons as $sco_name){
-                $name[$x]=$sco_name->name;
+                $name[$sco_name->id]=$sco_name->name;
+                $count[$sco_name->id][name]=$sco_name->name;
+                $count[$sco_name->id][count]=0;
+                $count[$sco_name->id][time_spent]=0;
+
                 echo '<th>';
-                echo $name[$x];
+                echo $name[$x+1];
                 echo '</th>';
                 $x++;
             }
@@ -98,7 +103,7 @@
             $x_id = 0;
 
             foreach($info_sco_lessons as $sco_id){
-                $id[$x_id]=$sco_id->id;
+                $id[$sco_id->id]=$sco_id->id;
                 $x_id++;
             }
             
@@ -119,8 +124,8 @@
                         //[name] => Lesson 1
                     // )
                 //
-            echo '<pre>'; print_r($id); echo '</pre>';
-            echo '<pre>'; print_r($name); echo '</pre>';
+            // echo '<pre>'; print_r($id); echo '</pre>';
+            // echo '<pre>'; print_r($name); echo '</pre>';
                 //Array
                     // (
                     //     [0] => Lesson 1
@@ -178,10 +183,10 @@
                     
                     foreach($result as $value){
                         $time_created_start[$sc]=$value->timecreated;
-                        $time_created_diff[0][$sc]=$value->timecreated;
-                        $time_created_diff[2][$sc]=$value->objectid;
-                        $time_created_diff[3][$sc]=$user_info->id;
-                        $time_created_diff[4][$sc]=$joined[$value->objectid]->scorm;
+                        $time_created_diff[time_started][$sc]=$value->timecreated;
+                        $time_created_diff[scorm_scoes][$sc]=$value->objectid;
+                        $time_created_diff[user_ids][$sc]=$user_info->id;
+                        $time_created_diff[scorm][$sc]=$joined[$value->objectid]->scorm;
 
                         echo '<td>';
 
@@ -200,7 +205,10 @@
 
                         foreach($result1 as $value1){
                             $time_created_end[$sc1]=$value1->timecreated;
-                            $time_created_diff[1][$sc1]=($value1->timecreated-$value->timecreated)/60;
+                            $time_created_diff[time_ended][$sc1]=$value1->timecreated;
+                            $time_created_diff[time_spent][$sc1]=($value1->timecreated-$value->timecreated)/60;
+
+                            
 
                             $sc1++;
                         }
@@ -272,31 +280,46 @@
         echo '</table>
 
         </div>';
-        echo '<pre>'; print_r($joined); echo '</pre>';
-        echo '<pre>'; print_r($time_created_diff[4]); echo '</pre>';
-        echo '<pre>'; print_r($time_created_diff[2]); echo '</pre>';
+        // echo '<pre>'; print_r($time_created_diff[4]); echo '</pre>';
+        //echo '<pre>'; print_r($joined[10]->scorm); echo '</pre>';
+
+    // echo count($count);
+    // $c=1;
+    // while($c<=count($count)){
+    //         echo '<pre>'; print_r($count[$c][name]); echo '</pre>';
+    //         $c++;
+    // }
+
+    // $c2;
+    // while($c2<=count($joined)){
+    //     echo '<pre>'; print_r($joined[$c2]->scorm); echo '</pre>';
+    //     $c2++;
+    //  }
+    //     echo 'joined' ;
+    //     echo '<pre>'; print_r($joined); echo '</pre>';
+    //     echo 'count' ;
+    //     echo '<pre>'; print_r($count); echo '</pre>';
+    //     echo 'name' ;
+    //     echo '<pre>'; print_r($name); echo '</pre>';
+    //     echo 'id' ;
+    //     echo '<pre>'; print_r($id); echo '</pre>';
+    //     echo 'subject' ;
+    //     echo '<pre>'; print_r($subject); echo '</pre>';
+    //     echo 'stu_name' ;
+    //     echo '<pre>'; print_r($stu_name); echo '</pre>';
+    //     echo 'stu_id' ;
+    //     echo '<pre>'; print_r($stu_id); echo '</pre>';
+    //     echo 'time_created_diff' ;
+    //     echo '<pre>'; print_r($time_created_diff); echo '</pre>';
+    //     echo 'time_created_start' ;
+    //     echo '<pre>'; print_r($time_created_start); echo '</pre>';
+    //     echo 'time_created_end' ;
+    //     echo '<pre>'; print_r($time_created_end); echo '</pre>';
+
        
    echo $OUTPUT->container_end();
 
-   echo $OUTPUT->container_start('tr');
-
-   echo '<div>';
-   $sales = new \core\chart_series('Series 1 (Line)', $name);
-   echo '<pre>'; print_r($sales); echo '</pre>';
-
-   $expenses = new \core\chart_series('Series 2 (Line)', $id);
-   
-   $chart = new \core\chart_line();
-   $chart->set_smooth(true); // Calling set_smooth() passing true as parameter, will display smooth lines.
-   $chart->add_series($sales);
-   $chart->add_series($expenses);
-   $labels=array(1, 3, 2, 4, 7);
-   $chart->set_labels($labels);
-   echo $OUTPUT->render($chart);
-   echo '</div>';
-   echo $OUTPUT->container_end();
-
-
    echo $OUTPUT->footer();
 
+   
    
