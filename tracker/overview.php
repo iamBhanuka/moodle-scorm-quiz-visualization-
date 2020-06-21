@@ -49,47 +49,14 @@
 
    echo $OUTPUT->container_start('block_tracker');
 
-global $DB;
-//   $sql="SELECT timecreated FROM {logstore_standard_log} WHERE (eventname LIKE '%sco_launched' OR eventname LIKE '%content_page_viewed') ORDER BY timecreated DESC;";
-//   $result=$DB->get_records_sql($sql);
-//   $sc=0;   
-//   $stu_name=array();
-//   echo '<table>';
-//     if (count($result)>0){
-//         foreach($result as $sub=>$value){
-//             echo '<tr>';
+    global $DB;
 
-//             $stu_name[$sc]=$value->timecreated;
-//             echo '<td>';
-//             echo $value->timecreated. ":    ";
-//             echo '</td>';
-            
-//             $sql1="SELECT timecreated, eventname FROM {logstore_standard_log} WHERE timecreated>$value->timecreated AND (eventname LIKE '%course_viewed' OR eventname LIKE '%dashboard_viewed') LIMIT 1;";
-//             $result1=$DB->get_records_sql($sql1);
-//             $sc1=0;
-//             foreach($result1 as $sub=>$value1){
-//                 $stu_name[$sc1]=$value1->timecreated;
-//                 echo '<td>';
-//                 echo $value1->timecreated. ": ";
-//                 echo '</td>';
+    //AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$date';";
 
-//             }
-//             $end_time = $value1->timecreated;
-//             $start_time = $value->timecreated;
-//             $difference = $end_time - $start_time;
-//             echo '<td>';
-//             echo $difference/60;
-//             echo " seconds";
-//             echo '</td>';
-//             $sc++;
-
-//             echo '</tr>';
-//         }
-//     }
-//     echo '</table>';
-
-//   $conn->close();
-
+    $join_scorm_and_scoes = "SELECT id, scorm FROM {scorm_scoes};";
+    $joined = $DB->get_records_sql($join_scorm_and_scoes);
+    //echo '<pre>'; print_r($joined[1]->scorm); echo '</pre>';    //outputs scorm belonging to id(1)
+    //OBJECTID IS TAKEN FROM SCORM_SCOES TABLE. IT NEEDS TO BE CONNECTED WITH SCORM TABLE.
 
     echo '<head>
         <style>
@@ -152,8 +119,8 @@ global $DB;
                         //[name] => Lesson 1
                     // )
                 //
-            
-            //echo '<pre>'; print_r($name); echo '</pre>';
+            echo '<pre>'; print_r($id); echo '</pre>';
+            echo '<pre>'; print_r($name); echo '</pre>';
                 //Array
                     // (
                     //     [0] => Lesson 1
@@ -179,6 +146,11 @@ global $DB;
             $users = "SELECT id, username FROM {user}";
             $info_students = $DB->get_records_sql($users);
 
+            $time_created_diff = array();
+
+            $sc=0;
+            $sc1=0;
+
             foreach($info_students as $user_info){
                 echo '<tr>';
                     
@@ -192,39 +164,28 @@ global $DB;
                     echo '</b></td>';
                     $z++;
                     $y++;
-                
 
-                    // $sql="SELECT * 
-                    //         FROM {logstore_standard_log} 
-                    //         LEFT JOIN {scorm} 
-                    //         ON {logstore_standard_log}.objectid = {scorm}.id 
-                    //         WHERE eventname LIKE '%sco_launched' 
-                    //             AND userid=$user_info->id 
-                    //         UNION 
-                    //         SELECT * 
-                    //         FROM {logstore_standard_log} 
-                    //         RIGHT JOIN {scorm} 
-                    //         ON {logstore_standard_log}.objectid = {scorm}.id 
-                    //         WHERE eventname LIKE '%sco_launched'
-                    //             AND userid=$user_info->id;";
-
-                    $sql = "SELECT timecreated 
+                    $sql = "SELECT timecreated, objectid 
                             FROM {logstore_standard_log} 
                             WHERE ((eventname LIKE '%sco_launched' OR eventname LIKE '%content_pages_viewed') 
                                 AND userid=$user_info->id) 
                             ORDER BY timecreated DESC;";
 
-                    $time_created = array();    //Overwritten repeatedly. Only 1 value present in array at any moment.
+                    $time_created_start = array();
+                    $time_created_end = array();
+
                     $result = $DB->get_records_sql($sql);
-                    // echo '<pre>'; print_r($result); echo '</pre>';
+                    
+                    foreach($result as $value){
+                        $time_created_start[$sc]=$value->timecreated;
+                        $time_created_diff[0][$sc]=$value->timecreated;
+                        $time_created_diff[2][$sc]=$value->objectid;
+                        $time_created_diff[3][$sc]=$user_info->id;
+                        $time_created_diff[4][$sc]=$joined[$value->objectid]->scorm;
 
-                    $sc=0;   
-                    if (count($result)>0){
-                        foreach($result as $value){
-                            $time_created[$sc]=$value->timecreated;
-                            echo '<td>';
+                        echo '<td>';
 
-                            $sql1 = "SELECT timecreated, eventname, objectid 
+                        $sql1 = "SELECT timecreated, eventname, objectid 
                                     FROM {logstore_standard_log} 
                                     WHERE timecreated>=$value->timecreated 
                                         AND userid=$user_info->id 
@@ -233,62 +194,71 @@ global $DB;
                                             OR eventname LIKE '%user_loggedout')
                                     LIMIT 1;";
 
-                            $result1=$DB->get_records_sql($sql1);
-                            $sc1=0;
-                            foreach($result1 as $sub=>$value1){
-                                $time_created[$sc1]=$value1->timecreated;
-                                $sc1++;
-                                //echo $value1->timecreated. ": ";
-                            }
-                            $end_time = $value1->timecreated;
-                            $start_time = $value->timecreated;
-                            $difference = $end_time - $start_time;
-                            echo $difference/60;
-                            echo " seconds";
-                            echo '</td>';
-                            $sc++;
+                                    //check correct course, correct package
+
+                        $result1 = $DB->get_records_sql($sql1);
+
+                        foreach($result1 as $value1){
+                            $time_created_end[$sc1]=$value1->timecreated;
+                            $time_created_diff[1][$sc1]=($value1->timecreated-$value->timecreated)/60;
+
+                            $sc1++;
                         }
+                        $end_time = $value1->timecreated;
+                        $start_time = $value->timecreated;
+                        $difference = $end_time - $start_time;
+                        echo $difference/60;
+                        echo " seconds";
+                        echo '</td>';
+                        $sc++;
                     }
+                    // echo '-------------------start start--------------------'.$sc; print($user_info->username);
+                    // echo '<pre>'; print_r($time_created_start); echo '</pre>';
+                    
+                    // echo '-------------------start end--------------------'.$sc1; print($user_info->username);
+                    // echo '<pre>'; print_r($time_created_end); echo '</pre>';
+                    
+                    // echo '-------------------start none--------------------'; print($user_info->username);
+                    // echo '<pre>'; print_r($time_created_diff); echo '</pre>';
 
-                    // echo '<td id="not-headings">';
+                    // if (count($result)>0){
+                    //     foreach($result as $value){
+                    //         $time_created[$sc]=$value->timecreated;
+                    //         echo '<td>';
 
-                    // echo '<br/>';
+                    //         $sql1 = "SELECT timecreated, eventname, objectid 
+                    //                 FROM {logstore_standard_log} 
+                    //                 WHERE timecreated>=$value->timecreated 
+                    //                     AND userid=$user_info->id 
+                    //                     AND (eventname LIKE '%course_viewed' 
+                    //                         OR eventname LIKE '%dashboard_viewed' 
+                    //                         OR eventname LIKE '%user_loggedout')
+                    //                 LIMIT 1;";
 
-                    // echo '</td>';
+                    //             $time_created[$sc1]=$value1->timecreated;
+                    //             $sc1++;
+                    //             //echo $value1->timecreated. ": ";
+                    //         }
+                    //         $end_time = $value1->timecreated;
+                    //         $start_time = $value->timecreated;
+                    //         $difference = $end_time - $start_time;
+                    //         echo $difference/60;
+                    //         echo " seconds";
+                    //         echo '</td>';
+                    //         $sc++;
+                    //     }
+                    // }
 
                     echo '</tr>';
-
-
             }
 
-                // while($y <= 8) {
-                //     echo '<tr>
-                //         <td id="headings"><b>Student name</b></td>
-                //     ';
-
-        //$z = 1;    
-                //         while($z <= count($info_sco_lessons)) {
-                //                 echo '<td id="not-headings">Accessed _ times<br>Spent _ hrs</td>';
-                //             $z++;
-                //         }
-
-                //         // <td id="not-headings">Accessed _ times<br>Spent _ hrs</td>
-                //         // <td id="not-headings">Accessed _ times<br>Spent _ hrs</td>
-                //         // <td id="not-headings">Accessed _ times<br>Spent _ hrs</td>
-                //         // <td id="not-headings">Accessed _ times<br>Spent _ hrs</td>
-                //         // <td id="not-headings">Accessed _ times<br>Spent _ hrs</td>
-                //         // <td id="not-headings">Accessed _ times<br>Spent _ hrs</td>
-                //     echo '</tr>';
-                //     $y++;
-                // }
-
-        echo '<pre>'; print_r($name); echo '</pre>';
-        echo '<pre>'; print_r($id); echo '</pre>';
-        echo '<pre>'; print_r($stu_name); echo '</pre>';
-        echo '<pre>'; print_r($stu_id); echo '</pre>';
-        echo '<pre>'; print_r($info_students); echo '</pre>';
-        print($sc);
-        print($sc1);
+        // echo '<pre>'; print_r($name); echo '</pre>';
+        // echo '<pre>'; print_r($id); echo '</pre>';
+        // echo '<pre>'; print_r($stu_name); echo '</pre>';
+        // echo '<pre>'; print_r($stu_id); echo '</pre>';
+        // echo '<pre>'; print_r($info_students); echo '</pre>';
+        // print($sc);
+        // print($sc1);
         //echo '<pre>'; print_r($time_created[0]); echo '</pre>';
 
         /*
@@ -302,63 +272,30 @@ global $DB;
         echo '</table>
 
         </div>';
-
-    //    echo'<div>';
-    //        echo'<form action="overview.php" method="POST">';
-    //            echo'<select name="per1" >';       
-    //                echo'<option >';echo'Academic year 2020';echo'</option>';
-    //                echo'<option >';echo'Academic year 2019';echo'</option>';
-    //                echo'<option >';echo'Academic year 2018';echo'</option>';            
-    //            echo'</select>'.' ';
-    //            echo'<select name="per2" >';        
-    //                echo'<option >';echo'SCS';echo'</option>';
-    //                echo'<option >';echo'IS';echo'</option>';     
-    //            echo'</select>'.' ';
-    //            echo'<select name="per3" > ';       
-    //                echo'<option >';echo'1 st Year';echo'</option>';
-    //                echo'<option >';echo'2 nd Year';echo'</option>';
-    //                echo'<option >';echo'3 rd Year';echo'</option>';
-    //                echo'<option >';echo'4 th Year';echo'</option>';     
-    //            echo'</select>'.' ';
-    //            echo'<select name="per4" >';        
-    //                echo'<option >';echo'1 st Semester';echo'</option>';
-    //                echo'<option >';echo'2 nd Semester';echo'</option>';
-    //            echo'</select>'.' ';
-    //            echo'<select name="per5" >';
-    //                echo'<option >';echo'30';echo'</option>';
-    //                echo'<option >';echo'60';echo'</option>';
-    //                echo'<option >';echo'120';echo'</option>';
-    //                echo'<option >';echo'150';echo'</option>';       
-    //            echo'</select>'.' ';
-    //            echo'<select name="per6" >';
-    //                echo'<option >';echo'viewed';echo'</option>';
-    //                echo'<option >';echo'All Actions';echo'</option>';  
-    //            echo'</select>'.' ';
-    //            echo'<select name="logingraphid" hidden>';
-    //                echo'<option >';echo $id;echo'</option>';
-    //            echo'</select>'.' ';
-    //            echo'<select name="courseid" hidden>';
-    //                echo'<option >';echo $courseid ;echo'</option>'; 
-    //            echo'</select>'.' ';
-    //            echo'<select name="userid" hidden>';
-    //                echo'<option >';echo $userid;echo'</option>'; 
-    //            echo'</select>'.' ';            
-
-    //            echo'<input class="btn-primary" type="submit" value=" summary ">';
-    //        echo'</form>';
-    //    echo'</div>';
-    //    echo'<div>';
-    //        $id2=$_POST['per1'];
-    //        $type=$_POST['per2'];
-    //        $uyear=$_POST['per3'];
-    //        $semester=$_POST['per4'];
-    //        $ndays=$_POST['per5'];
-    //        $action=$_POST['per6'];
-           
-    //        get_course_data($id2,$type,$uyear,$semester,$ndays,$action) ;
-    //    echo '</div>';
+        echo '<pre>'; print_r($joined); echo '</pre>';
+        echo '<pre>'; print_r($time_created_diff[4]); echo '</pre>';
+        echo '<pre>'; print_r($time_created_diff[2]); echo '</pre>';
        
    echo $OUTPUT->container_end();
+
+   echo $OUTPUT->container_start('tr');
+
+   echo '<div>';
+   $sales = new \core\chart_series('Series 1 (Line)', $name);
+   echo '<pre>'; print_r($sales); echo '</pre>';
+
+   $expenses = new \core\chart_series('Series 2 (Line)', $id);
+   
+   $chart = new \core\chart_line();
+   $chart->set_smooth(true); // Calling set_smooth() passing true as parameter, will display smooth lines.
+   $chart->add_series($sales);
+   $chart->add_series($expenses);
+   $labels=array(1, 3, 2, 4, 7);
+   $chart->set_labels($labels);
+   echo $OUTPUT->render($chart);
+   echo '</div>';
+   echo $OUTPUT->container_end();
+
 
    echo $OUTPUT->footer();
 
