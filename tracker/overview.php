@@ -39,25 +39,20 @@
    $title = 'Lecture Access Frequency';
    $PAGE    ->  set_title($title);      //sets title in title-bar
    $PAGE    ->  set_heading($title);    //sets title in header
-   $PAGE    ->  navbar->add($title);    //adds title to nav-bar
-   //$PAGE    ->  requires->css('/blocks/tracker/styles.css');
+   $PAGE    ->  navbar->add($title);    //adds title to navbar
   
    require_login($course, true);
 
    echo $OUTPUT->header();
-   //echo $OUTPUT->heading($title, 2);
 
    echo $OUTPUT->container_start('block_tracker');
 
     global $DB;
 
-    //OBJECTID IS TAKEN FROM SCORM_SCOES TABLE. IT NEEDS TO BE CONNECTED WITH SCORM TABLE.
     $join_scorm_and_scoes = "SELECT id, scorm FROM {scorm_scoes};";
     $joined = $DB->get_records_sql($join_scorm_and_scoes);
-    //echo '<pre>'; print_r($joined); echo '</pre>';
-    //echo '<pre>'; print_r($joined[1]->scorm); echo '</pre>';    //outputs scorm belonging to id(1)
 
-    $count = array();
+    //$count = array();
 
     echo '<head>
         <style>
@@ -83,112 +78,65 @@
                 <th></th>';
 
             $name = array();
-            $x = 0;
+
+            //getting lesson names from db
             $sco_lessons = "SELECT id, name FROM {scorm} WHERE course = $courseid";
             $info_sco_lessons = $DB->get_records_sql($sco_lessons);
 
             foreach($info_sco_lessons as $sco_name){
+                //entering lesson names into array by id
                 $name[$sco_name->id]=$sco_name->name;
-                $count[$sco_name->id][name]=$sco_name->name;
-                $count[$sco_name->id][count]=0;
-                $count[$sco_name->id][time_spent]=0;
 
+                //printing column headings into table
                 echo '<th>';
-                echo $name[$x+1];
+                echo $sco_name->name;
                 echo '</th>';
-                $x++;
             }
-
-            $id = array();
-            $x_id = 0;
-
-            foreach($info_sco_lessons as $sco_id){
-                $id[$sco_id->id]=$sco_id->id;
-                $x_id++;
-            }
-            
-            //print($name[0]);    //works
-                //Lesson 1
-
-            //print($name[$x]); //doesn't work
-
-            //print_r($info_sco_lessons);
-                //Array ( [1] => stdClass Object ( [id] => 1 [name] => Lesson 1 ) [2] => stdClass Object ( [id] => 2 [name] => Lesson 2 ) [3] => stdClass Object ( [id] => 3 [name] => lesson3 ) [4] => stdClass Object ( [id] => 4 [name] => Lesson 4 ) [5] => stdClass Object ( [id] => 5 [name] => Lesson 6 ) )
-
-            //echo '<pre>'; print_r($info_sco_lessons[1][name]); echo '</pre>';  //Exception - Cannot use object of type stdClass as array
-
-            //echo '<pre>'; print_r($info_sco_lessons[1]); echo '</pre>';
-                //stdClass Object
-                    // (
-                        //[id] => 1
-                        //[name] => Lesson 1
-                    // )
-                //
-            // echo '<pre>'; print_r($id); echo '</pre>';
-            // echo '<pre>'; print_r($name); echo '</pre>';
-                //Array
-                    // (
-                    //     [0] => Lesson 1
-                    //     [1] => Lesson 2
-                    //     [2] => lesson3
-                    //     [3] => Lesson 4
-                    //     [4] => Lesson 6
-                    // )
-                //
-            
-            //print_r($id);
-                //Array ( [0] => 1 [1] => 2 [2] => 3 [3] => 4 [4] => 5 )
 
             echo '</tr>';
 
-            $subject=array();
-            $stu_name = array();
-            $y = 0;
-
-            $stu_id = array();
-            $z = 0;
-
+            //getting user details from db
             $users = "SELECT id, username FROM {user}";
             $info_students = $DB->get_records_sql($users);
 
-            $time_created_diff = array();
+            $stu_name = array();
 
+            $time_created_diff = array();
             $sc=0;
             $sc1=0;
 
             foreach($info_students as $user_info){
                 echo '<tr>';
-                    
-                    // $stu_id[$z]=$user_info->id;
-                    $stu_id[$user_info->id]=$user_info->id;
 
-                    // $stu_name[$y]=$user_info->username;
+                    //entering user names into array by id
                     $stu_name[$user_info->id]=$user_info->username;
+                    
+                    //printing row headings into table
                     echo '<td id="headings"><b>';
                     echo $user_info->username;
                     echo '</b></td>';
-                    $z++;
-                    $y++;
 
                     $sql = "SELECT timecreated, objectid 
                             FROM {logstore_standard_log} 
                             WHERE ((eventname LIKE '%sco_launched' OR eventname LIKE '%content_pages_viewed') 
                                 AND userid=$user_info->id) 
                             ORDER BY timecreated DESC;";
+                    $result = $DB->get_records_sql($sql);
 
                     $time_created_start = array();
                     $time_created_end = array();
+                    //$time_created_diff = array();
 
-                    $result = $DB->get_records_sql($sql);
+                    $count=array();
                     
                     foreach($result as $value){
                         $time_created_start[$sc]=$value->timecreated;
-                        $time_created_diff[time_started][$sc]=$value->timecreated;
-                        $time_created_diff[scorm_scoes][$sc]=$value->objectid;
                         $time_created_diff[user_ids][$sc]=$user_info->id;
+                        $time_created_diff[scorm_scoes][$sc]=$value->objectid;
                         $time_created_diff[scorm][$sc]=$joined[$value->objectid]->scorm;
+                        $time_created_diff[time_started][$sc]=$value->timecreated;
 
-                        echo '<td>';
+                        //echo '<td>';
 
                         $sql1 = "SELECT timecreated, eventname, objectid 
                                     FROM {logstore_standard_log} 
@@ -198,9 +146,7 @@
                                             OR eventname LIKE '%dashboard_viewed' 
                                             OR eventname LIKE '%user_loggedout')
                                     LIMIT 1;";
-
-                                    //check correct course, correct package
-
+                    //check correct course, correct package
                         $result1 = $DB->get_records_sql($sql1);
 
                         foreach($result1 as $value1){
@@ -208,113 +154,60 @@
                             $time_created_diff[time_ended][$sc1]=$value1->timecreated;
                             $time_created_diff[time_spent][$sc1]=($value1->timecreated-$value->timecreated)/60;
 
-                            
+                            $count[$user_info->id][$time_created_diff[scorm][$sc1]][count]++;
+                            $count[$user_info->id][$time_created_diff[scorm][$sc1]][duration]+=$time_created_diff[time_spent][$sc1];
 
                             $sc1++;
                         }
-                        $end_time = $value1->timecreated;
-                        $start_time = $value->timecreated;
-                        $difference = $end_time - $start_time;
-                        echo $difference/60;
-                        echo " seconds";
-                        echo '</td>';
                         $sc++;
                     }
-                    // echo '-------------------start start--------------------'.$sc; print($user_info->username);
-                    // echo '<pre>'; print_r($time_created_start); echo '</pre>';
-                    
-                    // echo '-------------------start end--------------------'.$sc1; print($user_info->username);
-                    // echo '<pre>'; print_r($time_created_end); echo '</pre>';
-                    
-                    // echo '-------------------start none--------------------'; print($user_info->username);
-                    // echo '<pre>'; print_r($time_created_diff); echo '</pre>';
+                    //echo '<pre>'; print_r($count); echo '</pre>';
 
-                    // if (count($result)>0){
-                    //     foreach($result as $value){
-                    //         $time_created[$sc]=$value->timecreated;
-                    //         echo '<td>';
 
-                    //         $sql1 = "SELECT timecreated, eventname, objectid 
-                    //                 FROM {logstore_standard_log} 
-                    //                 WHERE timecreated>=$value->timecreated 
-                    //                     AND userid=$user_info->id 
-                    //                     AND (eventname LIKE '%course_viewed' 
-                    //                         OR eventname LIKE '%dashboard_viewed' 
-                    //                         OR eventname LIKE '%user_loggedout')
-                    //                 LIMIT 1;";
+                    $c=1;
+                    while($c<=count($name)){
+                        echo '<td>Viewed ';
+                        if ($count[$user_info->id][$c][count]>0){
+                            echo $count[$user_info->id][$c][count];
+                        }
+                        else {  echo 0; }
+                        echo ' times</td>';
 
-                    //             $time_created[$sc1]=$value1->timecreated;
-                    //             $sc1++;
-                    //             //echo $value1->timecreated. ": ";
-                    //         }
-                    //         $end_time = $value1->timecreated;
-                    //         $start_time = $value->timecreated;
-                    //         $difference = $end_time - $start_time;
-                    //         echo $difference/60;
-                    //         echo " seconds";
-                    //         echo '</td>';
-                    //         $sc++;
-                    //     }
-                    // }
-
+                        $c++;
+                    }
                     echo '</tr>';
             }
-
-        // echo '<pre>'; print_r($name); echo '</pre>';
-        // echo '<pre>'; print_r($id); echo '</pre>';
-        // echo '<pre>'; print_r($stu_name); echo '</pre>';
-        // echo '<pre>'; print_r($stu_id); echo '</pre>';
-        // echo '<pre>'; print_r($info_students); echo '</pre>';
-        // print($sc);
-        // print($sc1);
-        //echo '<pre>'; print_r($time_created[0]); echo '</pre>';
-
-        /*
-        THe following don't return anything.
-        $qwerty=$stu_id[0];
-        echo '<pre>'; print_r($qwerty); echo '</pre>';        
-        
-        echo '<pre>'; print_r($stu_name[$stu_id[0]]); echo '</pre>';
-        */
-
         echo '</table>
 
         </div>';
-        // echo '<pre>'; print_r($time_created_diff[4]); echo '</pre>';
-        //echo '<pre>'; print_r($joined[10]->scorm); echo '</pre>';
+        
+        // echo 'joined' ;
+        // echo '<pre>'; print_r($joined); echo '</pre>';
+        // echo 'count' ;
+        // echo '<pre>'; print_r($count); echo '</pre>';
+        // echo 'name' ;
+        // echo '<pre>'; print_r($name); echo '</pre>';
+        // echo 'stu_name' ;
+        // echo '<pre>'; print_r($stu_name); echo '</pre>';
+        // echo 'time_created_diff' ;
+        // echo '<pre>'; print_r($time_created_diff); echo '</pre>';
+        // echo 'time_created_start' ;
+        // echo '<pre>'; print_r($time_created_start); echo '</pre>';
+        // echo 'time_created_end' ;
+        // echo '<pre>'; print_r($time_created_end); echo '</pre>';
 
-    // echo count($count);
-    // $c=1;
-    // while($c<=count($count)){
-    //         echo '<pre>'; print_r($count[$c][name]); echo '</pre>';
-    //         $c++;
-    // }
-
-    // $c2;
-    // while($c2<=count($joined)){
-    //     echo '<pre>'; print_r($joined[$c2]->scorm); echo '</pre>';
-    //     $c2++;
-    //  }
-    //     echo 'joined' ;
-    //     echo '<pre>'; print_r($joined); echo '</pre>';
-    //     echo 'count' ;
-    //     echo '<pre>'; print_r($count); echo '</pre>';
-    //     echo 'name' ;
-    //     echo '<pre>'; print_r($name); echo '</pre>';
-    //     echo 'id' ;
-    //     echo '<pre>'; print_r($id); echo '</pre>';
-    //     echo 'subject' ;
-    //     echo '<pre>'; print_r($subject); echo '</pre>';
-    //     echo 'stu_name' ;
-    //     echo '<pre>'; print_r($stu_name); echo '</pre>';
-    //     echo 'stu_id' ;
-    //     echo '<pre>'; print_r($stu_id); echo '</pre>';
-    //     echo 'time_created_diff' ;
-    //     echo '<pre>'; print_r($time_created_diff); echo '</pre>';
-    //     echo 'time_created_start' ;
-    //     echo '<pre>'; print_r($time_created_start); echo '</pre>';
-    //     echo 'time_created_end' ;
-    //     echo '<pre>'; print_r($time_created_end); echo '</pre>';
+    // $example=array();
+    // $example[0][0][0]=0;
+    // $example[0][0][1]=1;
+    // $example[0][0][2]=2;
+    // $example[0][1][0]=3;
+    // $example[0][1][1]=4;
+    // $example[0][1][2]=5;
+    // $example[0][2][0]=6;
+    // $example[0][2][1]=7;
+    // $example[1][0][0]=8;
+    // $example[2][0][0]=9;
+    // echo '<pre>'; print_r($example); echo '</pre>';
 
        
    echo $OUTPUT->container_end();
