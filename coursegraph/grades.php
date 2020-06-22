@@ -49,8 +49,9 @@ echo $OUTPUT->container_start('block_coursegraph');
 
 echo '<div class="grades">';
 
+//block_graph_get_enrol_course($userid);
 quiz($userid,$courseid);
-
+//get_activity_details($userid,$courseid );
 echo '</div>';
 
 
