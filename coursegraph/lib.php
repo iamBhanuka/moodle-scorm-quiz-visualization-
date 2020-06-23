@@ -13,27 +13,27 @@ function block_coursegraph_course_context($courseid) { //get login page data
 }
 
 
-// function quiz($userid,$courseid){
+function quiz($userid,$courseid){
     
-//         global $DB,$CFG, $OUTPUT;
-//         $marks=get_courseid($courseid,$userid);
-//         $course=course_names($userid,$courseid);
- //          $array=get_student_id_array();
+        global $DB,$CFG, $OUTPUT;
+        $marks=get_courseid($courseid,$userid);
+        $course=course_names($userid,$courseid);
+          $array=get_student_id_array();
         
         
-//         $chart = new \core\chart_line();
-//         //for($i=0;$i<count($course);$i++){
-//             $series = new \core\chart_series("marks", $marks);
-//             $chart->add_series($series);
-//         //}
-//         $chart->set_labels($course);
-//         $chart->set_title("Your quizes results for this subject");;
-//         $yaxis = $chart->get_yaxis(0, true);
-//         $yaxis->set_label('Marks');
-//         $yaxis->set_stepsize(max(1, round($max / 10)));
-//         echo $OUTPUT->render($chart);
+        $chart = new \core\chart_line();
+        //for($i=0;$i<count($course);$i++){
+            $series = new \core\chart_series("marks", $marks);
+            $chart->add_series($series);
+        //}
+        $chart->set_labels($course);
+        $chart->set_title("Your quizes results for this subject");;
+        $yaxis = $chart->get_yaxis(0, true);
+        $yaxis->set_label('Marks');
+        $yaxis->set_stepsize(max(1, round($max / 10)));
+        echo $OUTPUT->render($chart);
 
-// }
+}
 
 
 function get_activity_details($userid,$courseid){
