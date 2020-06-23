@@ -146,42 +146,42 @@ function get_login_datas($courseid,$userid ){
 
 
 
-    $sql_teacher = "SELECT * FROM {role_assignments} WHERE roleid='3' AND userid='$userid';";
-    $sql_teacher_res = $DB->get_records_sql($sql_teacher);
-    foreach($sql_teacher_res as $d=>$va){
-         $contextid = $va->contextid;
-         $sql_instance_id = "select instanceid from {context} where id=".$contextid." and contextlevel=50;";
-         $sql_instance_id_res = $DB->get_records_sql($sql_instance_id);
-         foreach($sql_instance_id_res as $record=>$new){
-             $instanceid = $new->instanceid;
-             $sql_courses = "select id,shortname,fullname from {course} where id='$instanceid';";
-             $sql_courses_res = $DB->get_records_sql($sql_courses);
-             $has_course = false;
-
+    //$sql_teacher = "SELECT * FROM {role_assignments} WHERE roleid='3' AND userid='$userid';";
+  //  $sql_teacher_res = $DB->get_records_sql($sql_teacher);
+//    foreach($sql_teacher_res as $d=>$va){
+      //   $contextid = $va->contextid;
+    //     $sql_instance_id = "select instanceid from {context} where id=".$contextid." and contextlevel=50;";
+  //       $sql_instance_id_res = $DB->get_records_sql($sql_instance_id);
+//         foreach($sql_instance_id_res as $record=>$new){
+        //     $instanceid = $new->instanceid;
+      //       $sql_courses = "select id,shortname,fullname from {course} where id='$instanceid';";
+    //         $sql_courses_res = $DB->get_records_sql($sql_courses);
+  //           $has_course = false;
+//
              foreach($sql_courses_res as $record=>$course){
-                 if($has_course == false){
-                     $has_course = $courseid == $course->id;
-                 }
-             }
-             if($has_course){
-                 $sql5= "SELECT id,course,name FROM {scorm} WHERE course=$courseid;";
-                 $login5=$DB->get_records_sql($sql5);
-                 foreach($login5 as $d=>$va){
-                 $c=$va->id;
-                     $sql_marks= "SELECT * FROM {scorm_scoes_track} WHERE element='cmi.core.score.raw' AND scormid='$c' AND value<60;";
-                    $sql_marks_res = $DB->get_records_sql($sql_marks);
-                     foreach($sql_marks_res as $record=>$mark){
-                         $userid = $mark->userid;
-                         $sql_user= "SELECT * FROM {user} WHERE id=$userid;";
-                        $sql_user_res=$DB->get_records_sql($sql_user);
-                         foreach($sql_user_res as $record=>$user){
-                             echo $user->firstname." ".$user->lastname." ".$mark->value;
-                             echo "</br>";
-                        }
-                     }
-                 }
-                 return;
-             }
-         }
-
-    }
+          //       if($has_course == false){
+        //             $has_course = $courseid == $course->id;
+      //           }
+    //         }
+  //           if($has_course){
+//                 $sql5= "SELECT id,course,name FROM {scorm} WHERE course=$courseid;";
+//                 $login5=$DB->get_records_sql($sql5);
+ //                foreach($login5 as $d=>$va){
+//                 $c=$va->id;
+//                     $sql_marks= "SELECT * FROM {scorm_scoes_track} WHERE element='cmi.core.score.raw' AND scormid='$c' AND value<60;";
+ //                   $sql_marks_res = $DB->get_records_sql($sql_marks);
+//                     foreach($sql_marks_res as $record=>$mark){
+//                         $userid = $mark->userid;
+//                         $sql_user= "SELECT * FROM {user} WHERE id=$userid;";
+//                        $sql_user_res=$DB->get_records_sql($sql_user);
+//                         foreach($sql_user_res as $record=>$user){
+//                             echo $user->firstname." ".$user->lastname." ".$mark->value;
+ //                            echo "</br>";
+//                        }
+//                     }
+//                 }
+//                 return;
+//             }
+//       }
+//
+//    }
