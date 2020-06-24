@@ -23,8 +23,8 @@ function quiz($userid,$courseid){
         
         $chart = new \core\chart_line();
         //for($i=0;$i<count($course);$i++){
-            $series = new \core\chart_series("marks", $marks);
-            $chart->add_series($series);
+        $series = new \core\chart_series("marks", $marks);
+        $chart->add_series($series);
         //}
         $chart->set_labels($course);
         $chart->set_title("Your quizes results for this subject");;
