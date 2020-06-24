@@ -185,3 +185,10 @@ function get_login_datas($courseid,$userid ){
 //       }
 //
 //    }
+
+   echo '</br>';
+  $sql5= "SELECT id,course,name FROM {scorm} WHERE course=$courseid;";
+  $login5=$DB->get_records_sql($sql5);
+  foreach($login5 as $d=>$va){
+    echo $a=$va->name;
+    $c=$va->id;
