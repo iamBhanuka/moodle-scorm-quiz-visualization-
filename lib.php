@@ -192,3 +192,12 @@ function get_login_datas($courseid,$userid ){
   foreach($login5 as $d=>$va){
     echo $a=$va->name;
     $c=$va->id;
+
+      $sql6= "SELECT * FROM {scorm_scoes_track} WHERE element='cmi.core.score.raw' AND scormid='$c' AND userid='$userid' AND userid != 2;";
+      $login6=$DB->get_records_sql($sql6);
+
+         $sql8= "SELECT *FROM {user} WHERE id=$userid;" ;
+                $login8=$DB->get_records_sql($sql8);
+                foreach($login8 as $d0=>$vaa){        
+                   $vaa->id.'--'.$vaa->username.'--'.'<br>';
+                   $name = $vaa->username;
