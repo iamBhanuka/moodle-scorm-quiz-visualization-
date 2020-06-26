@@ -201,3 +201,18 @@ function get_login_datas($courseid,$userid ){
                 foreach($login8 as $d0=>$vaa){        
                    $vaa->id.'--'.$vaa->username.'--'.'<br>';
                    $name = $vaa->username;
+
+      if(count($login6)>0){
+
+        $res;
+      foreach($login6 as $d=>$va){  
+        if($res == NULL){
+            $res = $va;
+        } else {
+            $max = max($res->value,$va->value);
+            if($max != $res->value){
+                $res->value = $max;
+                $res->attempt = $va->attempt;
+            }
+        }
+      }
