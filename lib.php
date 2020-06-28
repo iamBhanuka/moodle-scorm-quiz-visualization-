@@ -216,3 +216,115 @@ function get_login_datas($courseid,$userid ){
             }
         }
       }
+
+//   if($userid==$u){
+          $attempt= $res->attempt;
+          
+          $answer = $res->value;
+          if($answer >= 101){
+              echo $name;
+              echo ' Please Do the Quiz';
+              return 0;
+          }
+          if ($answer>=75) {
+              echo '<br />';
+              echo $name;
+              echo ' your attempt';
+              echo $attempt;
+              echo ' result is ';
+              echo $answer;
+              echo ' You are Greate';
+              echo '<br />';echo '<br />';
+              echo '<img src="images/darkGreen.png" height="200" width="500">';
+              echo '<br />';
+              
+              
+          }
+          elseif($answer>=65){
+              echo '<br />';
+              echo $name;
+              echo ' your attempt ';
+              echo $attempt;
+              echo ' result is ';
+              echo $answer;
+              echo ' You are good ';
+              echo '<br />';echo '<br />';
+              echo '<img src="images/green.png" height="200" width="500">';
+              echo '<br />';
+              
+          }
+          elseif($answer>=50){
+              echo '<br />';
+              echo $name;
+              echo ' your attempt ';
+              echo $attempt;
+              echo ' result is ';
+              echo $answer;
+              echo ' You are ok ';
+              echo '<br />';echo '<br />';
+              echo '<img src="images/yellow.png" height="200" width="500">';
+              echo '<br />';
+              
+          }
+          elseif($answer>=35){
+              echo '<br />';
+              echo $name;
+              echo ' your attempt ';
+              echo $attempt;
+              echo ' result is ';
+              echo $answer;
+              echo ' You are not ok';
+              echo '<br />';echo '<br />';
+              echo '<img src="images/orange.png" height="200" width="500">';
+              echo '<br />';
+              
+          }
+          elseif($answer>=25){
+              echo '<br />';
+              echo $name;
+              echo ' your attempt ';
+              echo $attempt;
+              echo ' result is ';
+              echo $answer;
+              echo ' You are bad';
+              echo '<br />';echo '<br />';
+              echo '<img src="images/red.png" height="200" width="500">';
+              
+              
+          }
+          elseif($answer>=0) {
+              echo '<br />';
+              echo $name;
+              echo ' your attempt ';
+              echo $attempt;
+              echo ' result is ';
+              echo $answer;
+              echo ' You are very bad and meet supervisore';
+              echo '<br />';echo '<br />';
+              echo '<img src="images/red.png" height="200" width="500">';
+              echo '<br />';
+              
+          }
+          
+        }
+        else{
+            echo '<br />';
+            echo $name;
+            echo ' Please Do the Quiz';
+        }
+    }
+      }
+      }
+
+
+
+
+//   }
+
+ 
+
+ 
+// }
+
+
+
