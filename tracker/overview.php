@@ -57,23 +57,42 @@
     echo '<head>
         <style>
             table, th, td {
-                border: 1px solid black;
-                padding: 15px;
+                border: 5px solid white;
+                padding: 2px;
             }
             th {
-                background-image: linear-gradient(#36d1dc, #AFEEEE);
+                background-image: linear-gradient(to right, #36d1dc, #AFEEEE);Z
             }
             td#not-headings {
                 color: #808080;
             }
             td#headings {
-                background-image: linear-gradient(to right, #36d1dc, #AFEEEE);
+                height: 25px;
+                background-image: linear-gradient(#36d1dc, #AFEEEE);
+            }
+            #progressbar {
+                width: 100px;
+                height: 20px;
+                border-radius: 1px;
+                overflow: hidden;
+            }
+            #completed {
+                text-align: center;
+                position: relative;
+                height: 100%;
+                background-image: linear-gradient(to right, #2AF598, #00FF00);
+            }
+            #not-completed {
+                text-align: center;
+                position: relative;
+                height: 100%;
+                background-image: linear-gradient(to right, #FF7700, #FFFF00);
             }
         </style>
     </head>';
 
         echo '<div>
-            <table style="width:100%" >
+            <table>
                 <tr>
                 <th></th>';
 
@@ -166,12 +185,28 @@
 
                     $c=1;
                     while($c<=count($name)){
-                        echo '<td>Viewed ';
+                        echo '<td>';
+                        echo "<div id='progressbar'>";
                         if ($count[$user_info->id][$c][count]>0){
+                            echo "<div id='completed' style='width: 100% !important;'>";
+                            echo '<small>Viewed <b>';
                             echo $count[$user_info->id][$c][count];
+                            echo '</b> times</small>';
                         }
-                        else {  echo 0; }
-                        echo ' times</td>';
+                        else { 
+                            echo "<div id='not-completed' style='width: 100% !important;'>";
+                            echo '<small>Not Viewed</small>';
+                            //echo 0;
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo '</td>';
+                        // echo '<td>Viewed ';
+                        // if ($count[$user_info->id][$c][count]>0){
+                        //     echo $count[$user_info->id][$c][count];
+                        // }
+                        // else {  echo 0; }
+                        // echo ' times</td>';
 
                         $c++;
                     }
@@ -180,7 +215,7 @@
         echo '</table>
 
         </div>';
-        
+
         // echo 'joined' ;
         // echo '<pre>'; print_r($joined); echo '</pre>';
         // echo 'count' ;
@@ -214,5 +249,4 @@
 
    echo $OUTPUT->footer();
 
-   
    
