@@ -1,23 +1,23 @@
 <?php
-// require_once(dirname(__FILE__) . '/../../config.php');
+require_once(dirname(__FILE__) . '/../../config.php');
 
-// function get_courseid($courseid,$userid){
-//     global $DB,$CFG;
-//     $course_list=array();
-//         $i=0;
-//     $course = $DB->get_records_sql("SELECT id FROM {quiz} WHERE course=$courseid");
-//     foreach($course as $record_r=>$new_n)
-//         {
-//             $course_list[$i]=$new_n->id;
-//             $i++; 
+function get_courseid($courseid,$userid){
+    global $DB,$CFG;
+    $course_list=array();
+        $i=0;
+    $course = $DB->get_records_sql("SELECT id FROM {quiz} WHERE course=$courseid");
+    foreach($course as $record_r=>$new_n)
+        {
+            $course_list[$i]=$new_n->id;
+            $i++; 
             
-//         }
+        }
 
-//         $grades=grade($userid, $course_list);
-//         return $grades;
+        $grades=grade($userid, $course_list);
+        return $grades;
 
 
-// }
+}
 
 // function course_names($userid,$courseid){
 //     global $DB,$CFG;
