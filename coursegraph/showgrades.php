@@ -19,20 +19,20 @@ function get_courseid($courseid,$userid){
 
 }
 
-// function course_names($userid,$courseid){
-//     global $DB,$CFG;
-//     $course_list2=array();
-//         $i=0;
-//     $course = $DB->get_records_sql("SELECT DISTINCT name FROM {quiz} WHERE course=$courseid");
-//     foreach($course as $record_r=>$new_n)
-//         {
-//             $course_list2[$i]=$new_n->name;
-//             $i++; 
+function course_names($userid,$courseid){
+    global $DB,$CFG;
+    $course_list2=array();
+        $i=0;
+    $course = $DB->get_records_sql("SELECT DISTINCT name FROM {quiz} WHERE course=$courseid");
+    foreach($course as $record_r=>$new_n)
+        {
+            $course_list2[$i]=$new_n->name;
+            $i++; 
             
-//         }
+        }
         
-//        return  $course_list2;
-// }
+       return  $course_list2;
+}
 
 // function grade($userid, $course_list){
 //     global $DB,$CFG;
