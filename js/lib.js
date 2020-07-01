@@ -41,3 +41,15 @@ function scormSelect() {
           "</br>";
       });
   }
+
+  function containRecord(arr, e) {
+    var c = arr.filter((x) => {
+      return x && x.userid === e.userid && x.scorm_id === e.scorm_id;
+    });
+    if (c.length > 0) {
+      return c[0];
+    } else {
+      null;
+    }
+  }
+  
