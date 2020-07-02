@@ -34,20 +34,20 @@ function course_names($userid,$courseid){
        return  $course_list2;
 }
 
-// function grade($userid, $course_list){
-//     global $DB,$CFG;
-//     $grade_list=array();
-//         $i=0;
-//         foreach( $course_list as $list)
-//         {
+function grade($userid, $course_list){
+    global $DB,$CFG;
+    $grade_list=array();
+        $i=0;
+        foreach( $course_list as $list)
+        {
        
-//             $grade = $DB->get_records_sql("SELECT id,userid,quiz,grade FROM {quiz_grades} WHERE userid=$userid AND quiz  =$list");
-//             foreach($grade as $record_r=>$new_n)
-//             {
-//                 $grade_list[$i]=$new_n->grade;
-//                 $i++; 
-//             }
+            $grade = $DB->get_records_sql("SELECT id,userid,quiz,grade FROM {quiz_grades} WHERE userid=$userid AND quiz  =$list");
+            foreach($grade as $record_r=>$new_n)
+            {
+                $grade_list[$i]=$new_n->grade;
+                $i++; 
+            }
             
-//         }
-//         return $grade_list;
-// }
+        }
+        return $grade_list;
+}
