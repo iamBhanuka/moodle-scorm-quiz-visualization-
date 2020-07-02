@@ -217,7 +217,7 @@ function get_login_datas($courseid,$userid ){
         }
       }
 
-  if($userid==$u){
+ // if($userid==$u){
           $attempt= $res->attempt;
           
           $answer = $res->value;
@@ -319,12 +319,12 @@ function get_login_datas($courseid,$userid ){
 
 
 
-   }
+//   }
 
  
 
  
- }
+// }
 
 
 
