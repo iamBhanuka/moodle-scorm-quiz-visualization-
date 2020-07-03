@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . '/../../config.php');
 
+// get course id
 function get_courseid($courseid,$userid){
     global $DB,$CFG;
     $course_list=array();
@@ -19,6 +20,7 @@ function get_courseid($courseid,$userid){
 
 }
 
+//get course names
 function course_names($userid,$courseid){
     global $DB,$CFG;
     $course_list2=array();
@@ -34,6 +36,7 @@ function course_names($userid,$courseid){
        return  $course_list2;
 }
 
+// get grades
 function grade($userid, $course_list){
     global $DB,$CFG;
     $grade_list=array();
