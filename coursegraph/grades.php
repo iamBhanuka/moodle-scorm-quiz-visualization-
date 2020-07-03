@@ -35,7 +35,7 @@ $PAGE->set_url(
 );
 
 $PAGE->set_context($context);
-$title = 'Overview of Quiz Result';
+$title = 'Overview of Quiz Results';
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 $PAGE->navbar->add($title);
