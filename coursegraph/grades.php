@@ -44,13 +44,10 @@ require_login($course, false);
 
 echo $OUTPUT->header();
 echo $OUTPUT->heading($title, 2);
-
 echo $OUTPUT->container_start('block_coursegraph');
 
 echo '<div class="grades">';
-
  quiz($userid,$courseid);
-
 echo '</div>';
 
 
