@@ -13,7 +13,7 @@ $courseid = required_param('courseid', PARAM_INT);
 $userid   = required_param('userid',PARAM_INT);
 $page     = optional_param('page', 0, PARAM_INT); 
 $perpage  = optional_param('perpage', DEFAULT_PAGE_SIZE, PARAM_INT); 
-$group    = optional_param('group', 0, PARAM_INT);
+$group    = optional_param('group', 0, PARAM_INT); 
 
 $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
 $context = block_myscorm_course_context($courseid);
@@ -44,7 +44,6 @@ require_login($course, false);
 
 echo $OUTPUT->header();
 // echo $OUTPUT->heading($title, 2);
-
 
 echo $OUTPUT->container_start('block_myscorm');
 get_login_datas($courseid,$userid );

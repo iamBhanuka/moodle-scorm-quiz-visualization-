@@ -10,10 +10,11 @@
  
         'clonepermissionsfrom' => 'moodle/my:manageblocks'
     ),
-
+ 
     'block/myscorm:addinstance' => array(
         'riskbitmask' => RISK_SPAM | RISK_XSS,
-  'captype' => 'write',
+ 
+        'captype' => 'write',
         'contextlevel' => CONTEXT_BLOCK,
         'archetypes' => array(
             'editingteacher' => CAP_ALLOW,
@@ -23,4 +24,3 @@
         'clonepermissionsfrom' => 'moodle/site:manageblocks'
     ),
 );
-

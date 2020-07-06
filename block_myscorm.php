@@ -6,6 +6,8 @@ class block_myscorm extends block_base {
     public function init() {
         $this->title = 'Courses scorm data';
     }
+
+
     public function get_content() {
         global $USER, $COURSE,$OUTPUT;
 
@@ -24,17 +26,21 @@ class block_myscorm extends block_base {
      
         return $this->content;
     }
+
     public function specialization() {
         if (isset($this->config)) {
                
         }
     }
+
     public function instance_allow_multiple() {
         return true;
     }
+
     function has_config(){
         return true;
     }  
+
     public function applicable_formats(){
         return array(
             'course-view'    => true,  
