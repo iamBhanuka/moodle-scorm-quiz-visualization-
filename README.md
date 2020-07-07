@@ -1,1 +1,1 @@
-# moodle-scorm-quiz-visualization-
+# moodle-scorm-quiz-visualization-system
