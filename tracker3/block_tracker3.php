@@ -2,9 +2,9 @@
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
-class block_tracker extends block_base {
+class block_tracker3 extends block_base {
     public function init() {
-        $this->title = get_string('tracker', 'block_tracker');
+        $this->title = get_string('tracker3', 'block_tracker3');
     }
     // The PHP tag and the curly bracket for the class definition 
     // will only be closed after there is another function added in the next section.
@@ -19,10 +19,10 @@ class block_tracker extends block_base {
      
         $this->content         =  new stdClass;
 
-        $parameters     = array('trackerid' => $this->instance->id, 'userid' => $USER->id, 'courseid' => $COURSE->id);
+        $parameters     = array('tracker3id' => $this->instance->id, 'userid' => $USER->id, 'courseid' => $COURSE->id);
         $options        = array('class' => 'overviewButton');
-        $url            = new moodle_url('/blocks/tracker/overview.php', $parameters);        
-        $this->content->text .= $OUTPUT->single_button($url, 'access details', 'post', $options);
+        $url            = new moodle_url('/blocks/tracker3/overview.php', $parameters);        
+        $this->content->text .= $OUTPUT->single_button($url, 'view graph', 'post', $options);
         //$this->content->text .= html_writer::link($url, 'access details', array('class' => 'btn btn-secondary'));
 
 
@@ -32,11 +32,13 @@ class block_tracker extends block_base {
         return true;
       }
     
-      public function specialization(){ 
+    public function specialization(){ 
         if(isset($this->config)){ } 
     }
 
-    function has_config() {return true;}
+    function has_config() {
+        return true;
+    }
 
     public function hide_header() {
         return false;

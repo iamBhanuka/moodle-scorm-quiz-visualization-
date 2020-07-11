@@ -8,7 +8,7 @@
    define('DEFAULT_PAGE_SIZE', 20);
    define('SHOW_ALL_PAGE_SIZE', 5000);
 
-   $id              = required_param('logingraphid',    PARAM_INT);
+   $id              = required_param('trackerid',    PARAM_INT);
    $courseid        = required_param('courseid',   PARAM_INT);
    $userid          = required_param('userid',     PARAM_INT);
 
@@ -27,7 +27,7 @@
    $PAGE->set_url(
        '/blocks/tracker/overview.php',
        array(
-           'logingraphid'    => $id,
+           'trackerid'    => $id,
            'courseid'   => $courseid,
            'page'       => $page,
            'perpage'    => $perpage,
