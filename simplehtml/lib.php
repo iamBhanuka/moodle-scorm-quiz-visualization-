@@ -43,7 +43,7 @@
             }
             $sql0="SELECT id,fullname, idnumber FROM {course} WHERE category='$cat';";  
             $all=$DB->get_records_sql($sql0);   
-            $label=get_coursees($id2);
+            $label=get_coursees_datas($id2);
             foreach($label as $i){                        
                 if($i==$courseid){                              
                     foreach($label as $i){
@@ -119,7 +119,7 @@
                                                  
     }
         
-    function  get_coursees($userid){
+    function  get_coursees_datas($userid){
         global $DB,$contextids,$instanceids,$i;
         $label=array();
         $i=0;
