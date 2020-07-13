@@ -34,8 +34,9 @@
             'group' => $group,
         )
     );
-
+    
     $PAGE->set_context($context);
+    $PAGE->requires->css('/blocks/sendmail/styles.css');
     $title = 'Time Remaining';
     $PAGE->set_title($title);
     $PAGE->set_heading($title);
