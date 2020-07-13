@@ -1,7 +1,7 @@
 <?php
     $capabilities = array(
  
-    'block/tracker:myaddinstance' => array(
+    'block/tracker3:myaddinstance' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => array(
@@ -11,7 +11,7 @@
         'clonepermissionsfrom' => 'moodle/my:manageblocks'
     ),
  
-    'block/tracker:addinstance' => array(
+    'block/tracke3:addinstance' => array(
         'riskbitmask' => RISK_SPAM | RISK_XSS,
  
         'captype' => 'write',
