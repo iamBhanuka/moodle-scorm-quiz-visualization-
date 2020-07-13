@@ -36,7 +36,7 @@
    );
 
    $PAGE    ->  set_context($context);
-   $title = 'Time Spent per Lesson';
+   $title = 'Time Spent by Index';
    $PAGE    ->  set_title($title);      //sets title in title-bar
    $PAGE    ->  set_heading($title);    //sets title in header
    $PAGE    ->  navbar->add($title);    //adds title to navbar
@@ -47,46 +47,46 @@
 
    echo $OUTPUT->container_start('block_tracker4');
 
-   echo '<div>';
-   $noOfDays=array('number of days','30','60','90','all');
-        echo html_writer::start_tag('div');
-        echo html_writer::start_tag('form', array('action' =>'overview.php', 'method' => 'post'));
-echo '
-    <head>
+   $id2=0;
+   //$noOfDays=array('number of days','30','60','90','all');
+    
+   echo '<head>
         <style>
             input:focus{    outline: 2px solid purple;    }
         </style>
-    </head>'
-; 
-echo '<table>';
-echo '<tr>';
-echo '<td>';
-        echo html_writer::empty_tag('input', array('type'=>'text', 'name'=>'id', 'autocomplete'=>'off', 'placeholder'=>' Enter student id ', 'style'=>'height:35px; width:150px; border:1px solid purple'));
-echo '</td>';
-echo '<td>';
-        echo html_writer::select($noOfDays, 'days', $selection2, true, array('style'=>'height:35px; width:150px; border:1px solid purple'));
-echo '</td>';
-echo '<td>';          
-        echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'tracker4id', 'value'=>$id));
-        echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'courseid', 'value'=>$courseid));
-        echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'userid', 'value'=>$userid));
-        echo html_writer::empty_tag('input', array('type'=>'submit', 'class'=>'btn-primary', 'value'=> 'scorm access details', 'style'=>'height:35px; width:150px; border:1px; background-color:purple'));
-echo '</td>';
-echo '</tr>';
-echo '</table>';  
+    </head>';
+
+    echo html_writer::start_tag('div');
+        echo html_writer::start_tag('form', array('action' =>'overview.php', 'method' => 'post'));
+
+    echo '<table>';
+        echo '<tr>';
+            echo '<td>';
+                echo html_writer::empty_tag('input', array('type'=>'text', 'name'=>'id', 'autocomplete'=>'off', 'placeholder'=>' Enter student id ', 'style'=>'height:35px; width:150px; border:1px solid purple'));
+            echo '</td>';
+            //echo '<td>';
+            //echo html_writer::select($noOfDays, 'days', $selection2, true, array('style'=>'height:35px; width:150px; border:1px solid purple'));
+            //echo '</td>';
+                echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'tracker4id', 'value'=>$id));
+                echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'courseid', 'value'=>$courseid));
+                echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'userid', 'value'=>$userid));
+            echo '<td>';          
+                echo html_writer::empty_tag('input', array('type'=>'submit', 'class'=>'btn-primary', 'value'=> 'scorm access details', 'style'=>'height:35px; width:150px; border:1px; background-color:purple'));
+            echo '</td>';
+        echo '</tr>';
+    echo '</table>'; 
+
         echo html_writer::end_tag('form').'<br>';       
-        echo html_writer::end_tag('div');
+    echo html_writer::end_tag('div');
 
-        echo html_writer::start_tag('div', array('style'=>'border-style:groove; '));     
-            $id2= $_POST['id'];
-            echo $id2;
-            $ndays=$noOfDays[ $_POST['days'] ];   
-            //get_logins_data($id2,$ndays,$courseid);
-        echo html_writer::end_tag('div');
+    $id2= $_POST['id'];
 
-    echo '</div>';
-
-   echo '<div>';
+    if ($id2!=NULL){
+        // echo html_writer::start_tag('div', array('style'=>'border-style:groove; '));     
+            echo 'Access details of '.$id2.':';
+            //$ndays=$noOfDays[ $_POST['days'] ];
+        // echo html_writer::end_tag('div');
+    }
 
     global $DB;
 
@@ -182,7 +182,9 @@ echo '</table>';
     }
 
     $chart->set_labels($name);
-    echo $OUTPUT->render($chart);
+    if ($id2!=NULL){
+        echo $OUTPUT->render($chart);
+    }
 
     echo '</div>';
 
