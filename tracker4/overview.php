@@ -27,7 +27,7 @@
    $PAGE->set_url(
        '/blocks/tracker4/overview.php',
        array(
-           'tracker4id'    => $id,
+           'tracker4id' => $id,
            'courseid'   => $courseid,
            'page'       => $page,
            'perpage'    => $perpage,
@@ -46,6 +46,46 @@
    echo $OUTPUT->header();
 
    echo $OUTPUT->container_start('block_tracker4');
+
+   echo '<div>';
+   $noOfDays=array('number of days','30','60','90','all');
+        echo html_writer::start_tag('div');
+        echo html_writer::start_tag('form', array('action' =>'overview.php', 'method' => 'post'));
+echo '
+    <head>
+        <style>
+            input:focus{    outline: 2px solid purple;    }
+        </style>
+    </head>'
+; 
+echo '<table>';
+echo '<tr>';
+echo '<td>';
+        echo html_writer::empty_tag('input', array('type'=>'text', 'name'=>'id', 'autocomplete'=>'off', 'placeholder'=>' Enter student id ', 'style'=>'height:35px; width:150px; border:1px solid purple'));
+echo '</td>';
+echo '<td>';
+        echo html_writer::select($noOfDays, 'days', $selection2, true, array('style'=>'height:35px; width:150px; border:1px solid purple'));
+echo '</td>';
+echo '<td>';          
+        echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'tracker4id', 'value'=>$id));
+        echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'courseid', 'value'=>$courseid));
+        echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'userid', 'value'=>$userid));
+        echo html_writer::empty_tag('input', array('type'=>'submit', 'class'=>'btn-primary', 'value'=> 'scorm access details', 'style'=>'height:35px; width:150px; border:1px; background-color:purple'));
+echo '</td>';
+echo '</tr>';
+echo '</table>';  
+        echo html_writer::end_tag('form').'<br>';       
+        echo html_writer::end_tag('div');
+
+        echo html_writer::start_tag('div', array('style'=>'border-style:groove; '));     
+            $id2= $_POST['id'];
+            echo $id2;
+            $ndays=$noOfDays[ $_POST['days'] ];   
+            //get_logins_data($id2,$ndays,$courseid);
+        echo html_writer::end_tag('div');
+
+    echo '</div>';
+
    echo '<div>';
 
     global $DB;
@@ -92,49 +132,53 @@
 
     $stu_name = array();
 
+    //echo '<pre>'; print_r($info_students); echo '</pre>';
+
     foreach($info_students as $user_info){
 
-        //entering user names into array by id
-        $stu_name[$user_info->id]=$user_info->username;
+        if ($user_info->username==$id2){
+            //entering user names into array by id
+            $stu_name[$user_info->id]=$user_info->username;
 
-        $access_array=array();
+            $access_array=array();
 
-        //find which scorm packages each student has accessed
-        $sql = "SELECT sst.scormid, sst.scoid, sst.value 
-        FROM {scorm_scoes_track} sst, {scorm} s 
-        WHERE sst.scormid=s.id 
-            AND element='cmi.core.total_time' 
-            AND sst.userid=$user_info->id 
-            AND s.course=$courseid;";
-        $result = $DB->get_records_sql($sql);
+            //find which scorm packages each student has accessed
+            $sql = "SELECT sst.scormid, sst.scoid, sst.value 
+            FROM {scorm_scoes_track} sst, {scorm} s 
+            WHERE sst.scormid=s.id 
+                AND element='cmi.core.total_time' 
+                AND sst.userid=$user_info->id 
+                AND s.course=$courseid;";
+            $result = $DB->get_records_sql($sql);
 
-        //fill array if student hasn't accessed a scorm pkg
-        foreach($info_sco_lessons as $value){
-            if (!isset($result[$value->id])){
-                $result[$value->id]->value=0;
+            //fill array if student hasn't accessed a scorm pkg
+            foreach($info_sco_lessons as $value){
+                if (!isset($result[$value->id])){
+                    $result[$value->id]->value=0;
+                }
             }
-        }
-        ksort($result); //sort array by key
+            ksort($result); //sort array by key
 
-        $sc=0;
+            $sc=0;
 
-        //expand [value] in $result to convert 00:00:00.00 into hours
-        foreach($result as $value){
-            $split_time_value = explode (":", $value->value);
-            $split_time_value[3]=($split_time_value[0])+($split_time_value[1]/60)+($split_time_value[2]/(60*60));
-            if ($split_time_value[3]>0){
-                $access_array[$sc]=$split_time_value[3];
+            //expand [value] in $result to convert 00:00:00.00 into hours
+            foreach($result as $value){
+                $split_time_value = explode (":", $value->value);
+                $split_time_value[3]=($split_time_value[0])+($split_time_value[1]/60)+($split_time_value[2]/(60*60));
+                if ($split_time_value[3]>0){
+                    $access_array[$sc]=$split_time_value[3];
+                }
+                else{
+                    $access_array[$sc]=0;
+                }
+                $sc++;
             }
-            else{
-                $access_array[$sc]=0;
-            }
-            $sc++;
-        }
-        // echo '<pre>'; print_r($access_array); echo '</pre>';
+            // echo '<pre>'; print_r($access_array); echo '</pre>';
 
-        //sets line-chart lines to each student
-        $time_per_student = new core\chart_series($user_info->username, $access_array);
-        $chart->add_series($time_per_student);
+            //sets line-chart lines to each student
+            $time_per_student = new core\chart_series($user_info->username, $access_array);
+            $chart->add_series($time_per_student);
+        } 
     }
 
     $chart->set_labels($name);
