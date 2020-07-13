@@ -84,7 +84,8 @@
     $users = "SELECT u.id, u.username
                 FROM {user} u, {role_assignments} r
                 WHERE u.id=r.userid
-                    AND r.contextid = {$contextid->id}";
+                    AND r.contextid = {$contextid->id}
+                ORDER BY u.username";
     $info_students = $DB->get_records_sql($users);
 
     $sc=0;
