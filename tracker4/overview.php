@@ -47,46 +47,45 @@
 
    echo $OUTPUT->container_start('block_tracker4');
 
-   $id2=0;
-   //$noOfDays=array('number of days','30','60','90','all');
-    
-   echo '<head>
+   echo '<div>';
+
+    //is index valid
+    $doIExist=0;
+    //Getting the index
+    $index=0;
+    echo '<head>
         <style>
             input:focus{    outline: 2px solid purple;    }
         </style>
     </head>';
 
-    echo html_writer::start_tag('div');
-        echo html_writer::start_tag('form', array('action' =>'overview.php', 'method' => 'post'));
+    //start a form to get index from user
+    echo html_writer::start_tag('form', array('action' =>'overview.php', 'method' => 'post'));
 
+    //use table for neater formatting
     echo '<table>';
         echo '<tr>';
+            //get index as input
             echo '<td>';
                 echo html_writer::empty_tag('input', array('type'=>'text', 'name'=>'id', 'autocomplete'=>'off', 'placeholder'=>' Enter student id ', 'style'=>'height:35px; width:150px; border:1px solid purple'));
             echo '</td>';
-            //echo '<td>';
-            //echo html_writer::select($noOfDays, 'days', $selection2, true, array('style'=>'height:35px; width:150px; border:1px solid purple'));
-            //echo '</td>';
+
+            //other prefixed inputs
                 echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'tracker4id', 'value'=>$id));
                 echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'courseid', 'value'=>$courseid));
                 echo html_writer::empty_tag('input', array('type'=>'hidden', 'name'=>'userid', 'value'=>$userid));
+            
+            //submit all inputs
             echo '<td>';          
                 echo html_writer::empty_tag('input', array('type'=>'submit', 'class'=>'btn-primary', 'value'=> 'scorm access details', 'style'=>'height:35px; width:150px; border:1px; background-color:purple'));
             echo '</td>';
         echo '</tr>';
     echo '</table>'; 
 
-        echo html_writer::end_tag('form').'<br>';       
-    echo html_writer::end_tag('div');
+    echo html_writer::end_tag('form').'<br>';
 
-    $id2= $_POST['id'];
-
-    if ($id2!=NULL){
-        // echo html_writer::start_tag('div', array('style'=>'border-style:groove; '));     
-            echo 'Access details of '.$id2.':';
-            //$ndays=$noOfDays[ $_POST['days'] ];
-        // echo html_writer::end_tag('div');
-    }
+    //get input to use in chart
+    $index= $_POST['id'];
 
     global $DB;
 
@@ -117,7 +116,6 @@
     //name its axis
     $chart->get_xaxis(0, true)->set_label("Lessons in ". $course_name); 
     $chart->get_yaxis(0, true)->set_label("Time spent per lesson(hrs)");
-    //$chart->set_smooth(true); // Calling set_smooth() passing true as parameter, will display smooth lines.
 
     //get ids, names of students enrolled in course
     $contextid = get_context_instance(CONTEXT_COURSE, $courseid);
@@ -132,17 +130,30 @@
 
     $stu_name = array();
 
-    //echo '<pre>'; print_r($info_students); echo '</pre>';
+    //check if index is valid
+    foreach($info_students as $user_info){
+        if ($user_info->username==$index){
+            $doIExist=1;
+        }
+    }
+
+    //set heading if index valid
+    if ($doIExist==1 && $index!=NULL){
+        echo 'Access details of '.$index.': ';
+    }
+    //make sure index is valid
+    else if ($doIExist!=1 && $index!=NULL){
+        echo ' Index not valid';
+    }
 
     foreach($info_students as $user_info){
-
-        if ($user_info->username==$id2){
-            //entering user names into array by id
+        if ($user_info->username==$index){
+            //entering user name into array by id
             $stu_name[$user_info->id]=$user_info->username;
 
             $access_array=array();
 
-            //find which scorm packages each student has accessed
+            //find which scorm packages student has accessed
             $sql = "SELECT sst.scormid, sst.scoid, sst.value 
             FROM {scorm_scoes_track} sst, {scorm} s 
             WHERE sst.scormid=s.id 
@@ -173,16 +184,17 @@
                 }
                 $sc++;
             }
-            // echo '<pre>'; print_r($access_array); echo '</pre>';
 
-            //sets line-chart lines to each student
+            //sets line-chart line to student
             $time_per_student = new core\chart_series($user_info->username, $access_array);
             $chart->add_series($time_per_student);
         } 
     }
 
     $chart->set_labels($name);
-    if ($id2!=NULL){
+
+    //renders chart if index valid
+    if ($doIExist==1 && $index!=NULL){
         echo $OUTPUT->render($chart);
     }
 
@@ -192,4 +204,5 @@
 
    echo $OUTPUT->footer();
 
+   
    
