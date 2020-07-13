@@ -1,3 +1,9 @@
+<html>
+    
+<head>
+    <link rel="stylesheet" href="myscormcss.css" />
+</head>
+
 <?php
 
 require_once(dirname(__FILE__) . '/../../config.php');
@@ -11,9 +17,16 @@ function block_myscorm_course_context($courseid) { //get login page data
 }
 
 
-function get_login_datas($courseid,$userid ){
+function get_login_datas($courseid,$userid,$minmarks ){
+    if($minmarks > 0){
+    echo'<br>';
+    echo $minmarks ;
+    echo ' is your Selected Mark And Please Select the Quiz';
+    echo'<br>';
+    echo'<br>';
 
   global $DB;
+ 
 
     $sql_courses =  "SELECT C.* FROM {role_assignments} as A INNER JOIN {context} as B on A.contextid=B.id INNER JOIN {course} as C on C.id=B.instanceid AND B.contextlevel=50 AND A.roleid='3'  AND A.userid='$userid' ;";
     $sql_courses_res = $DB->get_records_sql($sql_courses);
@@ -28,7 +41,11 @@ function get_login_datas($courseid,$userid ){
 
         $sql_scorm= "SELECT id,name FROM {scorm} WHERE course=$courseid;";        
         $sql_scorm_res = $DB->get_records_sql($sql_scorm);
-
+        echo '<form action="welcome_get.php" method="get">';
+        echo 'Pass Marks : <input type="text" name="name"><br><br>';
+        // echo 'E-mail: <input type="text" name="email"><br>';
+        echo '<input type="submit"><br>';
+        echo '</form>';
         echo '<select name="scorm" id="dd_scorm" onchange="scormSelect();">';
         echo "<option selected>Select Quiz</option>";
 
@@ -48,8 +65,9 @@ function get_login_datas($courseid,$userid ){
         // return;
 
         $data_for_dd_scorm = array();
+        
 
-        $sql_marks= "SELECT B.*,A.id as scorm_id FROM {scorm} as A INNER JOIN {scorm_scoes_track} as B on A.id=B.scormid AND A.course='$courseid' AND B.element='cmi.core.score.raw' AND B.value<50;";
+        $sql_marks= "SELECT B.*,A.id as scorm_id FROM {scorm} as A INNER JOIN {scorm_scoes_track} as B on A.id=B.scormid AND A.course='$courseid' AND B.element='cmi.core.score.raw' AND B.value < $minmarks;";
         $sql_marks_res = $DB->get_records_sql($sql_marks);
         foreach($sql_marks_res as $record=>$mark){
             $userid = $mark->userid;
@@ -87,8 +105,11 @@ function get_login_datas($courseid,$userid ){
               
                 $sql_scorm= "SELECT id,name FROM {scorm} WHERE course=$courseid;";        
                 $sql_scorm_res = $DB->get_records_sql($sql_scorm);
-        
-                echo '<select name="scorm" id="dd_scorm" onchange="scormSelect();">';
+                
+             
+     
+                
+                echo '<select  name="scorm" id="dd_scorm" onchange="scormSelect();">';
                 echo "<option selected>Select Quiz</option>";
         
                  $dropdown_scorm = "";
@@ -103,12 +124,14 @@ function get_login_datas($courseid,$userid ){
                 echo "</br>";
         
                 echo "<div id='scorm_data'></div>";
+
+               
         
                 // return;
         
                 $data_for_dd_scorm = array();
         
-                $sql_marks= "SELECT B.*,A.id as scorm_id FROM {scorm} as A INNER JOIN {scorm_scoes_track} as B on A.id=B.scormid AND A.course='$courseid' AND B.element='cmi.core.score.raw' AND B.value<50;";
+                $sql_marks= "SELECT B.*,A.id as scorm_id FROM {scorm} as A INNER JOIN {scorm_scoes_track} as B on A.id=B.scormid AND A.course='$courseid' AND B.element='cmi.core.score.raw' AND B.value < $minmarks;";
                 $sql_marks_res = $DB->get_records_sql($sql_marks);
                 foreach($sql_marks_res as $record=>$mark){
                     $userid = $mark->userid;
@@ -129,6 +152,10 @@ function get_login_datas($courseid,$userid ){
                 echo "var scormData=" .json_encode($data_for_dd_scorm);
                 echo "</script>";
                 echo "<script src='js/lib.js'></script>";
+                if($minmarks>=0){
+                    $minmarks = 0;
+                }
+               
         
                 return;
 
@@ -312,6 +339,7 @@ function get_login_datas($courseid,$userid ){
         }
     }
       }
+    }
       }
 
 
