@@ -1,3 +1,13 @@
+<html>
+    
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="myscormcss.css" />
+</head>
+
+
+
+
 <?php
 
 require_once(dirname(__FILE__) . '/../../config.php');
