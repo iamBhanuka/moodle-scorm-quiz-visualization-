@@ -50,76 +50,45 @@
 
     global $DB;
 
-    //connect scormid and scoid
-    $join_scorm_and_scoes = "SELECT id, scorm FROM {scorm_scoes};";
-    $joined = $DB->get_records_sql($join_scorm_and_scoes);
+    $time="SELECT id, FROM_UNIXTIME(timecreated, '%m-%d-%Y') as timecreated, userid, objectid/2
+            FROM {logstore_standard_log} 
+            WHERE ((eventname LIKE '%sco_launched' OR eventname LIKE '%content_pages_viewed')
+                AND courseid=$courseid) 
+            ORDER BY userid DESC;";
+    $result_time = $DB->get_records_sql($time);
+    // echo '<pre>'; print_r($result_time); echo '</pre>';
 
-    //getting lesson names from db
-    $sco_lessons = "SELECT id, name FROM {scorm} WHERE course = $courseid";
-    $info_sco_lessons = $DB->get_records_sql($sco_lessons);
+// -----------------------------
+//    https://www.tutorialspoint.com/return-all-dates-between-two-dates-in-an-array-in-php#:~:text=php%20function%20displayDates(%24date1%2C,('2019%2D11%2D10
+//    function displayDates($date1, $date2, $format = 'd-m-Y' ) {
+//       $dates = array();
+//       $current = strtotime($date1);
+//       $date2 = strtotime($date2);
+//       $stepVal = '+1 day';
+//       while( $current <= $date2 ) {
+//          $dates[] = date($format, $current);
+//          $current = strtotime($stepVal, $current);
+//       }
+//       return $dates;
+//    }
+//    $date = displayDates('2019-11-10', '2019-11-20');
+//    var_dump($date);
+// --------------------------------
 
-    //initialize name list for scorm lessons
-    $name = array();
-    foreach($info_sco_lessons as $sco_name){
-        //entering lesson names into array by id
-        array_push($name, $sco_name->name);
-    }
-
-    //get name of course
-    $fullname = "SELECT fullname FROM {course} WHERE id=$courseid";
-    $coursename = $DB->get_records_sql($fullname);
-    foreach($coursename as $info_coursename){
-        $course_name=$info_coursename->fullname;
-    }
-
-    //create a new chart
-    $chart = new \core\chart_line();
-    //name its axis
-    $chart->get_xaxis(0, true)->set_label("Days in ". $course_name); 
-    $chart->get_yaxis(0, true)->set_label("Time spent per lesson(hrs)");
-    //$chart->set_smooth(true); // Calling set_smooth() passing true as parameter, will display smooth lines.
-
-    //get ids, names of students enrolled in course
-    $contextid = get_context_instance(CONTEXT_COURSE, $courseid);
-    $users = "SELECT u.id, u.username
-                FROM {user} u, {role_assignments} r
-                WHERE u.id=r.userid
-                    AND r.contextid = {$contextid->id}
-                ORDER BY u.username";
-    $info_students = $DB->get_records_sql($users);
-
-    $sc=0;
-    $sc1=0;
-
-    $stu_name = array();
-
-    foreach($info_students as $user_info){
-
-        //entering user names into array by id
-        $stu_name[$user_info->id]=$user_info->username;
-
-        $access_array=array();
-
-        //find which scorm packages each student has accessed
-        $sql = "SELECT sst.scormid, sst.scoid, sst.value 
-        FROM {scorm_scoes_track} sst, {scorm} s 
-        WHERE sst.scormid=s.id 
-            AND element='cmi.core.total_time' 
-            AND sst.userid=$user_info->id 
-            AND s.course=$courseid;";
-        $result = $DB->get_records_sql($sql);
-
-        //fill array if student hasn't accessed a scorm pkg
-        foreach($info_sco_lessons as $value){
-            if (!isset($result[$value->id])){
-                $result[$value->id]->value=0;
-            }
+    function displayDates($date1, $date2, $format = 'd-m-Y' ) {
+        $dates = array();
+        $current = strtotime($date1);
+        $date2 = strtotime($date2);
+        $stepVal = '+1 day';
+        while( $current <= $date2 ) {
+            array_push($dates, date($format, $current));
+            $current = strtotime($stepVal, $current);
         }
         return $dates;
      }
 
-     $date = displayDates(date("d-m-Y", strtotime("-1 months")), date("d-m-Y"));
-     echo '<pre>'; print_r($date); echo '</pre>';
+     //$date = displayDates(date("d-m-Y", strtotime("-1 months")), date("d-m-Y"));
+     //echo '<pre>'; print_r($date); echo '</pre>';
 
     //  $date = displayDates('2019-2-25', '2019-3-2');
     //  echo '<pre>'; print_r($date); echo '</pre>';
