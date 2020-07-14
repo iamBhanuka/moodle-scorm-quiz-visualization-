@@ -50,7 +50,7 @@
 
     global $DB;
 
-    $time="SELECT id, FROM_UNIXTIME(timecreated, '%d-%m-%y') as timecreated, userid, objectid/2
+    $time="SELECT id, FROM_UNIXTIME(timecreated, '%m-%d-%Y') as timecreated, userid, objectid/2
             FROM {logstore_standard_log} 
             WHERE ((eventname LIKE '%sco_launched' OR eventname LIKE '%content_pages_viewed')
                 AND courseid=$courseid) 
@@ -87,13 +87,8 @@
         return $dates;
      }
 
-<<<<<<< HEAD
      //$date = displayDates(date("d-m-Y", strtotime("-1 months")), date("d-m-Y"));
      //echo '<pre>'; print_r($date); echo '</pre>';
-=======
-     $date = displayDates(date("d-m-Y", strtotime("-1 months")), date("d-m-Y"));
-     echo '<pre>'; print_r($date); echo '</pre>';
->>>>>>> b1e319eb510a23cac0aff88ae7cbabf1e8d026cb
 
     //  $date = displayDates('2019-2-25', '2019-3-2');
     //  echo '<pre>'; print_r($date); echo '</pre>';
@@ -114,11 +109,7 @@
     //$time=array(2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3);
     $time_per_student = new core\chart_series("time", $time);
     $chart->add_series($time_per_student);
-<<<<<<< HEAD
-    $date=array("16-6-2020", "13-7-2020", "14-7-2020");
-=======
-    $date=array("16-6-2020", "13-7-2020", "14-7-2020");
->>>>>>> b1e319eb510a23cac0aff88ae7cbabf1e8d026cb
+    $date=array("2-3-2020", "2-4-2020", "2-5-2020");
     $chart->set_labels($date);
     echo $OUTPUT->render($chart);
 
@@ -228,3 +219,5 @@
    echo $OUTPUT->container_end();
 
    echo $OUTPUT->footer();
+
+   
