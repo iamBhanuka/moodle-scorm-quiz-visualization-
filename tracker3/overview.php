@@ -73,11 +73,11 @@
     //name its axis
     $chart->get_xaxis(0, true)->set_label("Days"); 
     $chart->get_yaxis(0, true)->set_label("Time spent per lesson(hrs)");
-    $time=array(6, 4, 10);
+    $time=array(0.2, 0.08, 0.5, 0.1, 0.8, 0.7, 0.9, 0.3, 1.2, 0.5, 0.09, 0.18);
     //$time=array(2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3);
     $time_per_student = new core\chart_series("time", $time);
     $chart->add_series($time_per_student);
-    $date=array("16-6-2020", "13-7-2020", "14-7-2020");
+    $date=displayDates("16-6-2020", "27-6-2020");
     $chart->set_labels($date);
     echo $OUTPUT->render($chart);
 
