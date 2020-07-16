@@ -59,20 +59,24 @@
                                                                                 $var=date("Y-m-d h:i:s",$value->duedate);
                                                                                 $con=new DateTime($var);                                                                                        
                                                                                 $def= $newDate->diff($con);
-                                                                                echo html_writer::start_tag('tr');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $cid.' '.$name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $value->name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%M  %D");
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%H:%I:%S");
-                                                                                        echo html_writer::end_tag('td'); 
-                                                                                echo html_writer::end_tag('tr');
+                                                                                if($newDate<$con){
+                                                                                        
+                                                                                        echo html_writer::start_tag('tr');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $cid.' '.$name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $value->name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%M  %D");
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%H:%I:%S");
+                                                                                                echo html_writer::end_tag('td'); 
+                                                                                        echo html_writer::end_tag('tr');
+                                                                                }
+                                                                                
                                                                         }
                                                                 };                        
                                                                 if($value->name=='scorm'){
@@ -82,20 +86,24 @@
                                                                                 $var=date("Y-m-d h:i:s",$value->timeclose);
                                                                                 $con=new DateTime($var);
                                                                                 $def= $newDate->diff($con);
-                                                                                echo html_writer::start_tag('tr');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $cid.' '.$name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $value->name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%M  %D");
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%H:%I:%S");
-                                                                                        echo html_writer::end_tag('td'); 
-                                                                                echo html_writer::end_tag('tr');
+                                                                                if($newDate<$con){
+                                                                                        
+                                                                                        echo html_writer::start_tag('tr');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $cid.' '.$name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $value->name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%M  %D");
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%H:%I:%S");
+                                                                                                echo html_writer::end_tag('td'); 
+                                                                                        echo html_writer::end_tag('tr');
+                                                                                }
+                                                                                
                                                                         }
                                                                 };
                                                                 if($value->name=='quiz'){
@@ -105,20 +113,25 @@
                                                                                 $var=date("Y-m-d h:i:s",$value->timeclose);
                                                                                 $con=new DateTime($var);
                                                                                 $def= $newDate->diff($con);
-                                                                                echo html_writer::start_tag('tr');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $cid.' '.$name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $value->name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%M  %D");
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%H:%I:%S");
-                                                                                        echo html_writer::end_tag('td'); 
-                                                                                echo html_writer::end_tag('tr');
+                                                                                if($newDate<$con){
+                                                                                        
+                                                                                        echo html_writer::start_tag('tr');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $cid.' '.$name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $value->name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%M  %D");
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%H:%I:%S");
+                                                                                                echo html_writer::end_tag('td'); 
+                                                                                        echo html_writer::end_tag('tr');
+                                                                                }
+                                                                                
+                                                                                
                                                                         }
                                                                 };
                                                                 if($value->name=='lesson'){
@@ -128,20 +141,24 @@
                                                                                 $var=date("Y-m-d h:i:s",$value->deadline);
                                                                                 $con=new DateTime($var);
                                                                                 $def= $newDate->diff($con);
-                                                                                echo html_writer::start_tag('tr');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $cid.' '.$name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $value->name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%M  %D");
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%H:%I:%S");
-                                                                                        echo html_writer::end_tag('td'); 
-                                                                                echo html_writer::end_tag('tr');
+                                                                                if($newDate<$con){
+                                                                                        
+                                                                                        echo html_writer::start_tag('tr');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $cid.' '.$name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $value->name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%M  %D");
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%H:%I:%S");
+                                                                                                echo html_writer::end_tag('td'); 
+                                                                                        echo html_writer::end_tag('tr');
+                                                                                }
+                                                                                
                                                                         }
                                                                 };
                                                                 if($value->name=='feedback'){
@@ -151,20 +168,24 @@
                                                                                 $var=date("Y-m-d h:i:s",$value->timeclose);
                                                                                 $con=new DateTime($var);
                                                                                 $def= $newDate->diff($con);
-                                                                                echo html_writer::start_tag('tr');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $cid.' '.$name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $value->name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%M  %D");
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%H:%I:%S");
-                                                                                        echo html_writer::end_tag('td'); 
-                                                                                echo html_writer::end_tag('tr');
+                                                                                if($newDate<$con){
+                                                                                        
+                                                                                        echo html_writer::start_tag('tr');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $cid.' '.$name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $value->name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%M  %D");
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%H:%I:%S");
+                                                                                                echo html_writer::end_tag('td'); 
+                                                                                        echo html_writer::end_tag('tr');
+                                                                                }
+                                                                                
                                                                         }                                              
                                                                 };
                                                                 if($value->name=='choice'){
@@ -174,20 +195,24 @@
                                                                                 $var=date("Y-m-d h:i:s",$value->timeclose);
                                                                                 $con=new DateTime($var);
                                                                                 $def= $newDate->diff($con);
-                                                                                echo html_writer::start_tag('tr');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $cid.' '.$name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $value->name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%M  %D");
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%H:%I:%S");
-                                                                                        echo html_writer::end_tag('td'); 
-                                                                                echo html_writer::end_tag('tr');
+                                                                                if($newDate<$con){
+                                                                                        
+                                                                                        echo html_writer::start_tag('tr');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $cid.' '.$name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $value->name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%M  %D");
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%H:%I:%S");
+                                                                                                echo html_writer::end_tag('td'); 
+                                                                                        echo html_writer::end_tag('tr');
+                                                                                }
+                                                                                
                                                                         }                                            
                                                                 };
                                                                 if($value->name=='assignment'){
@@ -197,20 +222,24 @@
                                                                                 $var=date("Y-m-d h:i:s",$value->timedue);
                                                                                 $con=new DateTime($var);
                                                                                 $def= $newDate->diff($con);
-                                                                                echo html_writer::start_tag('tr');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $cid.' '.$name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $value->name;
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%M  %D");
-                                                                                        echo html_writer::end_tag('td');
-                                                                                        echo html_writer::start_tag('td');
-                                                                                                echo $def->format("%H:%I:%S");
-                                                                                        echo html_writer::end_tag('td'); 
-                                                                                echo html_writer::end_tag('tr');
+                                                                                if($newDate<$con){
+                                                                                        
+                                                                                        echo html_writer::start_tag('tr');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $cid.' '.$name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $value->name;
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%M  %D");
+                                                                                                echo html_writer::end_tag('td');
+                                                                                                echo html_writer::start_tag('td');
+                                                                                                        echo $def->format("%H:%I:%S");
+                                                                                                echo html_writer::end_tag('td'); 
+                                                                                        echo html_writer::end_tag('tr');
+                                                                                }
+                                                                                
                                                                         }                                                 
                                                                 };  
                                                         }                                                               
