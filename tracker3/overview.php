@@ -114,9 +114,45 @@ else {
     // echo date('m/d/Y', 1590299351);
     // echo 1590299351;
     // echo strtotime("05/24/2020");
-}
 
+   // -----------GRAPH--------------
+    $oneMonthAgo = date("d-m-Y", strtotime("-1 months"));
+    $today = date("d-m-Y");
+
+    $time="SELECT id, FROM_UNIXTIME(timecreated, '%d-%m-%Y') as timecreated, userid, objectid/2
+            FROM {logstore_standard_log} 
+            WHERE ((eventname LIKE '%sco_launched' OR eventname LIKE '%content_pages_viewed')
+                AND courseid=$courseid) 
+            ORDER BY timecreated DESC;";
+    $result_time = $DB->get_records_sql($time);
+
+    function displayDates($date1, $date2, $format = 'd-m-Y' ) {
+        $dates = array();
+        $current = strtotime($date1);
+        $date2 = strtotime($date2);
+        $stepVal = '+1 day';
+        while( $current <= $date2 ) {
+            array_push($dates, date($format, $current));
+            $current = strtotime($stepVal, $current);
+        }
+        return $dates;
+    }
+    $date_find=displayDates($oneMonthAgo, $today);
+
+    $chart = new \core\chart_line();
+    //name its axis
+    $chart->get_xaxis(0, true)->set_label("Days"); 
+    $chart->get_yaxis(0, true)->set_label("Time spent per lesson(hrs)");
+    //$time=array(0.2, 0.08, 0.01, 0.04, 0.08, 0.37, 0.9, 0.13, 1.2, 0.03, 0, 0.18);
+    $time=array(2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3, 21);
+    $time_per_student = new core\chart_series("time", $time);
+    $chart->add_series($time_per_student);
+    $date=displayDates("16-6-2020", "27-6-2020");
+    $chart->set_labels($date_find);
+    echo $OUTPUT->render($chart);
+//-----------------------------------------------
    
+}
    echo '</div>';
 
    echo $OUTPUT->container_end();
