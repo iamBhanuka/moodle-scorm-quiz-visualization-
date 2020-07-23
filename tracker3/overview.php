@@ -48,40 +48,76 @@
    echo $OUTPUT->container_start('block_tracker3');
    echo '<div>';
 
-    global $DB;
+   
+   global $DB;
+    
+    //connect scormid and scoid
+    // $sql = "SELECT  `mdl_scorm_scoes`.`id` as ss_id, `mdl_scorm`.`id` as s_id, `mdl_scorm_scoes`.`scorm`, `mdl_scorm`.`name` FROM `mdl_scorm`, `mdl_scorm_scoes` WHERE `mdl_scorm`.`id`=`mdl_scorm_scoes`.`scorm` AND `mdl_scorm`.`course`=16";
+    $join_scorm_and_scoes = "SELECT  ss.id as sco, ss.scorm, s.name 
+                            FROM {scorm} as s, {scorm_scoes} as ss 
+                            WHERE s.id=ss.scorm 
+                                    AND s.course=$courseid;";
+    $joined = $DB->get_records_sql($join_scorm_and_scoes);
+    //echo '<pre>'; print_r($joined); echo '</pre>';
 
-    $time="SELECT id, FROM_UNIXTIME(timecreated, '%d-%m-%y') as timecreated, userid, objectid/2
-            FROM {logstore_standard_log} 
-            WHERE ((eventname LIKE '%sco_launched' OR eventname LIKE '%content_pages_viewed')
-                AND courseid=$courseid) 
-            ORDER BY userid DESC;";
-    $result_time = $DB->get_records_sql($time);
+if (empty($joined)){ echo "No scorm packages for this course.";    }
 
-    function displayDates($date1, $date2, $format = 'd-m-y' ) {
-        $dates = array();
-        $current = strtotime($date1);
-        $date2 = strtotime($date2);
-        $stepVal = '+1 day';
-        while( $current <= $date2 ) {
-            array_push($dates, date($format, $current));
-            $current = strtotime($stepVal, $current);
+else {
+    $get_timecreated = "SELECT timecreated, objectid, userid  
+                        FROM {logstore_standard_log} 
+                        WHERE eventname LIKE '%sco_launched' 
+                            AND courseid=$courseid;";
+    $timestart = $DB->get_records_sql($get_timecreated);
+    //echo '<pre>'; print_r($timestart); echo '</pre>';
+
+    $array=array();
+    $c=0;
+    foreach ($timestart as $value){
+        $array[$c][sco]=$joined[$value->objectid]->name;
+        $array[$c][stu_id]=$value->userid;
+        $array[$c][date]=date('m/d/Y', $value->timecreated);
+        $array[$c][time]=date('h:m:s', $value->timecreated);
+        $array[$c][timestart]=$value->timecreated;
+        //$array=date('m/d/Y', $value->timecreated)]=date('h:m:s', $value->timecreated);
+        //array_push($array, date('m/d/Y h:m:s', $value->timecreated));
+
+        $get_timestopped = "SELECT timecreated 
+                            FROM {logstore_standard_log} 
+                            WHERE timecreated>=$value->timecreated 
+                                AND (eventname LIKE '%course_viewed' 
+                                    OR `eventname` LIKE '%dashboard_viewed')
+                                AND courseid=$courseid
+                                AND userid=$value->userid 
+                            ORDER BY `timecreated` DESC 
+                            LIMIT 1;";
+        $timestop = $DB->get_records_sql($get_timestopped);
+        //echo '<pre>'; print_r($timestop); echo '</pre>';
+
+        foreach($timestop as $value){
+            $array[$c][timestop]=$value->timecreated;
         }
-        return $dates;
-     }
+        if (!isset($array[$c][timestop])){
+            $array[$c][timestop]=$array[$c][timestart];
+        }
+        // foreach($info_sco_lessons as $value){
+        //     if (!isset($result[$value->id])){
+        //         $result[$value->id]->value=0;
+        //     }
+        // }
+        $array[$c][time_diff]=($array[$c][timestop]-$array[$c][timestart])/(60*60);
+        $c++;
 
-    $chart = new \core\chart_line();
-    //name its axis
-    $chart->get_xaxis(0, true)->set_label("Days"); 
-    $chart->get_yaxis(0, true)->set_label("Time spent per lesson(hrs)");
-    $time=array(0.2, 0.08, 0.01, 0.04, 0.08, 0.37, 0.9, 0.13, 1.2, 0.03, 0, 0.18);
-    //$time=array(2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3);
-    $time_per_student = new core\chart_series("time", $time);
-    $chart->add_series($time_per_student);
-    $date=displayDates("16-6-2020", "27-6-2020");
-    $chart->set_labels($date);
-    echo $OUTPUT->render($chart);
+    }
 
-    echo '</div>';
+    echo '<pre>'; print_r($array); echo '</pre>';
+
+    // echo date('m/d/Y', 1590299351);
+    // echo 1590299351;
+    // echo strtotime("05/24/2020");
+}
+
+   
+   echo '</div>';
 
    echo $OUTPUT->container_end();
 
