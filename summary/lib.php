@@ -1,14 +1,10 @@
-<html>
-    
-<head>
-    <link rel="stylesheet" href="scormsumcss.css" />
-</head>
+
 
 <?php
 
 require_once(dirname(__FILE__) . '/../../config.php');
 
-function block_scormsum_course_context($courseid) { //get login page data
+function block_summary_course_context($courseid) { //get login page data
     if (class_exists('context_course')) {
         return context_course::instance($courseid);
     } else {
@@ -17,7 +13,7 @@ function block_scormsum_course_context($courseid) { //get login page data
 }
 
 
-function get_login_datas($courseid,$userid,$minmarks ){
+function get_summary($courseid,$userid,$minmarks ){
     if($minmarks > 0){
     echo'<br>';
     echo $minmarks ;
@@ -210,135 +206,135 @@ function get_login_datas($courseid,$userid,$minmarks ){
 
 //    }
 
-   echo '</br>';
-  $sql5= "SELECT id,course,name FROM {scorm} WHERE course=$courseid;";
-  $login5=$DB->get_records_sql($sql5);
-  foreach($login5 as $d=>$va){
-    echo $a=$va->name;
-    $c=$va->id;
+//    echo '</br>';
+//   $sql5= "SELECT id,course,name FROM {scorm} WHERE course=$courseid;";
+//   $login5=$DB->get_records_sql($sql5);
+//   foreach($login5 as $d=>$va){
+//     echo $a=$va->name;
+//     $c=$va->id;
   
-      $sql6= "SELECT * FROM {scorm_scoes_track} WHERE element='cmi.core.score.raw' AND scormid='$c' AND userid='$userid' AND userid != 2;";
-      $login6=$DB->get_records_sql($sql6);
+//       $sql6= "SELECT * FROM {scorm_scoes_track} WHERE element='cmi.core.score.raw' AND scormid='$c' AND userid='$userid' AND userid != 2;";
+//       $login6=$DB->get_records_sql($sql6);
 
-         $sql8= "SELECT *FROM {user} WHERE id=$userid;" ;
-                $login8=$DB->get_records_sql($sql8);
-                foreach($login8 as $d0=>$vaa){        
-                   $vaa->id.'--'.$vaa->username.'--'.'<br>';
-                   $name = $vaa->username;
+//          $sql8= "SELECT *FROM {user} WHERE id=$userid;" ;
+//                 $login8=$DB->get_records_sql($sql8);
+//                 foreach($login8 as $d0=>$vaa){        
+//                    $vaa->id.'--'.$vaa->username.'--'.'<br>';
+//                    $name = $vaa->username;
                 
 
-      if(count($login6)>0){
+//       if(count($login6)>0){
 
-        $res;
-      foreach($login6 as $d=>$va){  
-        if($res == NULL){
-            $res = $va;
-        } else {
-            $max = max($res->value,$va->value);
-            if($max != $res->value){
-                $res->value = $max;
-                $res->attempt = $va->attempt;
-            }
-        }
-      }              
+//         $res;
+//       foreach($login6 as $d=>$va){  
+//         if($res == NULL){
+//             $res = $va;
+//         } else {
+//             $max = max($res->value,$va->value);
+//             if($max != $res->value){
+//                 $res->value = $max;
+//                 $res->attempt = $va->attempt;
+//             }
+//         }
+//       }              
                 
-//   if($userid==$u){
-          $attempt= $res->attempt;
+// //   if($userid==$u){
+//           $attempt= $res->attempt;
           
-          $answer = $res->value;
-          if($answer >= 101){
-              echo $name;
-              echo ' Please Do the Quiz';
-              return 0;
-          }
-          if ($answer>=75) {
-              echo '<br />';
-              echo $name;
-              echo ' your attempt';
-              echo $attempt;
-              echo ' result is ';
-              echo $answer;
-              echo ' You are Greate';
-              echo '<br />';echo '<br />';
-              echo '<img src="images/darkGreen.png" height="200" width="500">';
-              echo '<br />';
+//           $answer = $res->value;
+//           if($answer >= 101){
+//               echo $name;
+//               echo ' Please Do the Quiz';
+//               return 0;
+//           }
+//           if ($answer>=75) {
+//               echo '<br />';
+//               echo $name;
+//               echo ' your attempt';
+//               echo $attempt;
+//               echo ' result is ';
+//               echo $answer;
+//               echo ' You are Greate';
+//               echo '<br />';echo '<br />';
+//               echo '<img src="images/darkGreen.png" height="200" width="500">';
+//               echo '<br />';
               
               
-          }
-          elseif($answer>=65){
-              echo '<br />';
-              echo $name;
-              echo ' your attempt ';
-              echo $attempt;
-              echo ' result is ';
-              echo $answer;
-              echo ' You are good ';
-              echo '<br />';echo '<br />';
-              echo '<img src="images/green.png" height="200" width="500">';
-              echo '<br />';
+//           }
+//           elseif($answer>=65){
+//               echo '<br />';
+//               echo $name;
+//               echo ' your attempt ';
+//               echo $attempt;
+//               echo ' result is ';
+//               echo $answer;
+//               echo ' You are good ';
+//               echo '<br />';echo '<br />';
+//               echo '<img src="images/green.png" height="200" width="500">';
+//               echo '<br />';
               
-          }
-          elseif($answer>=50){
-              echo '<br />';
-              echo $name;
-              echo ' your attempt ';
-              echo $attempt;
-              echo ' result is ';
-              echo $answer;
-              echo ' You are ok ';
-              echo '<br />';echo '<br />';
-              echo '<img src="images/yellow.png" height="200" width="500">';
-              echo '<br />';
+//           }
+//           elseif($answer>=50){
+//               echo '<br />';
+//               echo $name;
+//               echo ' your attempt ';
+//               echo $attempt;
+//               echo ' result is ';
+//               echo $answer;
+//               echo ' You are ok ';
+//               echo '<br />';echo '<br />';
+//               echo '<img src="images/yellow.png" height="200" width="500">';
+//               echo '<br />';
               
-          }
-          elseif($answer>=35){
-              echo '<br />';
-              echo $name;
-              echo ' your attempt ';
-              echo $attempt;
-              echo ' result is ';
-              echo $answer;
-              echo ' You are not ok';
-              echo '<br />';echo '<br />';
-              echo '<img src="images/orange.png" height="200" width="500">';
-              echo '<br />';
+//           }
+//           elseif($answer>=35){
+//               echo '<br />';
+//               echo $name;
+//               echo ' your attempt ';
+//               echo $attempt;
+//               echo ' result is ';
+//               echo $answer;
+//               echo ' You are not ok';
+//               echo '<br />';echo '<br />';
+//               echo '<img src="images/orange.png" height="200" width="500">';
+//               echo '<br />';
               
-          }
-          elseif($answer>=25){
-              echo '<br />';
-              echo $name;
-              echo ' your attempt ';
-              echo $attempt;
-              echo ' result is ';
-              echo $answer;
-              echo ' You are bad';
-              echo '<br />';echo '<br />';
-              echo '<img src="images/red.png" height="200" width="500">';
+//           }
+//           elseif($answer>=25){
+//               echo '<br />';
+//               echo $name;
+//               echo ' your attempt ';
+//               echo $attempt;
+//               echo ' result is ';
+//               echo $answer;
+//               echo ' You are bad';
+//               echo '<br />';echo '<br />';
+//               echo '<img src="images/red.png" height="200" width="500">';
               
               
-          }
-          elseif($answer>=0) {
-              echo '<br />';
-              echo $name;
-              echo ' your attempt ';
-              echo $attempt;
-              echo ' result is ';
-              echo $answer;
-              echo ' You are very bad and meet supervisore';
-              echo '<br />';echo '<br />';
-              echo '<img src="images/red.png" height="200" width="500">';
-              echo '<br />';
+//           }
+//           elseif($answer>=0) {
+//               echo '<br />';
+//               echo $name;
+//               echo ' your attempt ';
+//               echo $attempt;
+//               echo ' result is ';
+//               echo $answer;
+//               echo ' You are very bad and meet supervisore';
+//               echo '<br />';echo '<br />';
+//               echo '<img src="images/red.png" height="200" width="500">';
+//               echo '<br />';
               
-          }
+//           }
           
-        }
-        else{
-            echo '<br />';
-            echo $name;
-            echo ' Please Do the Quiz';
-        }
-    }
-      }
+//         }
+//         else{
+//             echo '<br />';
+//             echo $name;
+//             echo ' Please Do the Quiz';
+//         }
+//     }
+//       }
     }
       }
 
