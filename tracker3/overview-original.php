@@ -54,7 +54,7 @@
             FROM {logstore_standard_log} 
             WHERE ((eventname LIKE '%sco_launched' OR eventname LIKE '%content_pages_viewed')
                 AND courseid=$courseid) 
-            ORDER BY userid DESC;";
+            ORDER BY userid ASC;"; //DESC to ASC
     $result_time = $DB->get_records_sql($time);
 
     function displayDates($date1, $date2, $format = 'd-m-y' ) {
