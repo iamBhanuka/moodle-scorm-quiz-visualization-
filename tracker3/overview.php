@@ -85,7 +85,7 @@ else {
                             FROM {logstore_standard_log} 
                             WHERE timecreated>=$value->timecreated 
                                 AND (eventname LIKE '%course_viewed' 
-                                    OR `eventname` LIKE '%dashboard_viewed')
+#                                    OR `eventname` LIKE '%dashboard_viewed')
                                 AND courseid=$courseid
                                 AND userid=$value->userid 
                             ORDER BY `timecreated` DESC 
@@ -157,4 +157,4 @@ else {
 
    echo $OUTPUT->container_end();
 
-   echo $OUTPUT->footer(); -->
+#   echo $OUTPUT->footer(); -->
