@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
    require_once(dirname(__FILE__) . '/../../config.php');
    require_once($CFG->dirroot.'/blocks/tracker3/lib.php');
    
@@ -85,4 +85,4 @@
 
    echo $OUTPUT->container_end();
 
-   echo $OUTPUT->footer();
+   echo $OUTPUT->footer(); -->
