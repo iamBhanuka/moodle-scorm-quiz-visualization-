@@ -50,7 +50,7 @@
 
    global $DB;
     
-   $twoMonthAgo = date("d-m-Y", strtotime("-2 months"));
+   $oneMonthAgo = date("d-m-Y", strtotime("-2 months"));
    $today = date("d-m-Y");
 
    //connect scormid and scoid
@@ -117,7 +117,7 @@ else {
         }
         return $dates;
     }
-    $date_find=displayDates($twoMonthAgo, $today);
+    $date_find=displayDates($oneMonthAgo, $today);
     //echo '<pre>'; print_r($date_find); echo '</pre>';
 
     //create a new chart
@@ -215,7 +215,7 @@ if ($doIExist==1 && $index!=NULL){
         }
         return $array_dates;
     }
-    $date_get=makeDateArray($twoMonthAgo, $today);
+    $date_get=makeDateArray($oneMonthAgo, $today);
     //echo '<pre>'; print_r($date_get); echo '</pre>';
 
     $c2=0;
@@ -223,14 +223,14 @@ if ($doIExist==1 && $index!=NULL){
     $array2=array();
     foreach($joined as $sco_value){
         if ($sco_value->sco_id%2==0){
-            //echo $sco_value->sco_name.'<br>';
+            echo $sco_value->sco_name.'<br>';
             for($c2 = 0; $c2 <= $c; $c2++){
                 if ($array[$c2][sco_name]==$sco_value->sco_name){
-                    // echo $twoMonthAgo.'<br>';
+                    // echo $oneMonthAgo.'<br>';
                     // echo $today.'<br>';
                     //if (strtotime($array[$c2][date])<=strtotime($today)){
-                    if (strtotime($array[$c2][date])>=strtotime($twoMonthAgo)){
-                        // echo '<br>'.strtotime($twoMonthAgo);
+                    if (strtotime($array[$c2][date])>=strtotime($oneMonthAgo)){
+                        // echo '<br>'.strtotime($oneMonthAgo);
                         // echo '<br>'.$array[$c2][date].'<br>';
                     // }
                         //$date_get[$array[$c2][date]]++;
@@ -238,21 +238,14 @@ if ($doIExist==1 && $index!=NULL){
                     }
                 }
             }
-            //echo '<pre>'; print_r($date_get); echo '</pre>';
-            $c4=0;
-            $array_final=array();
-            foreach($date_get as $key=>$value){
-                $array_final[$c4]=$value;
-                $c4++;
-            }
-            //echo '<pre>'; print_r($array_final); echo '</pre>';
+            echo '<pre>'; print_r($date_get); echo '</pre>';
 
             //echo '<pre>'; print_r($date_get); echo '</pre>';
-            //$time=array(2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3, 21, 2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3, 21);
-            //$time_per_student = new core\chart_series($sco_value->sco_name, $time);
-            $time_per_student = new core\chart_series($sco_value->sco_name, $array_final);
+            $time=array(2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3, 21, 2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3, 21);
+            $time_per_student = new core\chart_series($sco_value->sco_name, $time);
+            // $time_per_student = new core\chart_series($sco_value->sco_name, $date_get);
             $chart->add_series($time_per_student);
-            $date_get=makeDateArray($twoMonthAgo, $today);
+            $date_get=makeDateArray($oneMonthAgo, $today);
         }
     }
 
