@@ -202,9 +202,7 @@ function block_analytics_graphs_get_course_days_since_startdate($course) {
 }
 
 function block_analytics_graphs_extend_navigation_course($navigation, $course, $context) {
-    global $CFG;
-    global $DB;
-    $reports = $navigation->find('coursereports', navigation_node::TYPE_CONTAINER);
+
     if (has_capability('block/analytics_graphs:viewpages', $context) && $reports) {
         $sql = "SELECT cm.module, md.name
             FROM {course_modules} cm
