@@ -245,35 +245,5 @@ function block_analytics_graphs_extend_navigation_course($navigation, $course, $
             array('id' => $course->id, 'days' => '7'));
         $reportanalyticsgraphs->add(get_string('timeaccesschart_title', 'block_analytics_graphs'), $url,
             navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
-
-        if (in_array("assign", $availablemodules)) {
-            $url = new moodle_url($CFG->wwwroot . '/blocks/analytics_graphs/assign.php',
-                array('id' => $course->id));
-            $reportanalyticsgraphs->add(get_string('submissions_assign', 'block_analytics_graphs'), $url,
-                navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
-        }
-
-        if (in_array("quiz", $availablemodules)) {
-            $url = new moodle_url($CFG->wwwroot . '/blocks/analytics_graphs/quiz.php', array('id' => $course->id));
-            $reportanalyticsgraphs->add(get_string('submissions_quiz', 'block_analytics_graphs'), $url,
-                navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
-        }
-
-        if (in_array("hotpot", $availablemodules)) {
-            $url = new moodle_url($CFG->wwwroot.'/blocks/analytics_graphs/hotpot.php', array('id' => $course->id));
-            $reportanalyticsgraphs->add(get_string('submissions_hotpot', 'block_analytics_graphs'), $url,
-                navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
-        }
-        
-        if (in_array("turnitintooltwo", $availablemodules)) {
-            $url = new moodle_url($CFG->wwwroot.'/blocks/analytics_graphs/turnitin.php', array('id' => $course->id));
-            $reportanalyticsgraphs->add(get_string('submissions_turnitin', 'block_analytics_graphs'), $url,
-                navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
-        }
-
-        $url = new moodle_url($CFG->wwwroot.'/blocks/analytics_graphs/hits.php', array('id' => $course->id,
-            'legacy' => '0'));
-        $reportanalyticsgraphs->add(get_string('hits_distribution', 'block_analytics_graphs'), $url,
-            navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }
 }
