@@ -180,27 +180,6 @@ function block_analytics_graphs_get_number_of_modules_accessed($course, $estudan
     return($resultado);
 }
 
-function block_analytics_graphs_get_course_name($course) {
-    global $DB;
-    $sql = "SELECT
-              a.fullname
-            FROM
-              {course} a
-            WHERE
-              a.id = " . $course;
-    $result = $DB->get_records_sql($sql);
-
-    $resultname = "";
-
-    foreach ($result as $item) {
-        if (!empty($item)) {
-            $resultname = $item->fullname;
-        }
-    }
-
-    return $resultname;
-}
-
 function block_analytics_graphs_get_logstore_loglife() {
     global $DB;
     $sql = "SELECT  a.id, a.plugin, a.name, a.value
