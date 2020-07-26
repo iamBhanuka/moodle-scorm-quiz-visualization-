@@ -241,15 +241,6 @@ function block_analytics_graphs_extend_navigation_course($navigation, $course, $
 
         $reportanalyticsgraphs = $reports->add(get_string('pluginname', 'block_analytics_graphs'));
 
-        $url = new moodle_url($CFG->wwwroot.'/blocks/analytics_graphs/grades_chart.php',
-            array('id' => $course->id));
-        $reportanalyticsgraphs->add(get_string('grades_chart', 'block_analytics_graphs'), $url,
-            navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
-
-        $url = new moodle_url($CFG->wwwroot.'/blocks/analytics_graphs/graphresourcestartup.php',
-            array('id' => $course->id, 'legacy' => '0'));
-        $reportanalyticsgraphs->add(get_string('access_to_contents', 'block_analytics_graphs'), $url,
-            navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
         $url = new moodle_url($CFG->wwwroot.'/blocks/analytics_graphs/timeaccesseschart.php',
             array('id' => $course->id, 'days' => '7'));
         $reportanalyticsgraphs->add(get_string('timeaccesschart_title', 'block_analytics_graphs'), $url,
