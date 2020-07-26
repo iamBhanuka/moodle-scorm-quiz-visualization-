@@ -249,7 +249,7 @@ if ($doIExist==1 && $index!=NULL){
 
             //echo '<pre>'; print_r($date_get); echo '</pre>';
             //$time=array(2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3, 21, 2, 4, 10, 3, 2, 3, 4, 3, 4, 3, 4, 5, 9, 5, 6, 2, 23, 4, 3, 23, 1, 4, 3, 5, 3, 5, 6, 11, 2, 3, 21);
-            //$time_per_student = new core\chart_series($sco_value->sco_name, $time);
+            $time_per_student = new core\chart_series($sco_value->sco_name, $time);
             $time_per_student = new core\chart_series($sco_value->sco_name, $array_final);
             $chart->add_series($time_per_student);
             $date_get=makeDateArray($twoMonthAgo, $today);
