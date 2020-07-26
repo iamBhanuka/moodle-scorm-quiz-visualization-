@@ -2,66 +2,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-function block_analytics_graphs_subtract_student_arrays($estudantes, $acessaram) {
-    $resultado = array();
-    foreach ($estudantes as $estudante) {
-        $encontrou = false;
-        foreach ($acessaram as $acessou) {
-            if ($estudante['userid'] == $acessou ['userid']) {
-                $encontrou = true;
-                break;
-            }
-        }
-        if (!$encontrou) {
-            $resultado[] = $estudante;
-        }
-    }
-    return $resultado;
-}
-
-function block_analytics_graphs_get_course_group_members($course) {
-    global $DB;
-    $groupmembers = array();
-    $groups = groups_get_all_groups($course);
-    foreach ($groups as $group) {
-        if (groups_group_visible($group->id, $DB->get_record('course', array('id' =>  $course), '*', MUST_EXIST))) {
-        	$members = groups_get_members($group->id);
-        	if (!empty($members)) {
-            	$groupmembers[$group->id]['name'] = $group->name;
-            	$numberofmembers = 0;
-            	foreach ($members as $member) {
-                	$groupmembers[$group->id]['members'][] = $member->id;
-                	$numberofmembers++;
-            	}
-            	$groupmembers[$group->id]['numberofmembers']  = $numberofmembers;
-        	}
-		}
-    }
-    return($groupmembers);
-}
-
-function block_analytics_graphs_get_course_grouping_members($course) {
- 	global $DB;
- 	$groupingmembers = array();
-    $groupings = groups_get_all_groupings($course);
-    foreach ($groupings as $grouping) {
-        if (groups_group_visible($group->id, $DB->get_record('course', array('id' =>  $course), '*', MUST_EXIST))) {
-        	$members = groups_get_grouping_members($grouping->id);
-        	if (!empty($members)) {
-            	$groupingmembers[$grouping->id]['name'] = $grouping->name;
-            	$numberofmembers = 0;
-            	foreach ($members as $member) {
-                	$groupingmembers[$grouping->id]['members'][] = $member->id;
-                	$numberofmembers++;
-            	}
-            	$groupingmembers[$grouping->id]['numberofmembers']  = $numberofmembers;
-        	}
-		}
-    }
-    return($groupingmembers);
-}
-
-
 function block_analytics_graphs_get_students($course) {
     global $DB;
     $students = array();
