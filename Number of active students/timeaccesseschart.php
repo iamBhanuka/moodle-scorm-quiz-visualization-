@@ -2,7 +2,6 @@
 
 require('../../config.php');
 require('lib.php');
-require('javascriptfunctions.php');
 $course = required_param('id', PARAM_INT);
 $days = required_param('days', PARAM_INT);
 global $DB;
