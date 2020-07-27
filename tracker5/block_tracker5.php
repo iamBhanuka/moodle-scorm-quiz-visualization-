@@ -43,4 +43,4 @@ class block_tracker5 extends block_base {
                           
         return $this->content;
     }
-}  // Here's the closing bracket for the class definition.
+}  
