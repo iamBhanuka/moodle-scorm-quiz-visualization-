@@ -17,7 +17,7 @@ if ($numberofstudents == 0) {
 $logstorelife = block_analytics_graphs_get_logstore_loglife();
 $coursedayssincestart = block_analytics_graphs_get_course_days_since_startdate($course);
 if ($logstorelife === null || $logstorelife == 0) {
-    // 0, false and NULL are threated as null in case logstore setting not found and 0 is "no removal" logs.
+    // 0, false and NULL are threated as null in case logstore setting not found and 0 is "no removal" logs
     $maximumdays = $coursedayssincestart; // the chart should not break with value more than available
 } else if ($logstorelife >= $coursedayssincestart) {
     $maximumdays = $coursedayssincestart;
