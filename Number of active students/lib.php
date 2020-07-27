@@ -2,11 +2,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-function block_analytics_graphs_get_students($course) {
+function block_tracker5_get_students($course) {
     global $DB;
     $students = array();
     $context = context_course::instance($course);
-    $allstudents = get_enrolled_users($context, 'block/analytics_graphs:bemonitored', 0,
+    $allstudents = get_enrolled_users($context, 'block/tracker5:bemonitored', 0,
                     'u.id, u.firstname, u.lastname, u.email, u.suspended', 'firstname, lastname');
     foreach ($allstudents as $student) {
         if ($student->suspended == 0) {
@@ -18,7 +18,7 @@ function block_analytics_graphs_get_students($course) {
     return($students);
 }
 
-function block_analytics_graphs_get_number_of_days_access_by_week($course, $estudantes, $startdate, $legacy=0) {
+function block_tracker5_get_number_of_days_access_by_week($course, $estudantes, $startdate, $legacy=0) {
     global $DB;
     $timezone = new DateTimeZone(core_date::get_server_timezone());
     $timezoneadjust   = $timezone->getOffset(new DateTime);
@@ -70,7 +70,7 @@ function block_analytics_graphs_get_number_of_days_access_by_week($course, $estu
     return($resultado);
 }
 
-function block_analytics_graphs_get_accesses_last_days($course, $estudantes, $daystoget) {
+function block_tracker5_get_accesses_last_days($course, $estudantes, $daystoget) {
     global $DB;
     $date = strtotime(date('Y-m-d', strtotime('-'. $daystoget .' days')));
     $sql = "SELECT s.id, s.action, s.target, s.userid, s.courseid, s.timecreated, usr.firstname, usr.lastname
@@ -98,7 +98,7 @@ function block_analytics_graphs_get_accesses_last_days($course, $estudantes, $da
     return($resultado);
 }
 
-function block_analytics_graphs_get_number_of_modules_access_by_week($course, $estudantes, $startdate, $legacy=0) {
+function block_tracker5_get_number_of_modules_access_by_week($course, $estudantes, $startdate, $legacy=0) {
     global $DB;
     $timezone = new DateTimeZone(core_date::get_server_timezone());
     $timezoneadjust   = $timezone->getOffset(new DateTime);
@@ -144,7 +144,7 @@ function block_analytics_graphs_get_number_of_modules_access_by_week($course, $e
     return($resultado);
 }
 
-function block_analytics_graphs_get_number_of_modules_accessed($course, $estudantes, $startdate, $legacy=0) {
+function block_tracker5_get_number_of_modules_accessed($course, $estudantes, $startdate, $legacy=0) {
     global $DB;
     foreach ($estudantes as $tupla) {
         $inclause[] = $tupla->id;
@@ -180,7 +180,7 @@ function block_analytics_graphs_get_number_of_modules_accessed($course, $estudan
     return($resultado);
 }
 
-function block_analytics_graphs_get_logstore_loglife() {
+function block_tracker5_get_logstore_loglife() {
     global $DB;
     $sql = "SELECT  a.id, a.plugin, a.name, a.value
                 FROM {config_plugins} a
@@ -190,7 +190,7 @@ function block_analytics_graphs_get_logstore_loglife() {
     return reset($result)->value;
 }
 
-function block_analytics_graphs_get_course_days_since_startdate($course) {
+function block_tracker5_get_course_days_since_startdate($course) {
     global $DB;
     $sql = "SELECT  a.id, a.startdate
                 FROM {course} a
@@ -201,15 +201,15 @@ function block_analytics_graphs_get_course_days_since_startdate($course) {
     return floor(($currentdate - $startdate) / (60 * 60 * 24));
 }
 
-function block_analytics_graphs_extend_navigation_course($navigation, $course, $context) {
+function block_tracker5_extend_navigation_course($navigation, $course, $context) {
 
-    if (has_capability('block/analytics_graphs:viewpages', $context) && $reports) {
+    if (has_capability('block/tracker5:viewpages', $context) && $reports) {
 
-        $reportanalyticsgraphs = $reports->add(get_string('pluginname', 'block_analytics_graphs'));
+        $reportanalyticsgraphs = $reports->add(get_string('pluginname', 'block_tracker5'));
 
-        $url = new moodle_url($CFG->wwwroot.'/blocks/analytics_graphs/timeaccesseschart.php',
+        $url = new moodle_url($CFG->wwwroot.'/blocks/tracker5/timeaccesseschart.php',
             array('id' => $course->id, 'days' => '7'));
-        $reportanalyticsgraphs->add(get_string('timeaccesschart_title', 'block_analytics_graphs'), $url,
+        $reportanalyticsgraphs->add(get_string('timeaccesschart_title', 'block_tracker5'), $url,
             navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }
 }

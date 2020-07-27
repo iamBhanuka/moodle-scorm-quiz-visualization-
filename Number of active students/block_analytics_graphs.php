@@ -1,9 +1,9 @@
 <?php
 
 defined('MOODLE_INTERNAL') || die();
-class block_analytics_graphs extends block_base {
+class block_tracker5 extends block_base {
     public function init() {
-        $this->title = get_string('analytics_graphs', 'block_analytics_graphs');
+        $this->title = get_string('tracker5', 'block_tracker5');
     }
     // The PHP tag and the curly bracket for the class definition
     // will only be closed after there is another function added in the next section.
@@ -15,7 +15,7 @@ class block_analytics_graphs extends block_base {
 
         $course = $this->page->course;
         $context = context_course::instance($course->id);
-        $canview = has_capability('block/analytics_graphs:viewpages', $context);
+        $canview = has_capability('block/tracker5:viewpages', $context);
         if (!$canview) {
             return;
         }
@@ -36,10 +36,10 @@ class block_analytics_graphs extends block_base {
         }
 
         $this->content = new stdClass;
-        // $this->content->text = get_string('graphs', 'block_analytics_graphs');
+        // $this->content->text = get_string('graphs', 'block_tracker5');
         $this->content->text = "";
-        $this->content->text .= "<li> <a href= {$CFG->wwwroot}/blocks/analytics_graphs/timeaccesseschart.php?id={$course->id}&days=7
-                          target=_blank>" . get_string('timeaccesschart_title', 'block_analytics_graphs') . "</a>";
+        $this->content->text .= "<li> <a href= {$CFG->wwwroot}/blocks/tracker5/timeaccesseschart.php?id={$course->id}&days=7
+                          target=_blank>" . get_string('timeaccesschart_title', 'block_tracker5') . "</a>";
                           
         return $this->content;
     }

@@ -7,15 +7,15 @@ $days = required_param('days', PARAM_INT);
 global $DB;
 global $CFG;
 
-$students = block_analytics_graphs_get_students($course);
+$students = block_tracker5_get_students($course);
 $numberofstudents = count($students);
 if ($numberofstudents == 0) {
-    echo(get_string('no_students', 'block_analytics_graphs'));
+    echo(get_string('no_students', 'block_tracker5'));
     exit;
 }
 
-$logstorelife = block_analytics_graphs_get_logstore_loglife();
-$coursedayssincestart = block_analytics_graphs_get_course_days_since_startdate($course);
+$logstorelife = block_tracker5_get_logstore_loglife();
+$coursedayssincestart = block_tracker5_get_course_days_since_startdate($course);
 if ($logstorelife === null || $logstorelife == 0) {
     // 0, false and NULL are threated as null in case logstore setting not found and 0 is "no removal" logs
     $maximumdays = $coursedayssincestart; // the chart should not break with value more than available
@@ -31,7 +31,7 @@ if ($days > $maximumdays) { // sanitycheck
     $days = 1;
 }
 
-$daysaccess = block_analytics_graphs_get_accesses_last_days($course, $students, $days);
+$daysaccess = block_tracker5_get_accesses_last_days($course, $students, $days);
 $daysaccess = json_encode($daysaccess);
 
 
@@ -41,25 +41,20 @@ $daysaccess = json_encode($daysaccess);
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title><?php echo get_string('timeaccesschart_title', 'block_analytics_graphs'); ?></title>
+    <title><?php echo get_string('timeaccesschart_title', 'block_tracker5'); ?></title>
 
-    <link rel="stylesheet" href="externalref/jquery-ui-1.12.1/jquery-ui.css">
     <script src="externalref/jquery-1.12.2.js"></script>
-    <script src="externalref/jquery-ui-1.12.1/jquery-ui.js"></script>
     <script src="externalref/highstock.js"></script>
-    <script src="externalref/no-data-to-display.js"></script>
-    <script src="externalref/exporting.js"></script>
-    <script src="externalref/export-csv-master/export-csv.js"></script>
 
 </head>
 
 <div style="width: 200px; min-width: 275px; height: 75px; left: 10px; top: 5px; border-radius: 10px; padding: 10px; border: 2px solid silver; text-align: center;">
-    <?php echo get_string('timeaccesschart_daysforstatistics', 'block_analytics_graphs'); ?>
+    <?php echo get_string('timeaccesschart_daysforstatistics', 'block_tracker5'); ?>
     <input style="width: 50px;" id = "days" type="number" name="days" min="1" max="<?php echo $maximumdays; ?>" value="<?php echo $days ?>">
     <br>
-    <button style="width: 225px;" id="apply"><?php echo get_string('timeaccesschart_button_apply', 'block_analytics_graphs'); ?></button>
+    <button style="width: 225px;" id="apply"><?php echo get_string('timeaccesschart_button_apply', 'block_tracker5'); ?></button>
     <br>
-    <?php echo get_string('timeaccesschart_maxdays', 'block_analytics_graphs') . "<b>" . $maximumdays . "</b>"; ?>
+    <?php echo get_string('timeaccesschart_maxdays', 'block_tracker5') . "<b>" . $maximumdays . "</b>"; ?>
 </div>
 
 <div id="containerA" style="min-width: 300px; height: 600px; margin: 0 auto"></div>
@@ -95,9 +90,9 @@ $daysaccess = json_encode($daysaccess);
 
     $('#apply').click(function() {
         if (maximumDays < $('#days').val()) {
-            window.location.href = '<?php echo $CFG->wwwroot . "/blocks/analytics_graphs/timeaccesseschart.php?id=" . $course . "&days="; ?>' + maximumDays;
+            window.location.href = '<?php echo $CFG->wwwroot . "/blocks/tracker5/timeaccesseschart.php?id=" . $course . "&days="; ?>' + maximumDays;
         } else {
-            window.location.href = '<?php echo $CFG->wwwroot . "/blocks/analytics_graphs/timeaccesseschart.php?id=" . $course . "&days="; ?>' + $('#days').val();
+            window.location.href = '<?php echo $CFG->wwwroot . "/blocks/tracker5/timeaccesseschart.php?id=" . $course . "&days="; ?>' + $('#days').val();
         }
         return false;
     });
@@ -112,7 +107,7 @@ $daysaccess = json_encode($daysaccess);
             }
         },
         title: {
-            text: '<?php echo get_string('timeaccesschart_title', 'block_analytics_graphs'); ?>'
+            text: '<?php echo get_string('timeaccesschart_title', 'block_tracker5'); ?>'
         },
         xAxis: {
             type: 'category',
@@ -127,7 +122,7 @@ $daysaccess = json_encode($daysaccess);
         yAxis: {
             min: 0,
             title: {
-                text: '<?php echo get_string('timeaccesschart_tip', 'block_analytics_graphs'); ?>'
+                text: '<?php echo get_string('timeaccesschart_tip', 'block_tracker5'); ?>'
             }
         },
         legend: {
