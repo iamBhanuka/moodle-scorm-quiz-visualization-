@@ -39,7 +39,7 @@ class block_tracker5 extends block_base {
         // $this->content->text = get_string('graphs', 'block_tracker5');
         $this->content->text = "";
         $this->content->text .= "<li> <a href= {$CFG->wwwroot}/blocks/tracker5/timeaccesseschart.php?id={$course->id}&days=7
-                          target=_blank>" . get_string('timeaccesschart_title', 'block_tracker5') . "</a>";
+                          target=_blank>" . get_string('view graph', 'block_tracker5') . "</a>";
                           
         return $this->content;
     }

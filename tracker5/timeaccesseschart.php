@@ -41,7 +41,7 @@ $daysaccess = json_encode($daysaccess);
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title><?php echo get_string('timeaccesschart_title', 'block_tracker5'); ?></title>
+    <title><?php echo get_string('Time-access-chart', 'block_tracker5'); ?></title>
 
     <script src="externalref/jquery-1.12.2.js"></script>
     <script src="externalref/highstock.js"></script>
@@ -49,12 +49,12 @@ $daysaccess = json_encode($daysaccess);
 </head>
 
 <div style="width: 200px; min-width: 275px; height: 75px; left: 10px; top: 5px; border-radius: 10px; padding: 10px; border: 2px solid silver; text-align: center;">
-    <?php echo get_string('timeaccesschart_daysforstatistics', 'block_tracker5'); ?>
+    <?php echo get_string('Day-back-to-now', 'block_tracker5'); ?>
     <input style="width: 50px;" id = "days" type="number" name="days" min="1" max="<?php echo $maximumdays; ?>" value="<?php echo $days ?>">
     <br>
-    <button style="width: 225px;" id="apply"><?php echo get_string('timeaccesschart_button_apply', 'block_tracker5'); ?></button>
+    <button style="width: 100px;" id="apply"><?php echo get_string('Apply', 'block_tracker5'); ?></button>
     <br>
-    <?php echo get_string('timeaccesschart_maxdays', 'block_tracker5') . "<b>" . $maximumdays . "</b>"; ?>
+    <?php echo get_string('Maxdays-to-allow', 'block_tracker5') . "<b>" . $maximumdays . "</b>"; ?>
 </div>
 
 <div id="containerA" style="min-width: 300px; height: 600px; margin: 0 auto"></div>
@@ -107,7 +107,7 @@ $daysaccess = json_encode($daysaccess);
             }
         },
         title: {
-            text: '<?php echo get_string('timeaccesschart_title', 'block_tracker5'); ?>'
+            text: '<?php echo get_string('Time-access-chart', 'block_tracker5'); ?>'
         },
         xAxis: {
             type: 'category',
@@ -122,7 +122,7 @@ $daysaccess = json_encode($daysaccess);
         yAxis: {
             min: 0,
             title: {
-                text: '<?php echo get_string('timeaccesschart_tip', 'block_tracker5'); ?>'
+                text: '<?php echo get_string('Number-of-students', 'block_tracker5'); ?>'
             }
         },
         legend: {

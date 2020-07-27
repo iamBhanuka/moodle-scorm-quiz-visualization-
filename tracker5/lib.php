@@ -209,7 +209,7 @@ function block_tracker5_extend_navigation_course($navigation, $course, $context)
 
         $url = new moodle_url($CFG->wwwroot.'/blocks/tracker5/timeaccesseschart.php',
             array('id' => $course->id, 'days' => '7'));
-        $reportanalyticsgraphs->add(get_string('timeaccesschart_title', 'block_tracker5'), $url,
+        $reportanalyticsgraphs->add(get_string('Time-access-chart', 'block_tracker5'), $url,
             navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }
 }
