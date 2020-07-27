@@ -53,7 +53,7 @@ $daysaccess = json_encode($daysaccess);
 
 </head>
 
-<div style="width: 300px; min-width: 325px; height: 65px;left:10px; top:5px; border-radius: 0px;padding: 5px;border: 2px solid silver;text-align: center;">
+<div style="width: 200px; min-width: 275px; height: 75px; left: 10px; top: 5px; border-radius: 10px; padding: 10px; border: 2px solid silver; text-align: center;">
     <?php echo get_string('timeaccesschart_daysforstatistics', 'block_analytics_graphs'); ?>
     <input style="width: 50px;" id = "days" type="number" name="days" min="1" max="<?php echo $maximumdays; ?>" value="<?php echo $days ?>">
     <br>
