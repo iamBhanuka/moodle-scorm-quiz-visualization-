@@ -39,7 +39,11 @@ class block_tracker5 extends block_base {
         // $this->content->text = get_string('graphs', 'block_tracker5');
         $this->content->text = "";
         $this->content->text .= "<li> <a href= {$CFG->wwwroot}/blocks/tracker5/timeaccesseschart.php?id={$course->id}&days=7
-                          target=_blank>" . get_string('view graph', 'block_tracker5') . "</a>";
+                          target=_blank>" . "View graph" . "</a>";
+        // $parameters     = array('tracker5id' => $this->instance->id, 'userid' => $USER->id, 'courseid' => $COURSE->id);
+        // $options        = array('class' => 'overviewButton');
+        // $url = new moodle_url('/blocks/tracker5/overview.php', $parameters);        
+        // $this->content->text .= $OUTPUT->single_button($url, 'view graph', 'post', $options);
                           
         return $this->content;
     }
