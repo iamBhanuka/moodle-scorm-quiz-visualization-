@@ -26,7 +26,7 @@ if ($logstorelife === null || $logstorelife == 0) {
     $maximumdays = $logstorelife;
 }
 
-if ($days > $maximumdays) { // sanitycheck
+if ($days > $maximumdays) { 
     $days = $maximumdays;
 } else if ($days < 1) {
     $days = 1;
