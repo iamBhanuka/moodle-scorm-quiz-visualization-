@@ -1,5 +1,5 @@
 <?php
-$string['pluginname']='Assignments Marks';
+$string['pluginname']='Assignment Marks';
 $string['assignmentmarks']='My Assignmentmarks Block';
 $string['overview']='overview of students result';
 $string['assignmentmarks:addinstance']='Add a new Assignmentmarks block';
