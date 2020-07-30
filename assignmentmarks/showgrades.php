@@ -56,8 +56,8 @@ function get_assignmentid($assign_list,$userid){
     $course_list=array();
         $i=0;
 
-    //  foreach( $assign_list as $list)
-    //  {
+     foreach( $assign_list as $list)
+     {
    
     $course = $DB->get_records_sql("SELECT assignment,id FROM {assign_submission} WHERE userid=$userid AND assignment=$list ");
     
@@ -69,7 +69,7 @@ function get_assignmentid($assign_list,$userid){
             $i++; 
             
         }
-    //   }
+      }
 
         // $grades=grade($courseid,$userid,$assign_list);
         // return $grades;
