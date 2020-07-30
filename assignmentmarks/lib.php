@@ -20,13 +20,13 @@ function assignment($userid,$courseid){
         // $max=50;
         
         $chart = new \core\chart_line();
-         $series = new \core\chart_series("marks", $marks);
-         $chart->add_series($series);
-         $chart->set_labels($course);
-         $chart->set_title(get_course_name($courseid). " assignment results of ".get_user_name($userid));;
-         $yaxis = $chart->get_yaxis(0, true);
-         $yaxis->set_label('Assignments Marks');
-         $yaxis->set_stepsize(max(1, round($max /10)));
+        $series = new \core\chart_series("marks", $marks);
+        $chart->add_series($series);
+        $chart->set_labels($course);
+        $chart->set_title(get_course_name($courseid). " assignment results of ".get_user_name($userid));;
+        $yaxis = $chart->get_yaxis(0, true);
+        $yaxis->set_label('Assignments Marks');
+        $yaxis->set_stepsize(max(1, round($max /10)));
         echo $OUTPUT->render($chart);
 
 }
