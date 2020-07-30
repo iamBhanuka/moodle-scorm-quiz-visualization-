@@ -1,17 +1,17 @@
 <?php
 require_once(dirname(__FILE__) . '/../../config.php');
 
-function get_course_name($courseid){
-    global $DB,$CFG;
+// function get_course_name($courseid){
+//     global $DB,$CFG;
    
-        // $course=$DB->get_records_sql("SELECT fullname FROM {course} WHERE id=$courseid"); 
+//         $course=$DB->get_records_sql("SELECT fullname FROM {course} WHERE id=$courseid"); 
    
-        // foreach ($course as $c=>$fullname) {
-        //         $name =$fullname->fullname;
+//         foreach ($course as $c=>$fullname) {
+//                 $name =$fullname->fullname;
                            
-        // }
-        // return $name;
-}
+//         }
+//         return $name;
+// }
 
 // function get_user_name($userid){
 //     global $DB,$CFG;
@@ -25,33 +25,33 @@ function get_course_name($courseid){
 //         return $name;
 // }
 
-// function get_assignment($courseid,$userid){
-//     global $DB,$CFG;
-//     $assign_list=array();
-//         $i=0;
+function get_assignment($courseid,$userid){
+    global $DB,$CFG;
+    $assign_list=array();
+        $i=0;
 
-//         $course=$DB->get_records_sql("SELECT fullname FROM {course} WHERE id=$courseid"); 
+        // $course=$DB->get_records_sql("SELECT fullname FROM {course} WHERE id=$courseid"); 
    
-//         foreach ($course as $c=>$fullname) {
-//                 $name =$fullname->fullname;
+        // foreach ($course as $c=>$fullname) {
+        //         $name =$fullname->fullname;
                            
-//         }
+        // }
       
 
-//     $assign = $DB->get_records_sql("SELECT id FROM {assign} WHERE course=$courseid  ");
-//     foreach($assign as $record_r=>$new_n)
-//         {
+    $assign = $DB->get_records_sql("SELECT id FROM {assign} WHERE course=$courseid  ");
+    foreach($assign as $record_r=>$new_n)
+        {
            
-//             $assign_list[$i]=$new_n->id;
-//             //echo "<br>";
-//              $i++; 
+            $assign_list[$i]=$new_n->id;
+            //echo "<br>";
+             $i++; 
             
-//         }
-//         $a=get_assignmentid($assign_list,$userid);
-//         return $a;
+        }
+        $a=get_assignmentid($assign_list,$userid);
+        return $a;
 
 
-// }
+}
 
 // function get_assignmentid($assign_list,$userid){
 //     global $DB,$CFG;
