@@ -36,14 +36,12 @@ function get_assignment($courseid,$userid){
         //         $name =$fullname->fullname;
                            
         // }
-      
-
+    // get available assignment
     $assign = $DB->get_records_sql("SELECT id FROM {assign} WHERE course=$courseid  ");
     foreach($assign as $record_r=>$new_n)
         {
            
             $assign_list[$i]=$new_n->id;
-            //echo "<br>";
              $i++; 
             
         }
@@ -53,31 +51,31 @@ function get_assignment($courseid,$userid){
 
 }
 
-// function get_assignmentid($assign_list,$userid){
-//     global $DB,$CFG;
-//     $course_list=array();
-//         $i=0;
+function get_assignmentid($assign_list,$userid){
+    global $DB,$CFG;
+    $course_list=array();
+        $i=0;
 
-//      foreach( $assign_list as $list)
-//      {
+    //  foreach( $assign_list as $list)
+    //  {
    
-//     $course = $DB->get_records_sql("SELECT assignment,id FROM {assign_submission} WHERE userid=$userid AND assignment=$list ");
+    $course = $DB->get_records_sql("SELECT assignment,id FROM {assign_submission} WHERE userid=$userid AND assignment=$list ");
     
-//     foreach($course as $record_r=>$new_n)
-//         {
+    foreach($course as $record_r=>$new_n)
+        {
            
-//             $course_list[$i]=$new_n->assignment;
-//             //echo "<br>";
-//             $i++; 
+            $course_list[$i]=$new_n->assignment;
+            //echo "<br>";
+            $i++; 
             
-//         }
-//       }
+        }
+    //   }
 
-//         $grades=grade($courseid,$userid,$assign_list);
-//         return $grades;
+        // $grades=grade($courseid,$userid,$assign_list);
+        // return $grades;
 
 
-// }
+}
 
 // function assignment_names($userid,$courseid){
 //     global $DB,$CFG;
