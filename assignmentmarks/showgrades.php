@@ -101,7 +101,7 @@ function grade($courseid,$userid,$assign_list){
         foreach( $assign_list as $list)
         {
             
-            $course0 = $DB->get_records_sql("SELECT assignment,id,userid,grade,grader FROM {assign_grades} ");
+            $course0 = $DB->get_records_sql("SELECT assignment,id,userid,grade,grader FROM {assign_grades} WHERE  userid=$userid  ");
             foreach($course0 as $record_r=>$new_n)
             {
                 $grade_list[$i]=$new_n->grade;
