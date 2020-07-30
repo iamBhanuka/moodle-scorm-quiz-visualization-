@@ -23,7 +23,7 @@ function assignment($userid,$courseid){
          $series = new \core\chart_series("marks", $marks);
          $chart->add_series($series);
          $chart->set_labels($course);
-         //$chart->set_title(get_course_name($courseid). " assignment results of ".get_user_name($userid));;
+         $chart->set_title(get_course_name($courseid). " assignment results of ".get_user_name($userid));;
          $yaxis = $chart->get_yaxis(0, true);
          $yaxis->set_label('Assignments Marks');
          $yaxis->set_stepsize(max(1, round($max /10)));
