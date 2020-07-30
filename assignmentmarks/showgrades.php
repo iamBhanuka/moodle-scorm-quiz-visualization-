@@ -85,7 +85,7 @@ function assignment_names($userid,$courseid){
     INNER JOIN {assign_grades} as ag ON ass.id=ag.assignment 
     AND ass.course=$courseid 
      AND ag.userid=$userid
-    --  AND ag.grade>=0"
+     AND ag.grade>=0"
     );
     foreach($course as $record_r=>$new_n)
         {
