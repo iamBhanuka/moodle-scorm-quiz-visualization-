@@ -26,6 +26,8 @@ function get_user_name($userid){
         return $name;
 }
 
+// get assignment ids
+
 function get_assignment($courseid,$userid){
     global $DB,$CFG;
     $assign_list=array();
@@ -52,6 +54,7 @@ function get_assignment($courseid,$userid){
 
 }
 
+//get submitted assignment
 function get_assignmentid($assign_list,$userid){
     global $DB,$CFG;
     $course_list=array();
@@ -78,6 +81,7 @@ function get_assignmentid($assign_list,$userid){
 
 }
 
+// get assignment names
 function assignment_names($userid,$courseid){
     global $DB,$CFG;
     $course_list2=array();
@@ -95,6 +99,7 @@ function assignment_names($userid,$courseid){
        return  $course_list2;
 }
 
+//get assignment results
 function grade($courseid,$userid,$assign_list){
     global $DB,$CFG;
     $grade_list=array();
