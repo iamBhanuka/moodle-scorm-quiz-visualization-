@@ -102,11 +102,11 @@ function grade($courseid,$userid,$assign_list){
         foreach( $assign_list as $list)
         {
             //  grade>=0 some times shows grade as -1
-            $course0 = $DB->get_records_sql("SELECT assignment,id,userid,grade,grader FROM {assign_grades} WHERE  userid=$userid AND assignment=$list AND grade>=0 ");
+            $course0 = $DB->get_records_sql("SELECT assignment,id,userid,grade,grader FROM {assign_grades} 
+                                            WHERE  userid=$userid AND assignment=$list AND grade>=0 ");
             foreach($course0 as $record_r=>$new_n)
             {
                 $grade_list[$i]=$new_n->grade;
-                //echo "<br>";
                $i++;
                 
             }
