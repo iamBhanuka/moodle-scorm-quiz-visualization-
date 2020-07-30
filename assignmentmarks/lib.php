@@ -17,7 +17,7 @@ function assignment($userid,$courseid){
         global  $OUTPUT,$CFG;
         $marks=get_assignment($courseid,$userid);
         $course=assignment_names($userid,$courseid);
-        // $max=50;
+        $max=50;
         
         $chart = new \core\chart_line();
         $series = new \core\chart_series("marks", $marks);
