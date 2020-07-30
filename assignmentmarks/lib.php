@@ -15,7 +15,7 @@ function block_assignmentmarks_course_context($courseid) { //get login page data
 function assignment($userid,$courseid){
     
         global  $OUTPUT,$CFG;
-        // $marks=get_assignment($courseid,$userid);
+        $marks=get_assignment($courseid,$userid);
         // $course=assignment_names($userid,$courseid);
         // $max=50;
         
