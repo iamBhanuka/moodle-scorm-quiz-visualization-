@@ -84,7 +84,8 @@ function assignment_names($userid,$courseid){
     $course = $DB->get_records_sql("SELECT DISTINCT ass.name FROM {assign} as ass 
     INNER JOIN {assign_grades} as ag ON ass.id=ag.assignment 
     AND ass.course=$courseid 
-    --  AND ag.userid=$userid AND ag.grade>=0"
+     AND ag.userid=$userid
+    --  AND ag.grade>=0"
     );
     foreach($course as $record_r=>$new_n)
         {
