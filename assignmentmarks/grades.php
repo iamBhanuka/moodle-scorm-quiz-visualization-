@@ -35,7 +35,7 @@ $PAGE->set_url(
 );
 
 $PAGE->set_context($context);
-//$title = 'Assignment Marks Overview';
+$title = 'Assignment Marks Overview';
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 $PAGE->navbar->add($title);
@@ -49,7 +49,7 @@ echo $OUTPUT->container_start('block_assignmentmarks');
 
 echo '<div>';
 
-//assignment($userid,$courseid);
+assignment($userid,$courseid);
 
 echo '</div>';
 
