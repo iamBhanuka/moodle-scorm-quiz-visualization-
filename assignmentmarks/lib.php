@@ -17,6 +17,7 @@ function assignment($userid,$courseid){
         global  $OUTPUT,$CFG;
         $marks=get_assignment($courseid,$userid);
         $course=assignment_names($userid,$courseid);
+        //set max as 50 to set step size as 5
         $max=50;
         
         $chart = new \core\chart_line();
