@@ -1,17 +1,18 @@
 <?php
 require_once(dirname(__FILE__) . '/../../config.php');
 
-// function get_course_name($courseid){
-//     global $DB,$CFG;
+// get course name
+function get_course_name($courseid){
+    global $DB,$CFG;
    
-//         $course=$DB->get_records_sql("SELECT fullname FROM {course} WHERE id=$courseid"); 
+        $course=$DB->get_records_sql("SELECT fullname FROM {course} WHERE id=$courseid"); 
    
-//         foreach ($course as $c=>$fullname) {
-//                 $name =$fullname->fullname;
+        foreach ($course as $c=>$fullname) {
+                $name =$fullname->fullname;
                            
-//         }
-//         return $name;
-// }
+        }
+        return $name;
+}
 
 // function get_user_name($userid){
 //     global $DB,$CFG;
