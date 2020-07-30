@@ -14,17 +14,17 @@ function get_course_name($courseid){
         return $name;
 }
 
-// function get_user_name($userid){
-//     global $DB,$CFG;
+function get_user_name($userid){
+    global $DB,$CFG;
    
-//         $course=$DB->get_records_sql("SELECT firstname,lastname FROM {user} WHERE id=$userid"); 
+        $course=$DB->get_records_sql("SELECT firstname,lastname FROM {user} WHERE id=$userid"); 
    
-//         foreach ($course as $c=>$fullname) {
-//                 $name =$fullname->firstname." ".$fullname->lastname;
+        foreach ($course as $c=>$fullname) {
+                $name =$fullname->firstname." ".$fullname->lastname;
                            
-//         }
-//         return $name;
-// }
+        }
+        return $name;
+}
 
 function get_assignment($courseid,$userid){
     global $DB,$CFG;
