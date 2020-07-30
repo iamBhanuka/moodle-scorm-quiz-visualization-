@@ -47,7 +47,7 @@ class block_assignmentmarks extends block_base {
          $parameters=array( 'assignmentmarksid' => $this->instance->id,'courseid' => $COURSE->id,'userid'=>$USER->id);
          $options1 = array('class' => 'overviewButton');
          $url = new moodle_url('/blocks/assignmentmarks/grades.php',$parameters);
-         $this->content->text .= $OUTPUT->single_button($url, 'Show Grades', 'post',$options1);
+         $this->content->text .= $OUTPUT->single_button($url, 'Show Assignmemt Grades', 'post',$options1);
          
          return $this->content;
     }
