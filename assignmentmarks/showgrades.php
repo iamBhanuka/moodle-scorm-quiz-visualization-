@@ -71,8 +71,8 @@ function get_assignmentid($assign_list,$userid){
         }
       }
 
-        // $grades=grade($courseid,$userid,$assign_list);
-        // return $grades;
+        $grades=grade($courseid,$userid,$assign_list);
+        return $grades;
 
 
 }
@@ -93,24 +93,24 @@ function get_assignmentid($assign_list,$userid){
 //        return  $course_list2;
 // }
 
-// function grade($courseid,$userid,$assign_list){
-//     global $DB,$CFG;
-//     $grade_list=array();
-//         $i=0;
+function grade($courseid,$userid,$assign_list){
+    global $DB,$CFG;
+    $grade_list=array();
+        $i=0;
         
-//         foreach( $assign_list as $list)
-//         {
+        foreach( $assign_list as $list)
+        {
             
-//             $course0 = $DB->get_records_sql("SELECT assignment,id,userid,grade,grader FROM {assign_grades} WHERE  userid=$userid AND assignment=$list AND grade>=0 ");
-//             foreach($course0 as $record_r=>$new_n)
-//             {
-//                 $grade_list[$i]=$new_n->grade;
-//                 //echo "<br>";
-//                $i++;
+            $course0 = $DB->get_records_sql("SELECT assignment,id,userid,grade,grader FROM {assign_grades} ");
+            foreach($course0 as $record_r=>$new_n)
+            {
+                $grade_list[$i]=$new_n->grade;
+                //echo "<br>";
+               $i++;
                 
-//             }
+            }
             
-//          }
-//         return $grade_list;
+         }
+        return $grade_list;
         
-// }
+}
