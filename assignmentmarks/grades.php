@@ -48,9 +48,7 @@ echo $OUTPUT->heading($title, 2);
 echo $OUTPUT->container_start('block_assignmentmarks');
 
 echo '<div>';
-
-assignment($userid,$courseid);
-
+ assignment($userid,$courseid);
 echo '</div>';
 
 echo $OUTPUT->container_end();
