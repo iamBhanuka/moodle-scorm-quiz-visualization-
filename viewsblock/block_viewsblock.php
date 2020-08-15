@@ -22,7 +22,7 @@
             $parameters=array('viewsgraphid'=>$this->instance->id,'userid'=>$USER->id,'courseid'=>$COURSE->id);
              $options = array('class' => 'overviewButton');
              $url = new moodle_url('/blocks/viewsblock/overview.php',$parameters);        
-             $this->content->text .= $OUTPUT->single_button($url, 'overview of students', 'post',$options);
+             $this->content->text .= $OUTPUT->single_button($url, 'Number of views', 'post',$options);
             return $this->content;
         }
 
