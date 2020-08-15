@@ -5,7 +5,7 @@
     class block_studentblock extends block_base {
 
         public function init(){
-            $this->title= get_string('pluginname','block_studentblock');
+            $this->title= "Assignments access";
         }
 
         public function get_content(){
@@ -22,7 +22,7 @@
             $parameters=array('studentgraphid'=>$this->instance->id,'userid'=>$USER->id,'courseid'=>$COURSE->id);
             $options = array('class' => 'overviewButton');
             $url = new moodle_url('/blocks/studentblock/overview.php',$parameters);        
-            $this->content->text .= $OUTPUT->single_button($url, 'overview of students', 'post',$options);
+            $this->content->text .= $OUTPUT->single_button($url, 'Number Of Assignments', 'post',$options);
             return $this->content;
         }
 
