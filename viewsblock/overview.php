@@ -36,7 +36,7 @@
     );
 
     $PAGE->set_context($context);
-    $title = 'Overview of students';
+    $title = 'Number of Views';
     $PAGE->set_title($title);
     $PAGE->set_heading($title);
     $PAGE->navbar->add($title);
