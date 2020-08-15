@@ -39,12 +39,7 @@
         }
 
         public function applicable_formats(){
-            return array(
-                'course-view'    => true,  
-                'site'           => true,
-                'mod'            => false,
-                'my'             => true        
-            );
+            return array('all' => true);
         }
         
     }

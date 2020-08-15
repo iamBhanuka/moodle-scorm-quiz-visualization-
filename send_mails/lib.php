@@ -31,8 +31,8 @@
                         echo html_writer::end_tag('tr');
                         $t=time();
                         $new_date=date("Y-m-d h:i:s",$t);
-                        $d=new DateTime($new_date);
-                        $newDate=$d->modify('+1 days'); 
+                        $newDate=new DateTime($new_date);
+                        //$newDate=$d->modify('+1 days'); 
                         $sql0="SELECT * FROM {role_assignments} WHERE  userid='$userids';";
                         $res0=$DB->get_records_sql($sql0);
                         foreach($res0 as $f=>$val){
