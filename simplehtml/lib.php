@@ -13,8 +13,8 @@
 
     // draw graph according to views of subject 
     function get_logins_data($id2,$ndays,$action,$courseid){
-        if($ndays>0 && $id2>0){
-            global $DB,$countuser,$X, $OUTPUT,$name,$max,$cat,$u,$ylabel;                
+        if($ndays>0 && $id2!=''){
+            global $DB,$countuser,$X, $OUTPUT,$name,$max,$cat,$u,$ylabel,$ids;                
             $u=0;  
             $max=1;
             $countuser=0;
@@ -54,17 +54,18 @@
                             }
                         } 
                     } 
-                    $sql2="SELECT firstname, lastname FROM {user} WHERE id='$id2';";
+                    $sql2="SELECT id, firstname, lastname FROM {user} WHERE username='$id2';";
                     $l=$DB->get_records_sql($sql2);
                     foreach($l as $w=>$va){
-                        echo $va->firstname.' '.$va->lastname.'<br>';                      
+                        echo $va->firstname.' '.$va->lastname.'<br>'; 
+                        $ids=$va->id;
                         foreach($subject as $a){
                             $X=0;
                             foreach($labe2 as $date){        
                                 if($action=='viewed'){
                                     $sql6= "SELECT COUNT(userid) AS 'countusers'
                                             FROM {logstore_standard_log} 
-                                            WHERE action='viewed' AND courseid=$a  AND userid='$id2'
+                                            WHERE action='viewed' AND courseid=$a  AND userid='$ids'
                                             AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$date';";
                                     $login6=$DB->get_records_sql($sql6); 
                                     foreach($login6 as $f=>$va){                                        
@@ -75,7 +76,7 @@
                                 }else{
                                     $sql6= "SELECT COUNT(userid) AS 'countusers'
                                             FROM {logstore_standard_log} 
-                                            WHERE courseid=$a AND userid='$id2'
+                                            WHERE courseid=$a AND userid='$ids'
                                             AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$date';";
                                     $login6=$DB->get_records_sql($sql6);                                                        
                                     foreach($login6 as $f=>$va){                                        
@@ -107,11 +108,11 @@
                 }                                                                                             
             }
         }
-        elseif($ndays<=0 && $id2>0){
-            echo ' you have only entered user id . so,please select no of days';
+        elseif($ndays<=0 && $id2!=''){
+            echo ' you have only entered username . so,please select no of days';
         }
-        elseif($ndays>0 && $id2<=0){
-            echo 'you have only selected no of days. so,please enter valid user id';
+        elseif($ndays>0 && $id2==''){
+            echo 'you have only selected no of days. so,please enter valid username';
         }
         else{
             echo 'there is no values to display';
@@ -119,26 +120,30 @@
                                                  
     }
         
-    function  get_coursees_datas($userid){
+    function  get_coursees_datas($id2){
         global $DB,$contextids,$instanceids,$i;
         $label=array();
         $i=0;
-        
-        $sql1 = "SELECT * FROM {role_assignments} WHERE  userid='$userid';";
-        $res = $DB->get_records_sql($sql1);
-        foreach ($res as $s=>$val){
-            $contextids=$val->contextid;       
-            $sql2 = "SELECT instanceid from {context} WHERE id='$contextids' AND contextlevel=50;";
-            $res1 = $DB->get_records_sql($sql2);
-            foreach($res1 as $d=>$val){
-                $instanceids=$val->instanceid;
-                $sql3 = "SELECT id,shortname,fullname FROM {course} WHERE id='$instanceids';";
-                $res2=$DB->get_records_sql($sql3);
-                foreach($res2 as $f=>$val){
-                    $label[$i]=$val->id;
-                    $i++;
+        $sql2="SELECT id FROM {user} WHERE username='$id2';";
+        $l=$DB->get_records_sql($sql2);
+        foreach ($l as $s=>$val){
+            $userid=$val->id;       
+            $sql1 = "SELECT * FROM {role_assignments} WHERE  userid='$userid';";
+            $res = $DB->get_records_sql($sql1);
+            foreach ($res as $s=>$val){
+                $contextids=$val->contextid;       
+                $sql2 = "SELECT instanceid from {context} WHERE id='$contextids' AND contextlevel=50;";
+                $res1 = $DB->get_records_sql($sql2);
+                foreach($res1 as $d=>$val){
+                    $instanceids=$val->instanceid;
+                    $sql3 = "SELECT id,shortname,fullname FROM {course} WHERE id='$instanceids';";
+                    $res2=$DB->get_records_sql($sql3);
+                    foreach($res2 as $f=>$val){
+                        $label[$i]=$val->id;
+                        $i++;
+                    }
                 }
             }
+            return $label;
         }
-        return $label;
     }

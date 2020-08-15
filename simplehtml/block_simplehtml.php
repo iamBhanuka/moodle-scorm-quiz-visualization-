@@ -1,7 +1,7 @@
 <?php
 class block_simplehtml extends block_base {
     public function init() {
-        $this->title = 'user login data';
+        $this->title = 'students\' login data';
     }
    
     public function get_content(){
@@ -19,7 +19,7 @@ class block_simplehtml extends block_base {
       $parameters=array('usergraphid'=>$this->instance->id,'userid'=>$USER->id,'courseid'=>$COURSE->id);
       $options = array('class' => 'overviewButton');
       $url = new moodle_url('/blocks/simplehtml/overview.php',$parameters);        
-      $this->content->text .= $OUTPUT->single_button($url, 'overview of students', 'post',$options);
+      $this->content->text .= $OUTPUT->single_button($url, 'Number of Logins', 'post',$options);
       return $this->content;
   }
   public function specialization(){ 
