@@ -30,15 +30,17 @@
                         $date[$i]=$value->duedate;
                         $c4++;
                         $i++;
+                        
                 }
-                echo 'there are  '.$c4.' assignments';
+                echo 'there are  '.$c4.' assignments'.'<br>';
             
                 foreach($id as $b){                
-                        $sql1="SELECT id,assignment,userid,DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y') AS 'day' ,timecreated 
+                        $sql1="SELECT id,assignment,userid,DATE_FORMAT(FROM_UNIXTIME(timemodified),'%D %M %Y') AS 'day' ,timemodified 
                                 FROM {assign_submission} WHERE assignment='$b' AND userid='$userid' ;";
                         $data1=$DB->get_records_sql($sql1);
                         foreach($data1 as $a => $value){
-                                $e=$value->timecreated;
+                                $e=$value->timemodified;
+                                
                                 if($date[$r]>$e){
                                         $c1++;
                                 }
@@ -47,11 +49,11 @@
                 }
                 $r=0;
                 foreach($id as $b){                
-                        $sql2="SELECT id,assignment,userid,DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y') AS 'day' ,timecreated 
+                        $sql2="SELECT id,assignment,userid,DATE_FORMAT(FROM_UNIXTIME(timemodified),'%D %M %Y') AS 'day' ,timemodified 
                                 FROM {assign_submission} WHERE assignment='$b' AND userid='$userid' ;";
                         $data2=$DB->get_records_sql($sql2);
                         foreach($data2 as $a => $value){
-                                $e=$value->timecreated;
+                                $e=$value->timemodified;
                                 if($date[$r]<$e){
                                         $c2++;
                                }

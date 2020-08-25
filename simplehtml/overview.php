@@ -36,7 +36,7 @@
     );
 
     $PAGE->set_context($context);
-    $title = 'Overview of students';
+    $title = 'Number of Logins';
     $PAGE->set_title($title);
     $PAGE->set_heading($title);
     $PAGE->navbar->add($title);
@@ -52,7 +52,7 @@
     $actions=array('viewed','All Actions');
          echo html_writer::start_tag('div');
              echo html_writer::start_tag('form', array('action' =>'overview.php', 'method' => 'post'));
-                echo html_writer::empty_tag('input', array('type' => 'text', 'name' => 'per1','autocomplete'=>'off','placeholder'=>' enter userid ','style'=>'height:35px ; border:1px solid black')).' ';
+                echo html_writer::empty_tag('input', array('type' => 'text', 'name' => 'per1','autocomplete'=>'off','placeholder'=>' enter reg. number ','style'=>'height:35px ; border:1px solid black')).' ';
                 echo html_writer::select( $ndayss,'per5',$selected5,true).' ';
                 echo html_writer::select( $actions,'per6',$selected6,true).' ';            
                 echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'usergraphid', 'value' => $id));
