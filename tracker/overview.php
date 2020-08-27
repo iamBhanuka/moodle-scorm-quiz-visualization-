@@ -8,7 +8,7 @@
    define('DEFAULT_PAGE_SIZE', 20);
    define('SHOW_ALL_PAGE_SIZE', 5000);
 
-   $id              = required_param('trackerid',    PARAM_INT);
+   $id              = required_param('logingraphid',    PARAM_INT);
    $courseid        = required_param('courseid',   PARAM_INT);
    $userid          = required_param('userid',     PARAM_INT);
 
@@ -27,7 +27,7 @@
    $PAGE->set_url(
        '/blocks/tracker/overview.php',
        array(
-           'trackerid'    => $id,
+           'logingraphid'    => $id,
            'courseid'   => $courseid,
            'page'       => $page,
            'perpage'    => $perpage,
@@ -124,6 +124,7 @@ else {
                         FROM {user} u, {role_assignments} r
                         WHERE u.id=r.userid
                             AND r.contextid = {$contextid->id}
+                            AND r.roleid = 5 
                         ORDER BY u.username";
             $info_students = $DB->get_records_sql($users);
             
