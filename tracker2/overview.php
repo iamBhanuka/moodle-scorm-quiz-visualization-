@@ -22,18 +22,18 @@
    $loginblock      = $DB->get_record('block_instances', array('id' => $id), '*', MUST_EXIST);
    $loginsconfig    = unserialize(base64_decode($loginblock->configdata));
 
-   $PAGE->set_course($course); 
+   $PAGE->set_course($course);
 
    $PAGE->set_url(
-    '/blocks/tracker2/overview.php',
-    array(
-        'tracker2id'    => $id,
-        'courseid'   => $courseid,
-        'page'       => $page,
-        'perpage'    => $perpage,
-        'group'      => $group,
-    )
-);
+       '/blocks/tracker2/overview.php',
+       array(
+           'tracker2id'    => $id,
+           'courseid'   => $courseid,
+           'page'       => $page,
+           'perpage'    => $perpage,
+           'group'      => $group,
+       )
+   );
 
    $PAGE    ->  set_context($context);
    $title = 'Time Spent per Lesson';
@@ -57,11 +57,16 @@
     //getting lesson names from db
     $sco_lessons = "SELECT id, name FROM {scorm} WHERE course = $courseid";
     $info_sco_lessons = $DB->get_records_sql($sco_lessons);
+    
+
+if (empty($info_sco_lessons)){ echo "No scorm packages for this course.";    }
+
+else {
 
     //initialize name list for scorm lessons
     $name = array();
     foreach($info_sco_lessons as $sco_name){
-        //entering lesson names into array by id
+        //entering lesson names into array
         array_push($name, $sco_name->name);
     }
 
@@ -72,7 +77,7 @@
         $course_name=$info_coursename->fullname;
     }
 
-    //create the new chart
+    //create a new chart
     $chart = new \core\chart_line();
     //name its axis
     $chart->get_xaxis(0, true)->set_label("Lessons in ". $course_name); 
@@ -85,6 +90,7 @@
                 FROM {user} u, {role_assignments} r
                 WHERE u.id=r.userid
                     AND r.contextid = {$contextid->id}
+                    AND r.roleid = 5 
                 ORDER BY u.username";
     $info_students = $DB->get_records_sql($users);
 
@@ -140,6 +146,8 @@
 
     $chart->set_labels($name);
     echo $OUTPUT->render($chart);
+
+}
 
     echo '</div>';
 
