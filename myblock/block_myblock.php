@@ -5,7 +5,7 @@
     class block_myblock extends block_base {
 
         public function init(){
-            $this->title= 'Actions of courses';
+            $this->title= 'Students\' Actions of courses';
         }
 
         public function get_content(){

@@ -54,11 +54,13 @@
         
         //draw graph according to views of subject 
         function get_login_data($s,$ndays,$action){
-                global $DB,$countuser,$X, $OUTPUT,$name,$max,$yname;
+                global $DB,$countuser,$X, $OUTPUT,$name,$max,$yname,$r;
                 $max=1;
                 $countuser=0;
                 $name='';  
                 $dan=$ndays-1;
+                $user=array();
+                $r=0;
                 $data=array();//for data
                 $labe2=array();//for dates label
                 $days='-'.$dan.'days';
@@ -77,7 +79,7 @@
                 
                
                 $cours=$DB->get_records_sql('SELECT id,fullname,idnumber FROM {course}');
-
+               
                 foreach($s as $a){
                         $X=0;
                         foreach($labe2 as $date){
@@ -85,7 +87,7 @@
                                 if($action=='viewed'){
                                         $sql6= "SELECT COUNT(userid) AS 'countusers'
                                                 FROM {logstore_standard_log} 
-                                                WHERE action='viewed' AND courseid=$a 
+                                                WHERE action='viewed' AND courseid=$a AND userid IN(SELECT userid FROM {role_assignments} WHERE roleid=5)
                                                 AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$date';";
                                         $login6=$DB->get_records_sql($sql6); 
                                         foreach($login6 as $f=>$va){                                        
@@ -96,7 +98,7 @@
                                 }else{
                                         $sql6= "SELECT COUNT(userid) AS 'countusers'
                                                 FROM {logstore_standard_log} 
-                                                WHERE courseid=$a 
+                                                WHERE courseid=$a AND userid IN(SELECT userid FROM {role_assignments} WHERE roleid=5)
                                                 AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y')='$date';";
                                         $login6=$DB->get_records_sql($sql6); 
                                 

@@ -124,6 +124,7 @@ else {
                         FROM {user} u, {role_assignments} r
                         WHERE u.id=r.userid
                             AND r.contextid = {$contextid->id}
+                            AND r.roleid = 5 
                         ORDER BY u.username";
             $info_students = $DB->get_records_sql($users);
             

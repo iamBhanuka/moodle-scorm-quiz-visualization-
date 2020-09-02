@@ -122,6 +122,7 @@
     $users = "SELECT u.id, u.username
                 FROM {user} u, {role_assignments} r
                 WHERE u.id=r.userid
+                    AND r.roleid = 5 
                     AND r.contextid = {$contextid->id}";
     $info_students = $DB->get_records_sql($users);
 
@@ -204,5 +205,4 @@
 
    echo $OUTPUT->footer();
 
-   
    
