@@ -43,40 +43,9 @@ $PAGE->set_url(
 require_login($course, false);
 
 echo $OUTPUT->header();
-// echo $OUTPUT->heading($title, 2);
 echo $OUTPUT->container_start('block_summary');
-// $ndayss=array('select number of days','30','60','90','105');
-// $actions=array('viewed','All Actions');
-     echo html_writer::start_tag('div');
-         echo html_writer::start_tag('form', array('action' =>'overview.php', 'method' => 'post'));
-            echo html_writer::empty_tag('input', array('type' => 'number', 'name' => 'per1','autocomplete'=>'off','placeholder'=>' enter marks ','style'=>'height:35px ; border:1px solid black')).' ';
-            // echo html_writer::select( $ndayss,'per5',$selected5,true).' ';
-            // echo html_writer::select( $actions,'per6',$selected6,true).' ';            
-             echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'summaryid', 'value' => $id));
-             echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'courseid', 'value' => $courseid));
-              echo html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'userid', 'value' => $userid));
-              echo'<br>';
-              echo'<br>';
-
-             echo html_writer::empty_tag('input', array('type' => 'submit', 'class' => 'btn-primary', 'value' => 'Please Verify Your Marks','style'=>'height:35px ; border:1px solid black'));
-         echo html_writer::end_tag('form').'<br>';       
-     echo html_writer::end_tag('div');
-
-     echo html_writer::start_tag('div', array('style' => 'border-style:groove ; '));     
-         $minmarks= $_POST['per1'];
-        //  $ndays=$ndayss[ $_POST['per5'] ];
-        //  $action=$actions[ $_POST['per6'] ];      
-        //  get_logins_data($id2,$ndays,$action,$courseid);
-     echo html_writer::end_tag('div');
-    
-
-
-
-
-
-
 echo $OUTPUT->container_start('block_summary');
-get_summary($courseid,$userid,$minmarks );
+get_summary($courseid,$userid);
 
 echo $OUTPUT->container_end();
 
