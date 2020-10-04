@@ -1,3 +1,0 @@
-n  cmn
-njh
- kmk
