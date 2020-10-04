@@ -15,8 +15,8 @@ function block_assignmentmarks_course_context($courseid) { //get login page data
 function assignment($userid,$courseid){
     
         global  $OUTPUT,$CFG;
-        $marks=get_assignment($courseid,$userid);
-        $course=assignment_names($userid,$courseid);
+        $marks=get_assignment_ass($courseid,$userid);
+        $course=assignment_names_ass($userid,$courseid);
         //set max as 50 to set step size as 5
         $max=50;
         
@@ -24,11 +24,17 @@ function assignment($userid,$courseid){
         $series = new \core\chart_series("marks", $marks);
         $chart->add_series($series);
         $chart->set_labels($course);
-        $chart->set_title(get_course_name($courseid). " assignment results of ".get_user_name($userid));;
+        $chart->set_title(get_course_name_ass($courseid). " assignment results of ".get_user_name_ass($userid));;
         $yaxis = $chart->get_yaxis(0, true);
         $yaxis->set_label('Assignments Marks');
         $yaxis->set_stepsize(max(1, round($max /10)));
         echo $OUTPUT->render($chart);
+
+}
+
+
+
+
 
 }
 

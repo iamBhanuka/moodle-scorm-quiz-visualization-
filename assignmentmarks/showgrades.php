@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__) . '/../../config.php');
 
 // get course name
-function get_course_name($courseid){
+function get_course_name_ass($courseid){
     global $DB,$CFG;
    
         $course=$DB->get_records_sql("SELECT fullname FROM {course} WHERE id=$courseid"); 
@@ -14,7 +14,7 @@ function get_course_name($courseid){
         return $name;
 }
 
-function get_user_name($userid){
+function get_user_name_ass($userid){
     global $DB,$CFG;
    
         $course=$DB->get_records_sql("SELECT firstname,lastname FROM {user} WHERE id=$userid"); 
@@ -28,7 +28,7 @@ function get_user_name($userid){
 
 // get assignment ids
 
-function get_assignment($courseid,$userid){
+function get_assignment_ass($courseid,$userid){
     global $DB,$CFG;
     $assign_list=array();
         $i=0;
@@ -48,14 +48,14 @@ function get_assignment($courseid,$userid){
              $i++; 
             
         }
-        $a=get_assignmentid($assign_list,$userid);
+        $a=get_assignmentid_ass($assign_list,$userid);
         return $a;
 
 
 }
 
 //get submitted assignment
-function get_assignmentid($assign_list,$userid){
+function get_assignmentid_ass($assign_list,$userid){
     global $DB,$CFG;
     $course_list=array();
         $i=0;
@@ -69,20 +69,20 @@ function get_assignmentid($assign_list,$userid){
         {
            
             $course_list[$i]=$new_n->assignment;
-            //echo "<br>";
+            
             $i++; 
             
         }
       }
 
-        $grades=grade($courseid,$userid,$assign_list);
+        $grades=grade_ass($courseid,$userid,$assign_list);
         return $grades;
 
 
 }
 
 // get assignment names
-function assignment_names($userid,$courseid){
+function assignment_names_ass($userid,$courseid){
     global $DB,$CFG;
     $course_list2=array();
         $i=0;
@@ -100,7 +100,7 @@ function assignment_names($userid,$courseid){
 }
 
 //get assignment results
-function grade($courseid,$userid,$assign_list){
+function grade_ass($courseid,$userid,$assign_list){
     global $DB,$CFG;
     $grade_list=array();
         $i=0;
