@@ -19,6 +19,29 @@ function get_courseid($courseid,$userid){
 
 
 }
+function get_course_name($courseid){
+    global $DB,$CFG;
+   
+        $course=$DB->get_records_sql("SELECT fullname FROM {course} WHERE id=$courseid"); 
+   
+        foreach ($course as $c=>$fullname) {
+                $name =$fullname->fullname;
+                           
+        }
+        return $name;
+}
+
+function get_user_name($userid){
+    global $DB,$CFG;
+   
+        $course=$DB->get_records_sql("SELECT firstname,lastname FROM {user} WHERE id=$userid"); 
+   
+        foreach ($course as $c=>$fullname) {
+                $name =$fullname->firstname." ".$fullname->lastname;
+                           
+        }
+        return $name;
+}
 
 //get course names
 function course_names($userid,$courseid){

@@ -2,7 +2,7 @@
 
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once($CFG->dirroot.'/blocks/coursegraph/showaccess.php');
-//require_once($CFG->dirroot.'/blocks/coursegraph/showgrades.php');
+require_once($CFG->dirroot.'/blocks/coursegraph/showgrades.php');
 
 function block_coursegraph_course_context($courseid) { //get login page data
     if (class_exists('context_course')) {
@@ -18,7 +18,7 @@ function quiz($userid,$courseid){
         global $DB,$CFG, $OUTPUT;
         $marks=get_courseid($courseid,$userid);
         $course=course_names($userid,$courseid);
-          $array=get_student_id_array();
+        //$array=get_student_id_array();
         
         
         $chart = new \core\chart_line();
@@ -27,7 +27,7 @@ function quiz($userid,$courseid){
         $chart->add_series($series);
         //}
         $chart->set_labels($course);
-        $chart->set_title("Your quizes results for this subject");;
+        $chart->set_title(get_course_name($courseid). " quiz results of ".get_user_name($userid));;
         $yaxis = $chart->get_yaxis(0, true);
         $yaxis->set_label('Marks');
         $yaxis->set_stepsize(max(1, round($max / 10)));
@@ -53,35 +53,35 @@ function get_activity_details($userid,$courseid){
          $names[$r] ;
     }
     
-    // foreach($subjects as $list)
-    //     {
-    //         echo '<br>';
-    //         $x=0;
+    foreach($subjects as $list)
+        {
+            echo '<br>';
+            $x=0;
             
-    //         foreach( $course_loga as $da)
-    //         {
-    //                $sql5= "SELECT  COUNT(action) AS 'countu',courseid
-    //                         FROM {logstore_standard_log} 
-    //                         WHERE  userid=$userid  AND action='viewed' AND courseid =$list AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y') ='$da'
-    //                       "; 
-    //                 $login5=$DB->get_records_sql($sql5);
-    //                 foreach($login5 as $record_r=>$new_n)
-    //                     {
-    //                         $c_id[$x]=$new_n->countu;   
-    //                     } 
-    //                     $x++;
+            foreach( $course_loga as $da)
+            {
+                   $sql5= "SELECT  COUNT(action) AS 'countu',courseid
+                            FROM {logstore_standard_log} 
+                            WHERE  userid=$userid  AND action='viewed' AND courseid =$list AND DATE_FORMAT(FROM_UNIXTIME(timecreated),'%D %M %Y') ='$da'
+                          "; 
+                    $login5=$DB->get_records_sql($sql5);
+                    foreach($login5 as $record_r=>$new_n)
+                        {
+                            $c_id[$x]=$new_n->countu;   
+                        } 
+                        $x++;
 
-    //         }
+            }
             
           
-    //         $series = new \core\chart_series($names[$k], $c_id);
-    //         $chart->add_series($series);
-    //         $k++;
-    //         if($max<=max($c_id)){
-    //             $max= max($c_id);
-    //         }
+            $series = new \core\chart_series($names[$k], $c_id);
+            $chart->add_series($series);
+            $k++;
+            if($max<=max($c_id)){
+                $max= max($c_id);
+            }
             
-    //     }
+        }
 
 $chart->set_labels($course_loga);
 $yaxis = $chart->get_yaxis(0, true);
