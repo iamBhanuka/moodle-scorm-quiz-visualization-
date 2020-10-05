@@ -2,6 +2,7 @@ All rights reserved.
 Copyright © 2020
 Contributors: Members of project Intelligent Interactive Visualizer (students of UCSC)
 
+
 This is free software.
 The use of this software is restricted to the users for whom the software has been developed.
 Redistribution or modification is not permitted.
