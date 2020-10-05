@@ -1,0 +1,11 @@
+All rights reserved.
+Copyright © 2020
+Contributors: Members of project Intelligent Interactive Visualizer (students of UCSC)
+
+This is free software.
+The use of this software is restricted to the users for whom the software has been developed.
+Redistribution or modification is not permitted.
+If necessary, maintenance shall be done by the original contributors.
+The software is provided “as is” in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+Its purpose is to increase the capabilities of Moodle, therefore needs Moodle to be installed and a virtual learning environment set up. The software can be uploaded to the Moodle site by using the plugins option on the site administration page.
+No private information regarding the user will be collected during the use of this software, only the data present in the Moodle database. This data may be shared with authorised users of the virtual learning environment.
